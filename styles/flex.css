@@ -1,0 +1,160 @@
+/* START PARENT CLASSES */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
+}
+
+/* flex direction */
+.flex-row {
+    flex-direction: row;
+}
+.flex-row-rev {
+    flex-direction: row-reverse;
+}
+.flex-col {
+    flex-direction: column;
+}
+.flex-col-rev {
+    flex-direction: column-reverse;
+}
+
+/* flex wrap */
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-wrap-no {
+    flex-wrap: nowrap;
+}
+.flex-wrap-rev {
+    flex-wrap: wrap-reverse;
+}
+
+/* justify-content */
+.justify-start {
+    justify-content: flex-start;
+}
+.justify-end {
+    justify-content: flex-end;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.justify-around {
+    justify-content: space-around;
+}
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+/* align-content */
+.align-start {
+    align-content: flex-start;
+}
+.align-end {
+    align-content: flex-end;
+}
+.align-center {
+    align-content: center;
+}
+.align-between {
+    align-content: space-between;
+}
+.align-around {
+    align-content: space-around;
+}
+.align-stretch {
+    align-content: stretch;
+}
+
+/* align-items */
+.baseline-start {
+    align-items: flex-start;
+}
+.baseline-end {
+    align-items: flex-end;
+}
+.baseline-center {
+    align-items: center;
+}
+.baseline-baseline {
+    align-items: baseline;
+}
+.baseline-stretch {
+    align-items: stretch;
+}
+/* END PARENT CLASSES */
+
+/* START CHILD CLASSES */
+.flex-item {
+    order: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    align-self: auto;
+}
+
+/* order */
+.order-0 {
+    order: 0;
+}
+.order-1 {
+    order: 1;
+}
+.order-2 {
+    order: 2;
+}
+
+/* flex-grow */
+.flex-grow-0 {
+    flex-grow: 0;
+}
+.flex-grow-1 {
+    flex-grow: 1;
+}
+.flex-grow-2 {
+    flex-grow: 2;
+}
+
+/* flex-shrink */
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+.flex-shrink-1 {
+    flex-shrink: 1;
+}
+.flex-shrink-2 {
+    flex-shrink: 2;
+}
+
+/* flex-basis */
+.flex-basis {
+    flex-basis: auto;
+}
+
+/* align-self */
+.align-self {
+    align-self: auto;
+}
+.align-self-start {
+    align-self: flex-start;
+}
+.align-self-end {
+    align-self: flex-end;
+}
+.align-self-center {
+    align-self: center;
+}
+.align-self-baseline {
+    align-self: baseline;
+}
+.align-self-stretch {
+    align-self: stretch;
+}
+/* END CHILD CLASSES */

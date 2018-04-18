@@ -1,0 +1,19 @@
+ul {
+    background: #fc0;
+    display: flex;
+    text-indent:0;
+    list-style-type: none;
+    list-style-position:inside;
+    list-style-image:none;
+    padding:2px;
+    margin:0;
+}
+ul li {
+    background: #000;
+    color:#fff;
+    padding:1em;
+    margin:0 1px;
+}
+a, a:link, a:visited, a:active, a:hover {
+    color:#fff;
+}
