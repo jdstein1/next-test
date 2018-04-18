@@ -1,6 +1,6 @@
 # NEXT TEST
 
-Testing out Next.js
+Testing out Next.js features and capabilities
 
 ## Resources
 
