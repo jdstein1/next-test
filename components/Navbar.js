@@ -27,12 +27,18 @@ class Navbar extends Component {
 		const navLinks = this.props.links.filter(link => {
 			return link.url !== ''
 		}).map((link, i) => {
-			return (<li key={i} role="presentation"><Link href={'/'+link.url}><a href="#" className={'nav-item nav-link ' + (this.isActiveNav(link.id,this.props.activePageIndex)?'active':'')}>{link.title}</a></Link></li>)
+			return (
+				<li key={i} role="presentation">
+					<Link prefetch href={'/'+link.url}>
+						<a className={'nav-item nav-link ' + (this.isActiveNav(link.id,this.props.activePageIndex)?'active':'')}>{link.title}</a>
+					</Link>
+				</li>
+			)
 		});
 
 		return (
 			<nav className="navbar navbar-expand-md navbar-light bg-light">
-				<Link href="/"><a href="#" className="navbar-brand">AppName</a></Link>
+				<Link href="/"><a className="navbar-brand">AppName</a></Link>
 				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
 				<span className="navbar-toggler-icon"></span>
 				</button>
@@ -41,15 +47,19 @@ class Navbar extends Component {
 						{navLinks}
 					</ul>
 				</div>
-				<style jsx global>{`
+				<style jsx>{`
 				`}</style>
 			</nav>
 		);
+
 	}
+
 }
+
 Navbar.propTypes = {
 
 };
+
 Navbar.defaultProps = {
 
 };
