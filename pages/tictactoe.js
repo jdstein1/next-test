@@ -170,14 +170,14 @@ class TicTacToe extends React.Component {
             <style jsx>{`
 .TicTacToe {
     // background:rgba(0,0,0,0.125);
-    margin:0;
+    margin:0 auto;
     padding:1rem;
 }
 .table {
     width:auto;
     height:auto;
     // background:rgba(255,0,0,0.25);
-    margin:0;
+    margin:0 auto;
     padding:1rem;
 }
 .board {
@@ -190,14 +190,15 @@ class TicTacToe extends React.Component {
     list-style-position:inside;
     list-style-image:none;
     text-indent:0;
-    margin:0;
+    margin:0 auto;
     padding:0;
 }
 .square {
     border:1vmin inset lightgrey;
-    background:rgba(255,255,255,0.75);
+    background:rgba(127,127,127,0.125);
     width:20vmin;
     height:20vmin;
+    font-size:15vmin;
     margin:0;
     padding:0;
 }

@@ -30,6 +30,7 @@ class Layout extends Component {
 				<Head>
 					<title>Next.js test</title>
 					{/* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" /> */}
+					{/* https://bootswatch.com/minty/ */}
 					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/minty/bootstrap.min.css" />
 					{/* more info: https://bootswatch.com/minty/ */}
 					<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/solid.css" integrity="sha384-29Ax2Ao1SMo9Pz5CxU1KMYy+aRLHmOu6hJKgWiViCYpz3f9egAJNwjnKGgr+BXDN" crossorigin="anonymous"/>
@@ -47,6 +48,8 @@ class Layout extends Component {
 				</div>
 				<style jsx global>{`
 					* { box-sizing: border-box; margin:0; padding:0; }
+					nav { position:fixed; }
+					pre { color:#444 !important; }
 					.module input, .module button, .module textarea, .module select {
 						border-radius:3px;
 						// border:0;
@@ -90,13 +93,14 @@ class Layout extends Component {
 						padding:0;
 						margin:0;
 						text-align:left;
-						vertical-align:top;
+						vertical-align:middle !important;
 					}
 					th, td {
 						padding:0.25em 0.5em;
 					}
 					th {
 						// background:rgba(0,0,0,0.125);
+						vertical-align:bottom !important;
 					}
 					thead, th {
 						text-align: center;
