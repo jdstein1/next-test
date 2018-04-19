@@ -19,16 +19,18 @@ class PrettyRate extends React.Component {
 
 		// console.log(this.state.meta.name+' -- render: ',this.props)
 
-		return (<h2>
-            <pre>
+		return (<span>
+            <pre style={{fontSize:'1.5rem',lineHeight:1,marginBottom:0}}>
                 {/* <strong>{this.props.rate}</strong> */}
                 <strong>{this.props.rate.slice(0,this.props.rate.length-4)}</strong>
                 <span >{this.props.rate.slice(this.props.rate.length-4,this.props.rate.length-2)}</span>
                 <span className='thousandths'>{this.props.rate.slice(this.props.rate.length-2,this.props.rate.length)}</span>
+                <br/>
             </pre>
+            {<small>per 1 BTC</small>}
             <style jsx>{`
 			`}</style>
-        </h2>);
+        </span>);
 	}
 }
 

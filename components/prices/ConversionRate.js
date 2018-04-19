@@ -21,7 +21,7 @@ class ConversionRate extends React.Component {
 
     render() {
 		return (<span>
-            {Math.floor((this.state.comp.rate_float/this.state.base.rate_float)*1000)/1000}
+            {Math.floor((this.state.comp.rate_float/this.state.base.rate_float)*100000)/100000}
             {' '}
             {this.state.comp.code}
             <br/>

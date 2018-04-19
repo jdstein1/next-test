@@ -16,12 +16,12 @@ const BPI = (props) => (
 				<p>Powered by <a href="https://www.coindesk.com/price">CoinDesk</a></p>
 			</div>
 			<PricesTable>
-				{/* <PricesGeneric 
-					bpi={props.bpiusd} /> */}
-				{/* <PricesList 
-					bpi={props.bpi} /> */}
-				{/* <PricesStatic 
-					bpi={props.bpi} /> */}
+				<PricesGeneric 
+					bpi={props.bpiusd} />
+				<PricesStatic 
+					bpi={props.bpi} />
+				<PricesList 
+					bpi={props.bpi} />
 				<PricesDynamic 
 					bpi={props.bpi}
 					currencies={props.currencies} />

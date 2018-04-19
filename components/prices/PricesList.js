@@ -20,7 +20,7 @@ class PricesList extends React.Component {
                     <small>{this.state.meta.name}</small><br/>
                     {currency.description}
                 </td>
-                <td style={{textAlign:'left'}}></td>
+                <td style={{textAlign:'center'}}>N/A</td>
                 <td style={{textAlign:'center'}}>
                     <span className='badge badge-primary'>{currency.code}</span>
                 </td>
@@ -33,15 +33,14 @@ class PricesList extends React.Component {
                 </td>
                 <td style={{textAlign:'right'}}>
                     <ConversionRate 
-                        rate={currency.rate_float} 
-                        comp={currency.code} 
-                        base={'EUR'} 
+                        comp={currency} 
+                        base={this.props.bpi['USD']} 
                     />
                 </td>
             </tr>
 		});
 
-        return (<tbody>
+        return (<tbody className='table-active'>
             {currencyList}
             <style jsx>{`
         	`}</style>

@@ -15,15 +15,13 @@ class PricesGeneric extends React.Component {
         const currency = this.props.bpi.USD;
 		// console.log('currency: ',currency)
 
-        return (<tbody className='table-active'>
+        return (<tbody className='table-light'>
 					<tr>
 						<td>
 							<small>{this.state.meta.name}</small><br/>
 							{currency.description}
 						</td>
-						<td style={{textAlign:'center'}}>
-							N/A
-						</td>
+						<td style={{textAlign:'center'}}>N/A</td>
 						<td style={{textAlign:'center'}}>
 							<span className='badge badge-primary'>{currency.code}</span>
 						</td>
@@ -36,9 +34,8 @@ class PricesGeneric extends React.Component {
 						</td>
 						<td style={{textAlign:'right'}}>
 							<ConversionRate 
-								rate={currency.rate_float} 
-								comp={currency.code} 
-								base={'USD'} 
+								comp={currency} 
+								base={currency} 
 							/>
 						</td>
 					</tr>

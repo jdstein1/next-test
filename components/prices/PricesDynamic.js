@@ -64,7 +64,7 @@ class PricesDynamic extends React.Component {
         // get the country codes
         const keysComp = Object.keys(myComp)
         
-        return (<tbody className='table-secondary'>
+        return (<tbody className='table-primary'>
             <tr>
                 <td>
                     <small>{this.state.meta.name}</small><br/>

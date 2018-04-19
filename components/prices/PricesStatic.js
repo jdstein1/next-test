@@ -46,9 +46,8 @@ class PricesStatic extends React.Component {
 				</td>
 				<td style={{textAlign:'right'}}>
 					<ConversionRate 
-						rate={this.props.bpi[this.state.currency].rate_float} 
-						comp={this.state.currency} 
-						base={'USD'} 
+						comp={this.props.bpi[this.state.currency]} 
+						base={this.props.bpi['USD']} 
 					/>
 				</td>
 			</tr>
