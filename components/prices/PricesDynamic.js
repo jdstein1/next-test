@@ -12,12 +12,12 @@ class PricesDynamic extends React.Component {
             converted: {},
             prettyRate: ''
         };
-        console.log(this.state.meta.name+' constructor props: ')
-        console.dir(props)
+        // console.log(this.state.meta.name+' constructor props: ')
+        // console.dir(props)
     }
 
     async getNewCurrency(newTLC) {
-        console.log('START getNewCurrency');
+        // console.log('START getNewCurrency');
         
         // console.log('newTLC: ', newTLC)
         const res = await fetch('https://api.coindesk.com/v1/bpi/currentprice/'+ newTLC +'.json')
@@ -49,7 +49,7 @@ class PricesDynamic extends React.Component {
             TLC: this.props.currencies[this.state.chosenIndex].currency
         }, () => {
             // console.log('changeCurrency this.state.converted: ',this.state.converted)
-            console.log('changeCurrency: ',this.props.currencies[this.state.chosenIndex].currency);
+            // console.log('changeCurrency: ',this.props.currencies[this.state.chosenIndex].currency);
             
             this.getNewCurrency(this.props.currencies[this.state.chosenIndex].currency)
         })
@@ -65,7 +65,7 @@ class PricesDynamic extends React.Component {
             </option>
 		})
 
-		console.log('this.props.bpi: ',this.props.bpi)
+		// console.log('this.props.bpi: ',this.props.bpi)
 
         return (<tbody className='table-secondary'>
             <tr>

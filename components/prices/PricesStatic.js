@@ -9,8 +9,8 @@ class PricesStatic extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.meta.name+' -- render this.props.bpi[this.state.currency]: ');
-		console.dir(this.props.bpi[this.state.currency]);
+		// console.log(this.state.meta.name+' -- render this.props.bpi[this.state.currency]: ');
+		// console.dir(this.props.bpi[this.state.currency]);
 		
 		let currencyOptions = this.state.currencies.map(currency => {
 			return <option key={currency} value={currency}>{currency}</option>

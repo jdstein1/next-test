@@ -22,8 +22,7 @@ const BPI = (props) => (
 					bpi={props.bpi} />
 				<PricesStatic 
 					bpi={props.bpi} />
-				<PricesDynamic  
-					bpi={props.bpi} 
+				<PricesDynamic 
 					currencies={props.currencies} />
 			</PricesTable>
 		</div>

@@ -16,6 +16,9 @@ class ConversionRate extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.state.meta.name+' componentDidMount');
+        
+        console.log('this.state.base: ', this.state.base);
         fetch('https://api.coindesk.com/v1/bpi/currentprice/'+ this.state.base +'.json').then( res => {
             return res.json();
         }).then( data => {

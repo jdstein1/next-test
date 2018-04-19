@@ -7,13 +7,13 @@ class PricesGeneric extends React.Component {
         this.state = {
 			meta: {name:'Prices Generic',component:'PricesGeneric'}
 		}
-        console.log('props: ',props)
+        // console.log('props: ',props)
     }
 
 	render() {
 
         const currency = this.props.bpi.USD;
-		console.log('currency: ',currency)
+		// console.log('currency: ',currency)
 
         return (<tbody className='table-active'>
 					<tr>
