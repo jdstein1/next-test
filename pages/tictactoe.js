@@ -61,7 +61,7 @@ class TicTacToe extends React.Component {
         // console.log(this.state.currentGame[index]);
 
         if (this.state.currentGame[index] === '') {
-            console.log('square empty')
+            // console.log('square empty')
             // only change if empty square
 
         // if (e.target.innerHTML !== this.state.player1 && e.target.innerHTML !== this.state.player2) {
@@ -91,7 +91,7 @@ class TicTacToe extends React.Component {
     }
 
     resetBoard() {
-        console.log('resetBoard')
+        // console.log('resetBoard')
         this.setState({
             currentPlayer: this.state.player1,
             currentGame: JSON.parse(JSON.stringify(this.state.initialGame))
@@ -103,10 +103,10 @@ class TicTacToe extends React.Component {
     }
 
     checkForWinner() {
-        console.log('***** checkForWinner *****')
+        // console.log('***** checkForWinner *****')
 
         const boardState = this.state.currentGame
-        console.log('boardState: ',boardState)
+        // console.log('boardState: ',boardState)
 
         // const boardSquares = Array.prototype.slice.call(document.querySelectorAll('.square'))
         // console.log('boardSquares: ',boardSquares)
@@ -117,12 +117,12 @@ class TicTacToe extends React.Component {
         const winningPlays = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
         return winningPlays.find(combo => {
             // take each combination of winning plays and check against the board state
-            console.log('combo: ', combo)
+            // console.log('combo: ', combo)
             // console.log('boardState[combo[0]]: ', boardState[combo[0]])
             // console.log('boardState[combo[1]]: ', boardState[combo[1]])
             // console.log('boardState[combo[2]]: ', boardState[combo[2]])
             if (boardState[combo[0]] !== '') {
-                console.log('NOT empty square: ', boardState[combo[0]])
+                // console.log('NOT empty square: ', boardState[combo[0]])
                 if (boardState[combo[0]] == boardState[combo[1]] && boardState[combo[1]] == boardState[combo[2]]) {
                     // if all squares at indexes indicated in combo have the same symbol, then there's a winner!
                     // console.log('combo: ',combo)
@@ -135,12 +135,12 @@ class TicTacToe extends React.Component {
                     // console.groupEnd()
                     return boardState[combo[0]]
                 } else {
-                    console.log('NO winner yet')
+                    // console.log('NO winner yet')
                     // console.groupEnd()
                     return false
                 }
             } else {
-                console.log('empty square')
+                // console.log('empty square')
             }
         })
         // console.groupEnd()

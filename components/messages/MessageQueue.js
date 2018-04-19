@@ -25,24 +25,24 @@ class MessageQueue extends React.Component {
         console.group('this.state.messages.length: ', this.state.messages.length);
 
         if ( this.state.messages.length > 1 ) {
-            console.log('more than 1 message')
+            // console.log('more than 1 message')
             if ( this.state.msgIndexShow < this.state.messages.length-1) {
-                console.log('IF');
+                // console.log('IF');
                 this.setState({
                     msgIndexShow: this.state.msgIndexShow+1
                 }, () => {
-                    console.log('after msgIndexShow: ', this.state.msgIndexShow);
+                    // console.log('after msgIndexShow: ', this.state.msgIndexShow);
                 });
             } else {
-                console.log('ELSE');
+                // console.log('ELSE');
                 this.setState({
                     msgIndexShow: 0
                 }, () => {
-                    console.log('after msgIndexShow: ', this.state.msgIndexShow);
+                    // console.log('after msgIndexShow: ', this.state.msgIndexShow);
                 });
             }
         } else {
-            console.log('only 1 message')
+            // console.log('only 1 message')
             // console.log('msgIndexShow: ', this.state.msgIndexShow)
         }
 
@@ -52,7 +52,7 @@ class MessageQueue extends React.Component {
         //     this.setState({
         //         msgIndexShow: this.state.msgIndexShow+1
         //     }, () => {
-        //         console.log('after msgIndexShow: ', this.state.msgIndexShow);
+        //        console.log('after msgIndexShow: ', this.state.msgIndexShow);
         //     });
         // }
     };
