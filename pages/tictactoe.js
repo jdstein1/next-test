@@ -23,7 +23,7 @@ class TicTacToe extends React.Component {
                 {id:1, kind:'warning', text:'Lorem ipsum dolor sic amet...', lede:'TicTacToe Warning'}
             ],
             currentPlayer: this.state.player1,
-            currentGame: this.state.initialGame
+            currentGame: JSON.parse(JSON.stringify(this.state.initialGame))
         })
 	}
 
@@ -88,32 +88,22 @@ class TicTacToe extends React.Component {
         } else {
             // console.log('keep playing')
         }
-        // console.log(this.state)
-    }
-
-    submitBoard() {
-        console.log('submitBoard')
-        // this.setState({
-        //     currentPlayer: this.state.player1,
-        //     currentGame: this.state.initialGame
-        // })
-        // console.log('currentGame: ', this.state.currentGame);
-        // console.log('initialGame: ', this.state.initialGame);
     }
 
     resetBoard() {
         console.log('resetBoard')
         this.setState({
             currentPlayer: this.state.player1,
-            currentGame: this.state.initialGame
+            currentGame: JSON.parse(JSON.stringify(this.state.initialGame))
         })
-        this.makeNewGame()
+        const board = document.querySelectorAll('.board')[0]
+        board.addEventListener('click', this.clickSquare)
         // console.log('currentGame: ', this.state.currentGame);
         // console.log('initialGame: ', this.state.initialGame);
     }
 
     checkForWinner() {
-        // console.log('checkForWinner')
+        console.log('***** checkForWinner *****')
 
         const boardState = this.state.currentGame
         console.log('boardState: ',boardState)
@@ -127,9 +117,10 @@ class TicTacToe extends React.Component {
         const winningPlays = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
         return winningPlays.find(combo => {
             // take each combination of winning plays and check against the board state
-            console.log('boardState[combo[0]]: ', boardState[combo[0]])
-            console.log('boardState[combo[1]]: ', boardState[combo[1]])
-            console.log('boardState[combo[2]]: ', boardState[combo[2]])
+            console.log('combo: ', combo)
+            // console.log('boardState[combo[0]]: ', boardState[combo[0]])
+            // console.log('boardState[combo[1]]: ', boardState[combo[1]])
+            // console.log('boardState[combo[2]]: ', boardState[combo[2]])
             if (boardState[combo[0]] !== '') {
                 console.log('NOT empty square: ', boardState[combo[0]])
                 if (boardState[combo[0]] == boardState[combo[1]] && boardState[combo[1]] == boardState[combo[2]]) {
@@ -141,31 +132,27 @@ class TicTacToe extends React.Component {
                         square.classList.add('winner')
                     }
                     alert('WINNER!')
+                    // console.groupEnd()
                     return boardState[combo[0]]
                 } else {
+                    console.log('NO winner yet')
+                    // console.groupEnd()
                     return false
                 }
             } else {
                 console.log('empty square')
             }
         })
-    }
-
-    makeNewGame() {
-        return this.state.currentGame
-        .map((square,i) => <li className={'square d-flex justify-content-center align-items-center '+(square?'occupied':'')} key={i} id={i}>{square}</li>)
+        // console.groupEnd()
     }
 
     render() {
 
-        // onClick={this.clickSquare.bind(this)}
-        let gameSquares = this.makeNewGame()
-
         return (<Layout msgs={this.state.messages} activePageIndex={this.state.currentPageIndex}>
 			<div className="TicTacToe module">
-                <div className="table">
-                    <ul className="board d-flex flex-row flex-wrap justify-content-start align-items-start">
-                        {gameSquares}
+                <div className="table card">
+                    <ul className="board d-flex flex-row flex-wrap justify-content-center align-items-center">
+                        {this.state.currentGame.map((square,i) => <li className={'square d-flex justify-content-center align-items-center '+(square?'occupied':'')} key={i} id={i}>{square}</li>)}
                     </ul>
                 </div>
                 <hr/>
@@ -177,33 +164,28 @@ class TicTacToe extends React.Component {
                     </fieldset>
                     <fieldset className="form-group">
                         <input className="form-control btn btn-wide btn-secondary" type="reset" onClick={this.resetBoard.bind(this)} />
-                        {/* <input className="form-control btn btn-primary" type="submit" onClick={this.submitBoard.bind(this)} /> */}
                     </fieldset>
                 </form>
             </div>
-			<style jsx global>{`
+            <style jsx>{`
 .TicTacToe {
-    // border:0.25em solid green;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,255,0.25);
+    // background:rgba(0,0,0,0.125);
     margin:0;
     padding:1rem;
 }
 .table {
-    width:100%;
-    height:100%;
-    background:rgba(255,0,0,0.25);
+    width:auto;
+    height:auto;
+    // background:rgba(255,0,0,0.25);
     margin:0;
     padding:1rem;
 }
 .board {
-    border:0.25em outset lightgrey;
-    background:rgba(0,0,0,0.25);
-    box-sizing:border-box;
+    border:1vmin outset lightgrey;
+    // background:rgba(0,0,0,0.25);
     font-size:2em;
-    width:100%;
-    height:100%;
+    width:62vmin;
+    height:62vmin;
     list-style-type:none;
     list-style-position:inside;
     list-style-image:none;
@@ -212,11 +194,10 @@ class TicTacToe extends React.Component {
     padding:0;
 }
 .square {
-    border:0.25em inset lightgrey;
+    border:1vmin inset lightgrey;
     background:rgba(255,255,255,0.75);
-    box-sizing:border-box;
-    width:25vmin;
-    height:25vmin;
+    width:20vmin;
+    height:20vmin;
     margin:0;
     padding:0;
 }
