@@ -75,7 +75,7 @@ class MessageQueue extends React.Component {
                 .filter((msg) => this.state.msgIndexShow === msg.id)
                 .map((msg,key) => <Message key={msg.id} kind={msg.kind} text={msg.text} lede={msg.lede} />)
             }
-            <style jsx global>{`
+            <style jsx>{`
                 .alert-queue {
                     position:fixed;
                     top:3.5rem;

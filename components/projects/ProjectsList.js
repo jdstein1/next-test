@@ -138,7 +138,7 @@ class ProjectsList extends React.Component {
 				</label>
 				<pre><code style={{background:'rgba(255,255,255,0.75)',color:'navy',padding:'0.325rem'}}>{JSON.stringify(this.state.selectedProject,null,"  ")}</code></pre>
 			</div>
-			<style jsx global>{`
+			<style jsx>{`
 				.project-icon, .project-checkbox {
 					padding:0;
 					margin:0;

@@ -46,6 +46,7 @@ class Layout extends Component {
 					{/* <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script> */}
 				</div>
 				<style jsx global>{`
+					* { box-sizing: border-box; margin:0; padding:0; }
 					.module input, .module button, .module textarea, .module select {
 						border-radius:3px;
 						// border:0;

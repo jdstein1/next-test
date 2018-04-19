@@ -23,7 +23,7 @@ class Message extends React.Component {
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <style jsx global>{`
+            <style jsx>{`
                 .alert {
                     position:relative;
                     border: 1px solid rgba(51,51,51,0.25);
