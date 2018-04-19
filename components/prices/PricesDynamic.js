@@ -9,32 +9,29 @@ class PricesDynamic extends React.Component {
             meta: {name:'Dynamic Currency Picker',component:'PricesDynamic'},
             chosenIndex: 0,
             TLC: 'USD',
-            converted: {},
-            prettyRate: ''
+            bpi: props.bpi
         };
-        // console.log(this.state.meta.name+' constructor props: ')
-        // console.dir(props)
+        console.clear()
+        console.log(this.state.meta.name+' constructor: ')
+        console.log('---- props: ', props)
+        console.log('---- this.state: ', this.state)
+
     }
 
     async getNewCurrency(newTLC) {
-        // console.log('START getNewCurrency');
-        
-        // console.log('newTLC: ', newTLC)
         const res = await fetch('https://api.coindesk.com/v1/bpi/currentprice/'+ newTLC +'.json')
         const glob = await res.json()
-        // console.log('glob: ',glob.bpi[newTLC])
-        
+        console.log('**** glob: ',glob.bpi)
+
         this.setState({
-            converted: glob.bpi[newTLC],
-            TLC: newTLC,
-            prettyRate: glob.bpi[newTLC].rate
+            bpi: glob.bpi,
+            TLC: newTLC
         })
     }
 
     componentDidMount() {
         // putting this in componentDidMount prevents rand from being generated 2x
         let rand = Math.floor((Math.random() * this.props.currencies.length))
-        // console.log(rand)
         this.setState({
             chosenIndex: rand,
             TLC: this.props.currencies[rand].currency
@@ -48,7 +45,7 @@ class PricesDynamic extends React.Component {
             chosenIndex: e.target.value,
             TLC: this.props.currencies[this.state.chosenIndex].currency
         }, () => {
-            // console.log('changeCurrency this.state.converted: ',this.state.converted)
+            // console.log('changeCurrency this.state.bpi: ',this.state.bpi)
             // console.log('changeCurrency: ',this.props.currencies[this.state.chosenIndex].currency);
             
             this.getNewCurrency(this.props.currencies[this.state.chosenIndex].currency)
@@ -58,15 +55,15 @@ class PricesDynamic extends React.Component {
 	render() {
 
 		const currencyOptions = this.props.currencies.map((currency, index) => {
-            // console.log(currency)
             return <option key={index} value={index}>
                 {currency.currency}
-                {/* {currency.country} ({currency.currency}) */}
             </option>
-		})
+        })
 
-		// console.log('this.props.bpi: ',this.props.bpi)
-
+        const myComp = this.state.bpi;
+        // get the country codes
+        const keysComp = Object.keys(myComp)
+        
         return (<tbody className='table-secondary'>
             <tr>
                 <td>
@@ -84,22 +81,26 @@ class PricesDynamic extends React.Component {
                     </select>
                 </td>
                 <td style={{textAlign:'center'}}>
-                    <span className='badge badge-primary'>{this.state.converted.code}</span>
+                    <span className='badge badge-primary'>{myComp[keysComp[1]].code}</span>
                 </td>
                 <td style={{textAlign:'center'}}>
-                    {/* <strong dangerouslySetInnerHTML={{__html:this.state.converted.symbol}}></strong> */}
-                    { this.state.converted.symbol ? this.state.converted.symbol : 'N/A' }
-                    {/* <strong dangerouslySetInnerHTML={ this.state.converted.symbol ? {__html:this.state.converted.symbol} : 'N/A' }></strong> */}
+                    { myComp[keysComp[1]].symbol &&
+                        <strong dangerouslySetInnerHTML={{__html:myComp[keysComp[1]].symbol}}></strong>
+                    }
+                    { !myComp[keysComp[1]].symbol &&
+                        'N/A'
+                    }
+                    {/* { this.state.bpi[this.state.TLC].symbol ? this.state.bpi[this.state.TLC].symbol : 'N/A' } */}
+                    {/* <strong dangerouslySetInnerHTML={ this.state.bpi[this.state.TLC].symbol ? {__html:this.state.bpi[this.state.TLC].symbol} : 'N/A' }></strong> */}
                 </td>
                 <td style={{textAlign:'right'}}>
                     {/* <PrettyRate rate={'34,567.8912'} /> */}
-                    <PrettyRate rate={this.state.prettyRate} />
+                    <PrettyRate rate={myComp[keysComp[1]].rate} />
                 </td>
                 <td style={{textAlign:'right'}}>
                     <ConversionRate 
-                        rate={this.state.converted.rate_float} 
-                        comp={this.state.converted.code} 
-                        base={'USD'} 
+                        comp={myComp[keysComp[1]]} 
+                        base={myComp[keysComp[0]]} 
                     />
                 </td>
             </tr>

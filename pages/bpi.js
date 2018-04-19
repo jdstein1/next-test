@@ -13,16 +13,17 @@ const BPI = (props) => (
 			<div className="jumbotron">
 				<h1>{props.title}</h1>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum praesentium ipsam id qui dicta doloremque dolor minus laborum assumenda dolorum laboriosam nemo provident, vitae voluptates sint, est neque explicabo porro!</p>
-				<a href="https://www.coindesk.com/">CoinDesk</a>
+				<p>Powered by <a href="https://www.coindesk.com/price">CoinDesk</a></p>
 			</div>
 			<PricesTable>
-				<PricesGeneric 
-					bpi={props.bpiusd} />
-				<PricesList 
-					bpi={props.bpi} />
-				<PricesStatic 
-					bpi={props.bpi} />
+				{/* <PricesGeneric 
+					bpi={props.bpiusd} /> */}
+				{/* <PricesList 
+					bpi={props.bpi} /> */}
+				{/* <PricesStatic 
+					bpi={props.bpi} /> */}
 				<PricesDynamic 
+					bpi={props.bpi}
 					currencies={props.currencies} />
 			</PricesTable>
 		</div>
