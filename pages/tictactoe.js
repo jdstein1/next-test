@@ -61,7 +61,7 @@ class TicTacToe extends React.Component {
         // console.log(this.state.currentGame[index]);
 
         if (this.state.currentGame[index] === '') {
-            // console.log('square empty')
+            console.log('square empty')
             // only change if empty square
 
         // if (e.target.innerHTML !== this.state.player1 && e.target.innerHTML !== this.state.player2) {
@@ -71,7 +71,7 @@ class TicTacToe extends React.Component {
             this.state.currentGame[index] = this.state.currentPlayer
             this.setState({currentGame: this.state.currentGame}, this.changePlayer)
         } else {
-            alert('square already played')
+            console.log('square already played')
         }
         // console.log(this.state.currentGame)
     }
@@ -106,7 +106,8 @@ class TicTacToe extends React.Component {
         // console.log('***** checkForWinner *****')
 
         const boardState = this.state.currentGame
-        // console.log('boardState: ',boardState)
+        console.log('boardState: ',boardState)
+        let possibleWins = 0;
 
         // const boardSquares = Array.prototype.slice.call(document.querySelectorAll('.square'))
         // console.log('boardSquares: ',boardSquares)
@@ -131,11 +132,15 @@ class TicTacToe extends React.Component {
                         // console.log(square);
                         square.classList.add('winner')
                     }
-                    alert('WINNER!')
+                    alert(boardState[combo[0]]+' IS THE WINNER!')
                     // console.groupEnd()
                     return boardState[combo[0]]
                 } else {
-                    // console.log('NO winner yet')
+                    console.log('NO winner yet')
+                    possibleWins++
+                    if (possibleWins === winningPlays.length) {
+                        alert('CATS GAME!')
+                    }
                     // console.groupEnd()
                     return false
                 }
@@ -169,20 +174,19 @@ class TicTacToe extends React.Component {
             </div>
             <style jsx>{`
 .TicTacToe {
-    // background:rgba(0,0,0,0.125);
     margin:0 auto;
     padding:1rem;
 }
 .table {
     width:auto;
     height:auto;
-    // background:rgba(255,0,0,0.25);
     margin:0 auto;
     padding:1rem;
 }
 .board {
     border:1vmin outset lightgrey;
-    // background:rgba(0,0,0,0.25);
+    border-radius:2vmin;
+    background:white;
     font-size:2em;
     width:62vmin;
     height:62vmin;
@@ -195,7 +199,8 @@ class TicTacToe extends React.Component {
 }
 .square {
     border:1vmin inset lightgrey;
-    background:rgba(127,127,127,0.125);
+    border-radius:1vmin;
+    background:rgba(255,255,255,0.75);
     width:20vmin;
     height:20vmin;
     font-size:15vmin;
@@ -203,7 +208,7 @@ class TicTacToe extends React.Component {
     padding:0;
 }
 .square:hover {
-    background:rgba(255,255,127,1);
+    background:rgb(255,255,127);
 }
 .square.winner {
     background:rgba(127,255,127,0.75) !important;
