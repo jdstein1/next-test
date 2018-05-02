@@ -104,7 +104,7 @@ class TimerDisplay extends React.Component {
                 <div className='row'>
                     <div className='col-12'>
                         <label>
-                            Then
+                            Then (edit)
                             <input className='form-control' ref='thenInput' type='datetime-local' defaultValue={this.state.thenISO} onChange={this.changeThen.bind(this)} />
                         </label>
                     </div>
