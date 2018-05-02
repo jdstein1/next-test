@@ -7,20 +7,22 @@ class TicTacToe extends React.Component {
 		this.state = {
             currentPageIndex:2,
             title: 'TicTacToe Game',
-			initialGame: ['','','','','','','','',''],
-            player1: 'X',
-            player2: 'O'
+            player1: '╳',
+            player2: '◯',
+			initialGame: ['','','','','','','','','']
         }
         this.clickSquare = this.clickSquare.bind(this)
-        // console.log('TicTacToe: ', props);
 	}
 
 	componentWillMount() {
         // console.log('TicTacToe componentWillMount')
         this.setState({
             messages: [
-                {id:0, kind:'danger', text:'Lorem ipsum dolor sic amet...', lede:'TicTacToe Danger'},
-                {id:1, kind:'warning', text:'Lorem ipsum dolor sic amet...', lede:'TicTacToe Warning'}
+                {id:1, kind:'success', text:`${ this.state.currentPlayer } wins!`, lede:'Game Over'},
+                {id:2, kind:'success', text:'Cats game!', lede:'Game Over'},
+                {id:3, kind:'danger', text:'Lorem ipsum dolor sic amet...', lede:'TicTacToe Danger'},
+                {id:4, kind:'danger', text:'Lorem ipsum dolor sic amet...', lede:'TicTacToe Danger'},
+                {id:5, kind:'warning', text:'Lorem ipsum dolor sic amet...', lede:'TicTacToe Warning'}
             ],
             currentPlayer: this.state.player1,
             currentGame: JSON.parse(JSON.stringify(this.state.initialGame))
@@ -29,55 +31,26 @@ class TicTacToe extends React.Component {
 
 	componentDidMount() {
         // console.log('TicTacToe componentDidMount')
-
-        // const gameSquareEls = document.querySelectorAll('.square')
-        // console.log(gameSquareEls)
-        // for (let index = 0; index < gameSquareEls.length; index++) {
-        //     const element = gameSquareEls[index]
-        //     element.addEventListener('click',this.clickSquare.bind(this))
-        // }
-
         const board = document.querySelectorAll('.board')[0]
         board.addEventListener('click',this.clickSquare)
-
-    }
-
-	componentWillUnmount() {
-        // console.log('componentWillUnmount')
     }
 
     clickSquare(e) {
-        // console.log('currentGame: ', this.state.currentGame);
-        // console.log('initialGame: ', this.state.initialGame);
-        // console.info('this: ', this)
-        // console.info('e: ', e)
-        // console.dir(e)
-        // console.info('e.type: ', e.type)
-        // console.info('e.target: ', e.target)
-        // console.info('e.currentTarget: ', e.currentTarget)
-        // console.assert(e.currentTarget === this)
+        console.log('START clickSquare', e)
         const index = parseInt(e.target.id,10)
-        // console.log('clickSquare: ', index)
-        // console.log(this.state.currentGame[index]);
-
         if (this.state.currentGame[index] === '') {
-            console.log('square empty')
-            // only change if empty square
-
-        // if (e.target.innerHTML !== this.state.player1 && e.target.innerHTML !== this.state.player2) {
-            // only change if not an 'X' or an 'O' in square
-
-            // console.log('square '+(index+1)+' got an '+this.state.currentPlayer)
+            // add symbol
+            // console.log('square empty')
             this.state.currentGame[index] = this.state.currentPlayer
             this.setState({currentGame: this.state.currentGame}, this.changePlayer)
         } else {
-            console.log('square already played')
+            // do not add symbol
+            // console.log('square already played')
         }
-        // console.log(this.state.currentGame)
     }
 
     changePlayer() {
-        // console.log('changePlayer')
+        console.log('START changePlayer')
         this.state.currentPlayer = (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1
         if (this.checkForWinner()) {
 
@@ -91,7 +64,7 @@ class TicTacToe extends React.Component {
     }
 
     resetBoard() {
-        // console.log('resetBoard')
+        console.log('START resetBoard')
         this.setState({
             currentPlayer: this.state.player1,
             currentGame: JSON.parse(JSON.stringify(this.state.initialGame))
@@ -103,19 +76,15 @@ class TicTacToe extends React.Component {
     }
 
     checkForWinner() {
-        // console.log('***** checkForWinner *****')
+        console.log('START checkForWinner')
 
         const boardState = this.state.currentGame
         console.log('boardState: ',boardState)
         let possibleWins = 0;
 
-        // const boardSquares = Array.prototype.slice.call(document.querySelectorAll('.square'))
-        // console.log('boardSquares: ',boardSquares)
-        
-        // const boardSymbols = boardSquares.map(square => square.innerHTML)
-        // console.log('boardSymbols: ',boardSymbols)
-
         const winningPlays = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+        console.log('winningPlays.length: ',winningPlays.length);
+        
         return winningPlays.find(combo => {
             // take each combination of winning plays and check against the board state
             // console.log('combo: ', combo)
@@ -138,6 +107,7 @@ class TicTacToe extends React.Component {
                 } else {
                     console.log('NO winner yet')
                     possibleWins++
+                    console.log('possibleWins: ',possibleWins)
                     if (possibleWins === winningPlays.length) {
                         alert('CATS GAME!')
                     }
@@ -153,68 +123,73 @@ class TicTacToe extends React.Component {
 
     render() {
 
-        return (<Layout msgs={this.state.messages} activePageIndex={this.state.currentPageIndex}>
-			<div className="TicTacToe module">
-                <div className="table card">
-                    <ul className="board d-flex flex-row flex-wrap justify-content-center align-items-center">
-                        {this.state.currentGame.map((square,i) => <li className={'square d-flex justify-content-center align-items-center '+(square?'occupied':'')} key={i} id={i}>{square}</li>)}
-                    </ul>
+        return (
+            <Layout msgs={this.state.messages} activePageIndex={this.state.currentPageIndex}>
+                <div className="TicTacToe module">
+                    <div className="table">
+                        <ul className="board d-flex flex-row flex-wrap justify-content-center align-items-center">
+                            {this.state.currentGame.map((square,i) => <li className={'square d-flex justify-content-center align-items-center '+(square?'occupied':'')} key={i} id={i}>{square}</li>)}
+                        </ul>
+                    </div>
+                    <form className="form">
+                        <fieldset className="form-group">
+                            <label htmlFor="gameState">Game State
+                                <input className="form-control" type="text" name="gameState" value={this.state.currentGame} readOnly />
+                            </label>
+                        </fieldset>
+                        <fieldset className="form-group">
+                            <input className="form-control btn btn-wide btn-secondary" type="reset" onClick={this.resetBoard.bind(this)} />
+                        </fieldset>
+                    </form>
                 </div>
-                <hr/>
-                <form className="form">
-                    <fieldset className="form-group">
-                        <label htmlFor="gameState">Game Status
-                            <input className="form-control" type="text" name="gameState" value={this.state.currentGame} readOnly />
-                        </label>
-                    </fieldset>
-                    <fieldset className="form-group">
-                        <input className="form-control btn btn-wide btn-secondary" type="reset" onClick={this.resetBoard.bind(this)} />
-                    </fieldset>
-                </form>
-            </div>
-            <style jsx>{`
-.TicTacToe {
-    margin:0 auto;
-    padding:1rem;
-}
-.table {
-    width:auto;
-    height:auto;
-    margin:0 auto;
-    padding:1rem;
-}
-.board {
-    border:1vmin outset lightgrey;
-    border-radius:2vmin;
-    background:white;
-    font-size:2em;
-    width:62vmin;
-    height:62vmin;
-    list-style-type:none;
-    list-style-position:inside;
-    list-style-image:none;
-    text-indent:0;
-    margin:0 auto;
-    padding:0;
-}
-.square {
-    border:1vmin inset lightgrey;
-    border-radius:1vmin;
-    background:rgba(255,255,255,0.75);
-    width:20vmin;
-    height:20vmin;
-    font-size:15vmin;
-    margin:0;
-    padding:0;
-}
-.square:hover {
-    background:rgb(255,255,127);
-}
-.square.winner {
-    background:rgba(127,255,127,0.75) !important;
-}
-			`}</style>
-		</Layout>)
+                <style jsx>{`
+                    .TicTacToe {
+                        margin:0 auto;
+                        padding:1rem;
+                    }
+                    .table {
+                        width:auto;
+                        height:auto;
+                        margin:0 auto;
+                        padding:1rem;
+                    }
+                    .board {
+                        // border:0.5vmin outset #fed;
+                        border:0.5vmin solid #fff;
+                        border-radius:3vmin;
+                        // background:#fc9;
+                        font-size:2em;
+                        width:64vmin;
+                        height:64vmin;
+                        list-style-type:none;
+                        list-style-position:inside;
+                        list-style-image:none;
+                        text-indent:0;
+                        margin:0 auto;
+                        padding:0;
+                    }
+                    .square {
+                        // border:0.5vmin inset #fed;
+                        border:0.5vmin solid #fff;
+                        border-radius:2vmin;
+                        background:#fed;
+                        box-shadow: 0 0 5rem 0rem #fc9 inset;
+                        color:black;
+                        width:21vmin;
+                        height:21vmin;
+                        font-size:15vmin;
+                        margin:0;
+                        padding:0;
+                    }
+                    .square:hover {
+                        background:#fc9;
+                    }
+                    .square.winner {
+                        background:rgba(127,255,127,0.75) !important;
+                    }
+                `}</style>
+            </Layout>
+        )
 	}
 };
 

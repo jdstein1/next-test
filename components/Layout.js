@@ -8,12 +8,6 @@ class Layout extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-			links: [
-				{id:0,title:'Home',url:''},
-				{id:1,title:'Bitcoin Price Index',url:'bpi'},
-				{id:2,title:'TicTacToe Game',url:'tictactoe'},
-				{id:3,title:'Projects Editor',url:'projects'}
-			],
 			activePageIndex:0
 		};
 		// console.log('Layout state: ',this.state);
@@ -38,7 +32,7 @@ class Layout extends Component {
 					<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/fontawesome.css" integrity="sha384-Lyz+8VfV0lv38W729WFAmn77iH5OSroyONnUva4+gYaQTic3iI2fnUKtDSpbVf0J" crossorigin="anonymous"/>
 					{/* <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css"/> */}
 				</Head>
-				<Navbar links={this.state.links} activePageIndex={this.props.activePageIndex} />
+				<Navbar pages={this.props.pages} activePageIndex={this.props.activePageIndex} />
 				<MessageQueue msgs={this.props.msgs} />
 				<div className="container">
 					{this.props.children}
@@ -130,7 +124,13 @@ Layout.propTypes = {
 
 };
 Layout.defaultProps = {
-
+    pages: [
+        {id:0,title:'Home',url:''},
+        {id:1,title:'Bitcoin Price Index',url:'bpi'},
+        {id:2,title:'TicTacToe Game',url:'tictactoe'},
+        {id:3,title:'Projects Editor',url:'projects'},
+        {id:4,title:'Timer',url:'timer'}
+    ]
 };
 
 export default Layout;

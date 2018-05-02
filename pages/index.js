@@ -5,10 +5,21 @@ import Layout from '../components/Layout';
 const Index = (props) => (
 	<Layout msgs={props.messages} activePageIndex={props.currentPageIndex}>
 		<div className="home module">
-		<div className="jumbotron">
-			<h1>Home</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum praesentium ipsam id qui dicta doloremque dolor minus laborum assumenda dolorum laboriosam nemo provident, vitae voluptates sint, est neque explicabo porro!</p>
-		</div>
+            <div className="jumbotron">
+                <h1>{props.title}</h1>
+                <p>{props.description}</p>
+            </div>
+            <div className="row">
+                <div className="col-4">
+                    <p>{props.description}</p>
+                </div>
+                <div className="col-4">
+                    <p>{props.description}</p>
+                </div>
+                <div className="col-4">
+                    <p>{props.description}</p>
+                </div>
+            </div>
 		</div>
 		<style jsx local>{`
 			.home {
@@ -19,9 +30,11 @@ const Index = (props) => (
 );
 
 Index.getInitialProps = async function() {
+    
 	return {
-		title:'Home',
-		currentPageIndex:0,
+        title:'Home',
+        description:'Sandbox for learning React & Next.',
+        currentPageIndex:0,
 		messages: [
 			{id:0, kind:'warning', text:'Lorem ipsum dolor sic amet...', lede:'Home Warning'},
 			{id:1, kind:'primary', text:'Lorem ipsum dolor sic amet...', lede:'Home Primary'},
