@@ -73,18 +73,20 @@ class TimerDisplay extends React.Component {
                 years: Math.floor((this.state.then - this.state.now)/(1000*60*60*24*365))
                 
             }
-
         }, () => {
             // console.log('this.state.time.years: ',this.state.time.years);
             console.groupEnd()
         })
-        
     }
 
 	render() {
 
         const timeFields = Object.keys(this.state.time)
             .reverse()
+            .filter( (key) => {
+                // filter out milliseconds
+                return key !== 'ms'
+            } )
             .map( (key,i) => {
                 // console.log('time['+key+']: ', this.state.time[key]);
                 return <TimerInput key={i} units={key} time={this.state.time[key]} />
@@ -92,6 +94,11 @@ class TimerDisplay extends React.Component {
 
 		return (
             <div>
+                <div className="row">
+                    <div className="col-12">
+                        <h3>Timer</h3>
+                    </div>
+                </div>
                 <div className='row'>
                     <div className='col-12'>
                         <label>
@@ -100,7 +107,6 @@ class TimerDisplay extends React.Component {
                         </label>
                     </div>
                 </div>
-                <hr/>
                 <div className='row'>
                     <div className='col-12'>
                         <label>
@@ -109,13 +115,15 @@ class TimerDisplay extends React.Component {
                         </label>
                     </div>
                 </div>
-                <hr/>
                 <div className='row'>
                     <div className='col-12 d-flex flex-row flex-this.state.nowrap justify-content-between align-content-center align-items-stretch'>
                         {timeFields}
                     </div>
                 </div>
-                <style jsx>{`
+                <hr/>
+                <style jsx global>{`
+                .timer:first-child .card {margin-left:0 !important;}
+                .timer:last-child .card {margin-right:0 !important;}
                 `}</style>
             </div>
         );

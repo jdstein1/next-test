@@ -1,7 +1,15 @@
 import Layout from '../components/Layout';
 import TimerDisplay from '../components/timer/TimerDisplay';
+import ClockDisplay from '../components/timer/ClockDisplay';
 
 /* this is a function component */
+
+/* To Do:
+1. [_] Disallow day values that are not possible calendar values (e.g., February 30th, April 31st).
+2. [_] Allow editable "Now".
+3. [_] Enable time difference to countdown.
+4. [_] Allow saving countdown clocks.
+*/
 
 const Timer = (props) => (
 	<Layout msgs={props.messages} pages={props.pages} activePageIndex={props.currentPageIndex}>
@@ -11,6 +19,7 @@ const Timer = (props) => (
                 <p>{props.description}</p>
             </div>
             <TimerDisplay />
+            <ClockDisplay />
 		</div>
 		<style jsx local>{`
 			.timer {
