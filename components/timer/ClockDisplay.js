@@ -7,9 +7,10 @@ export default class ClockDisplay extends React.Component {
 		this.state = {
             myNotifyColors: { background: '#0E1717', text: '#eee' },
             now: new Date(),
-            time: {},
-            timer: null
-		}
+            timer: null,
+            time: {}
+        }
+        // this.timer = null
 		// console.log('ClockDisplay props: ',props);
 		// console.log('ClockDisplay this.state: ',this.state);
 	}
@@ -19,27 +20,27 @@ export default class ClockDisplay extends React.Component {
             nowISO: this.state.now.toISOString().slice(0, -1),
         }, () => {
             // console.log('ClockDisplay this.state: ',this.state);
-            console.log('componentWillMount');
+            console.log('componentWillMount')
             
         })
     }
 
     componentDidMount() {
         this.updateClock()
-        // const self = this;
-        let timer = setInterval(this.tick.bind(this), 1000);
+        // this.timer = setInterval(this.tick.bind(this), 1000)
+        let timer = setInterval(this.tick.bind(this), 1000)
         this.setState({timer}, () => {
-            console.log('componentDidMount');
-            
+            console.log('componentDidMount')
         })
     }
 
     componentWillUnmount() {
-        this.clearInterval(this.state.timer)
+        // clearInterval(this.timer)
+        clearInterval(this.state.timer)
     }
 
     tick() {
-        // console.log('START tick');
+        // console.log('START tick')
         
         this.setState({
             now: new Date()
@@ -50,7 +51,7 @@ export default class ClockDisplay extends React.Component {
 
     updateClock() {
         const now = this.state.now;
-        // console.group('START updateElapsed');
+        // console.group('START updateElapsed')
         this.setState({
             time: {
                 day: now.getDay(),
