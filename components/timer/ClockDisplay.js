@@ -8,8 +8,7 @@ export default class ClockDisplay extends React.Component {
             myNotifyColors: { background: '#0E1717', text: '#eee' },
             now: new Date(),
             time: {},
-            timer: null,
-            counter: 0
+            timer: null
 		}
 		// console.log('ClockDisplay props: ',props);
 		// console.log('ClockDisplay this.state: ',this.state);
@@ -20,14 +19,18 @@ export default class ClockDisplay extends React.Component {
             nowISO: this.state.now.toISOString().slice(0, -1),
         }, () => {
             // console.log('ClockDisplay this.state: ',this.state);
+            console.log('componentWillMount');
+            
         })
     }
 
     componentDidMount() {
         this.updateClock()
-        let timer = setInterval(this.tick, 1000);
+        // const self = this;
+        let timer = setInterval(this.tick.bind(this), 1000);
         this.setState({timer}, () => {
-
+            console.log('componentDidMount');
+            
         })
     }
 
@@ -39,10 +42,9 @@ export default class ClockDisplay extends React.Component {
         // console.log('START tick');
         
         this.setState({
-            counter: this.state.counter+1
+            now: new Date()
         }, () => {
-            console.log('counter: ', this.state.counter);
-            
+            this.updateClock()
         });
     }
 
@@ -75,22 +77,20 @@ export default class ClockDisplay extends React.Component {
                 return key !== 'ms'
             } )
             .map( (key,i) => {
-                console.log('time['+key+']: ', this.state.time[key]);
+                // console.log('time['+key+']: ', this.state.time[key]);
                 // console.log(this.state.time[key].toString().length);
                 return <ClockInput key={ i } units={ key } time={ this.state.time[key] } />
             })
 
         return (
-            <div>
-                <div className='row'>
-                    <div className='col-12'>
-                        <h3>Clock</h3>
-                        {/* {this.state.timer} */}
+            <div className='clock'>
+                <div className="row">
+                    <div className="col-12">
+                        <h4 className='text-center'>the time is now</h4>
                     </div>
                 </div>
-                <div>COUNTER: { this.state.counter }</div>
                 <div className='row'>
-                    <div className='col-12 d-flex flex-row flex-this.state.nowrap justify-content-stretch align-content-center align-items-stretch'>
+                    <div className='col-12 d-flex flex-row flex-wrap justify-content-center align-content-center align-items-center'>
                         {timeFields}
                     </div>
                 </div>

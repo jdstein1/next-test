@@ -10,18 +10,13 @@ class TimerInput extends React.Component {
 	render() {
 
         return (
-            <div className='timer'>
-                <div className='card'>
-                    <div className='card-body text-center'>
-                        <h3 className='card-title'>{this.props.units}</h3>
-                        <input className='form-control text-center' type='text' value={ this.props.time } readOnly />
-                    </div>
+            <div className='card'>
+                <div className='card-body'>
+                    <h6 className='card-title text-center'>{this.props.units}</h6>
+                    {/* <input className='card-text form-control text-center' type='text' value={ this.props.time } readOnly /> */}
+                    <span className='card-text form-control text-center'>{ this.props.time }</span>
                 </div>
                 <style jsx>{`
-                .timer .card {
-                    // background:#eef;
-                    margin:0.25rem;
-                }
                 `}</style>
             </div>
         );

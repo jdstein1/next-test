@@ -93,12 +93,12 @@ class TimerDisplay extends React.Component {
             })
 
 		return (
-            <div>
-                <div className="row">
+            <div className='clock'>
+                {/* <div className="row">
                     <div className="col-12">
                         <h3>Timer</h3>
                     </div>
-                </div>
+                </div> */}
                 <div className='row'>
                     <div className='col-12'>
                         <label>
@@ -116,11 +116,10 @@ class TimerDisplay extends React.Component {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col-12 d-flex flex-row flex-this.state.nowrap justify-content-between align-content-center align-items-stretch'>
+                    <div className='col-12 d-flex flex-row flex-wrap justify-content-center align-content-center align-items-center'>
                         {timeFields}
                     </div>
                 </div>
-                <hr/>
                 <style jsx global>{`
                 .timer:first-child .card {margin-left:0 !important;}
                 .timer:last-child .card {margin-right:0 !important;}
