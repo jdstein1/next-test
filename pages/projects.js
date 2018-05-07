@@ -38,8 +38,8 @@ class Projects extends React.Component {
 			filteredProjects: this.state.initialProjects,
 			selectedProject: this.state.initialProjects[2],
 			messages: [
-                {id:0, kind:'warning', text:'Lorem ipsum dolor sic amet...', lede:'Projects Warning'},
-                {id:1, kind:'success', text:'Lorem ipsum dolor sic amet...', lede:'Projects Success'},
+                {id:1, kind:'warning', text:'Lorem ipsum dolor sic amet...', lede:'Projects Warning'},
+                {id:2, kind:'success', text:'Lorem ipsum dolor sic amet...', lede:'Projects Success'},
             ]
         }, () => {
 			// console.log('this.state: ', this.state);	

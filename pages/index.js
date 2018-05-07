@@ -36,11 +36,11 @@ Index.getInitialProps = async function() {
         description:'Sandbox for learning React & Next.',
         currentPageIndex:0,
 		messages: [
-			{id:0, kind:'warning', text:'Lorem ipsum dolor sic amet...', lede:'Home Warning'},
-			{id:1, kind:'primary', text:'Lorem ipsum dolor sic amet...', lede:'Home Primary'},
-			{id:2},
-			{id:3, kind:'danger', text:'Lorem ipsum dolor sic amet...', lede:'Home Danger'},
-			{id:4, kind:'success', text:'Lorem ipsum dolor sic amet...', lede:'Home Success'},
+			{id:1, kind:'warning', text:'Lorem ipsum dolor sic amet...', lede:'Home Warning'},
+			{id:2, kind:'primary', text:'Lorem ipsum dolor sic amet...', lede:'Home Primary'},
+			{id:3},
+			{id:4, kind:'danger', text:'Lorem ipsum dolor sic amet...', lede:'Home Danger'},
+			{id:5, kind:'success', text:'Lorem ipsum dolor sic amet...', lede:'Home Success'},
 		]
 	}
 }

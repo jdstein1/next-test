@@ -9,7 +9,8 @@ class TicTacToe extends React.Component {
             title: 'TicTacToe Game',
             player1: '╳',
             player2: '◯',
-			initialGame: ['','','','','','','','','']
+            currentPlayer: '◯',
+            initialGame: ['','','','','','','','','']
         }
         this.clickSquare = this.clickSquare.bind(this)
 	}
@@ -17,15 +18,14 @@ class TicTacToe extends React.Component {
 	componentWillMount() {
         // console.log('TicTacToe componentWillMount')
         this.setState({
+            currentGame: JSON.parse(JSON.stringify(this.state.initialGame)),
             messages: [
-                {id:1, kind:'success', text:`${ this.state.currentPlayer } wins!`, lede:'Game Over'},
-                {id:2, kind:'success', text:'Cats game!', lede:'Game Over'},
+                {id:1, kind:'success', text:`${ this.state.currentPlayer } wins!`, lede:'Winner!'},
+                {id:2, kind:'primary', text:'Nobody won...', lede:'Cats game!'},
                 {id:3, kind:'danger', text:'Lorem ipsum dolor sic amet...', lede:'TicTacToe Danger'},
-                {id:4, kind:'danger', text:'Lorem ipsum dolor sic amet...', lede:'TicTacToe Danger'},
+                {id:4, kind:'info', text:'Lorem ipsum dolor sic amet...', lede:'TicTacToe Info'},
                 {id:5, kind:'warning', text:'Lorem ipsum dolor sic amet...', lede:'TicTacToe Warning'}
-            ],
-            currentPlayer: this.state.player1,
-            currentGame: JSON.parse(JSON.stringify(this.state.initialGame))
+            ]
         })
 	}
 
@@ -51,7 +51,11 @@ class TicTacToe extends React.Component {
 
     changePlayer() {
         console.log('START changePlayer')
-        this.state.currentPlayer = (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1
+        // this.state.currentPlayer = (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1
+        this.setState({
+            currentPlayer: (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1
+        })
+
         if (this.checkForWinner()) {
 
             // lock the board
@@ -101,24 +105,20 @@ class TicTacToe extends React.Component {
                         // console.log(square);
                         square.classList.add('winner')
                     }
-                    alert(boardState[combo[0]]+' IS THE WINNER!')
-                    // console.groupEnd()
+                    alert( this.state.currentPlayer + ' IS THE WINNER!' )
                     return boardState[combo[0]]
                 } else {
-                    console.log('NO winner yet')
                     possibleWins++
-                    console.log('possibleWins: ',possibleWins)
+                    // console.log('NO winner yet...possibleWins: ',possibleWins)
                     if (possibleWins === winningPlays.length) {
                         alert('CATS GAME!')
                     }
-                    // console.groupEnd()
                     return false
                 }
             } else {
-                // console.log('empty square')
+                console.log('empty square')
             }
         })
-        // console.groupEnd()
     }
 
     render() {
@@ -154,8 +154,8 @@ class TicTacToe extends React.Component {
                         padding:1rem;
                     }
                     .board {
-                        // border:0.5vmin outset #fed;
-                        border:0.5vmin solid #fff;
+                        // border:0.125vmin outset #fed;
+                        border:0.125vmin solid #fff;
                         border-radius:3vmin;
                         // background:#fc9;
                         font-size:2em;
@@ -169,8 +169,8 @@ class TicTacToe extends React.Component {
                         padding:0;
                     }
                     .square {
-                        // border:0.5vmin inset #fed;
-                        border:0.5vmin solid #fff;
+                        // border:0.125vmin inset #fed;
+                        border:0.125vmin solid #fff;
                         border-radius:2vmin;
                         background:#fed;
                         box-shadow: 0 0 5rem 0rem #fc9 inset;
@@ -178,7 +178,7 @@ class TicTacToe extends React.Component {
                         width:21vmin;
                         height:21vmin;
                         font-size:15vmin;
-                        margin:0;
+                        margin:0.125vmin;
                         padding:0;
                     }
                     .square:hover {
@@ -186,6 +186,7 @@ class TicTacToe extends React.Component {
                     }
                     .square.winner {
                         background:rgba(127,255,127,0.75) !important;
+                        box-shadow: 0 0 5rem 0 #fff inset;
                     }
                 `}</style>
             </Layout>

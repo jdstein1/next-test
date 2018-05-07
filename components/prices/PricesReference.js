@@ -1,11 +1,11 @@
 import PrettyRate from './PrettyRate';
 import ConversionRate from './ConversionRate';
 
-class PricesGeneric extends React.Component {
+class PricesReference extends React.Component {
     constructor( props ) {
         super( props )
         this.state = {
-			meta: {name:'Prices Generic',component:'PricesGeneric'}
+			meta: {name:'Prices Generic',component:'PricesReference'}
 		}
         // console.log('props: ',props)
     }
@@ -15,7 +15,7 @@ class PricesGeneric extends React.Component {
         const currency = this.props.bpi.USD;
 		// console.log('currency: ',currency)
 
-        return (<tbody className='table-light'>
+        return (<tbody className='table-primary'>
 					<tr>
 						<td>
 							<small>{this.state.meta.name}</small><br/>
@@ -45,4 +45,4 @@ class PricesGeneric extends React.Component {
 	}
 }
 
-export default PricesGeneric;
+export default PricesReference;

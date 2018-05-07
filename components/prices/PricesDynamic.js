@@ -11,17 +11,16 @@ class PricesDynamic extends React.Component {
             TLC: 'USD',
             bpi: props.bpi
         };
-        console.clear()
-        console.log(this.state.meta.name+' constructor: ')
-        console.log('---- props: ', props)
-        console.log('---- this.state: ', this.state)
+        // console.log(this.state.meta.name+' constructor: ')
+        // console.log('---- props: ', props)
+        // console.log('---- this.state: ', this.state)
 
     }
 
     async getNewCurrency(newTLC) {
         const res = await fetch('https://api.coindesk.com/v1/bpi/currentprice/'+ newTLC +'.json')
         const glob = await res.json()
-        console.log('**** glob: ',glob.bpi)
+        // console.log('**** glob: ',glob.bpi)
 
         this.setState({
             bpi: glob.bpi,
@@ -64,7 +63,7 @@ class PricesDynamic extends React.Component {
         // get the country codes
         const keysComp = Object.keys(myComp)
         
-        return (<tbody className='table-primary'>
+        return (<tbody className='table-secondary'>
             <tr>
                 <td>
                     <small>{this.state.meta.name}</small><br/>

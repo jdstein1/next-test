@@ -5,7 +5,7 @@ class MessageQueue extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            msgIndexShow:null
+            msgIndexShow: null
 
         }
     }
@@ -13,37 +13,45 @@ class MessageQueue extends React.Component {
     componentWillMount() {
         this.setState({
             messages: this.props.msgs ? this.props.msgs : [
-                {id:0, kind:'', text:'', lede:''}
+                {id:1, kind:'info', text:'Lorem...', lede:'Alert!'}
             ]
         })
     }
 
     nextInQueue() {
         // console.log('+++++++++++++++++++++++++++++');
-        // console.log('START nextInQueue');
+        console.log('START nextInQueue');
         // console.log('before msgIndexShow: ', this.state.msgIndexShow);
         console.group('this.state.messages.length: ', this.state.messages.length);
 
         if ( this.state.messages.length > 1 ) {
-            // console.log('more than 1 message')
-            if ( this.state.msgIndexShow < this.state.messages.length-1) {
-                // console.log('IF');
+            console.log('more than 1 message')
+            if ( this.state.msgIndexShow < this.state.messages.length) {
+                // msgIndexShow less than # of messages
+                console.log('msgIndexShow less than # of messages');
                 this.setState({
                     msgIndexShow: this.state.msgIndexShow+1
                 }, () => {
                     // console.log('after msgIndexShow: ', this.state.msgIndexShow);
                 });
             } else {
-                // console.log('ELSE');
+                // msgIndexShow NOT less than # of messages...
+                // 
+                console.log('msgIndexShow NOT less than # of messages');
                 this.setState({
-                    msgIndexShow: 0
+                    msgIndexShow: 1
                 }, () => {
                     // console.log('after msgIndexShow: ', this.state.msgIndexShow);
                 });
             }
         } else {
-            // console.log('only 1 message')
+            console.log('only 1 message')
             // console.log('msgIndexShow: ', this.state.msgIndexShow)
+            this.setState({
+                msgIndexShow: 1
+            }, () => {
+                // console.log('after msgIndexShow: ', this.state.msgIndexShow);
+            });
         }
 
         console.groupEnd();
@@ -55,6 +63,7 @@ class MessageQueue extends React.Component {
         //        console.log('after msgIndexShow: ', this.state.msgIndexShow);
         //     });
         // }
+
     };
 
     render() {

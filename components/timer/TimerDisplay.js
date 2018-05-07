@@ -37,11 +37,11 @@ class TimerDisplay extends React.Component {
         this.setState({
             then: new Date(e.target.value)
         }, () => {
-            console.log('this.state.then: ',this.state.then);
+            // console.log('this.state.then: ',this.state.then);
             this.setState({
                 thenISO: this.state.then.toISOString().slice(0, -1)
             }, () => {
-                console.log('this.state.thenISO: ',this.state.thenISO);
+                // console.log('this.state.thenISO: ',this.state.thenISO);
                 console.groupEnd()
                 this.updateElapsed()
             })
@@ -75,7 +75,7 @@ class TimerDisplay extends React.Component {
             }
 
         }, () => {
-            console.log('this.state.time.years: ',this.state.time.years);
+            // console.log('this.state.time.years: ',this.state.time.years);
             console.groupEnd()
         })
         
@@ -86,7 +86,7 @@ class TimerDisplay extends React.Component {
         const timeFields = Object.keys(this.state.time)
             .reverse()
             .map( (key,i) => {
-                console.log('time['+key+']: ', this.state.time[key]);
+                // console.log('time['+key+']: ', this.state.time[key]);
                 return <TimerInput key={i} units={key} time={this.state.time[key]} />
             })
 

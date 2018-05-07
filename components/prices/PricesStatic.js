@@ -16,14 +16,13 @@ class PricesStatic extends React.Component {
 			return <option key={currency} value={currency}>{currency}</option>
 		});	
 
-		return (<tbody className='table-primary'>
+		return (<tbody className='table-light'>
 			<tr>
 				<td>
 					<small>{this.state.meta.name}</small><br/>
 					{this.props.bpi[this.state.currency].description}
 				</td>
 				<td style={{textAlign:'center'}}>
-					{/* <label htmlFor='selectCurrency'>{this.state.currency}</label> */}
 					<select 
 						className='form-control' 
 						name='selectCurrency'
@@ -38,8 +37,6 @@ class PricesStatic extends React.Component {
 				</td>
 				<td style={{textAlign:'center'}}>
                     <strong dangerouslySetInnerHTML={{__html:this.props.bpi[this.state.currency].symbol}}></strong>
-					{/* <strong dangerouslySetInnerHTML={ this.symb ? {__html:this.symb} : 'N/A' }></strong> */}
-					{/* <strong dangerouslySetInnerHTML={ this.symb ? {__html:this.symb} : 'N/A' }></strong> */}
 				</td>
 				<td style={{textAlign:'right'}}>
 					<PrettyRate rate={this.props.bpi[this.state.currency].rate} />

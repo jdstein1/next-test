@@ -7,9 +7,9 @@ class ConversionRate extends React.Component {
             comp: props.comp,
             base: props.base
         }
-        console.log(this.state.meta.name+' constructor: ')
-        console.log('props: ', props)
-        console.log('this.state: ', this.state)
+        // console.log(this.state.meta.name+' constructor: ')
+        // console.log('props: ', props)
+        // console.log('this.state: ', this.state)
     }
 
     componentWillReceiveProps(nextProps) {

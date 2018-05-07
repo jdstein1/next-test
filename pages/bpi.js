@@ -2,7 +2,7 @@ import Fetch from 'isomorphic-unfetch';
 
 import Layout from '../components/Layout';
 import PricesStatic from '../components/prices/PricesStatic';
-import PricesGeneric from '../components/prices/PricesGeneric';
+import PricesReference from '../components/prices/PricesReference';
 import PricesList from '../components/prices/PricesList';
 import PricesTable from '../components/prices/PricesTable';
 import PricesDynamic from '../components/prices/PricesDynamic';
@@ -16,7 +16,7 @@ const BPI = (props) => (
 				<p>Powered by <a href="https://www.coindesk.com/price">CoinDesk</a></p>
 			</div>
 			<PricesTable>
-				<PricesGeneric 
+				<PricesReference 
 					bpi={props.bpiusd} />
 				<PricesStatic 
 					bpi={props.bpi} />
@@ -47,7 +47,9 @@ BPI.getInitialProps = async function() {
 	// const currenciesData = await currencies.json();
 
 	// const currencies = await fetch('/data/supported-currencies.json');
-	// const currenciesData = await currencies.json();
+    // const currenciesData = await currencies.json();
+    
+    // another api to use: https://coinmarketcap.com/
 
 	return {
 		bpi: currentpriceData.bpi,
@@ -56,7 +58,7 @@ BPI.getInitialProps = async function() {
 		title:'Bitcoin Price Index',
 		currentPageIndex:1,
 		messages: [
-			{id:0, kind:'info', text:'Lorem ipsum dolor sic amet...', lede:'BPI Warning'}
+			{id:1, kind:'info', text:'Lorem ipsum dolor sic amet...', lede:'BPI Warning'}
 		]
 	}
 }
