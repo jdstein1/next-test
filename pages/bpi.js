@@ -9,11 +9,11 @@ import PricesDynamic from '../components/prices/PricesDynamic';
 
 const BPI = (props) => (
 	<Layout msgs={props.messages} activePageIndex={props.currentPageIndex}>
-		<div className="bpi module">
-			<div className="jumbotron">
+		<div className='bpi module'>
+			<div className='jumbotron'>
 				<h1>{props.title}</h1>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum praesentium ipsam id qui dicta doloremque dolor minus laborum assumenda dolorum laboriosam nemo provident, vitae voluptates sint, est neque explicabo porro!</p>
-				<p>Powered by <a href="https://www.coindesk.com/price">CoinDesk</a></p>
+				<p>Powered by <a href='https://www.coindesk.com/price'>CoinDesk</a></p>
 			</div>
 			<PricesTable>
 				<PricesReference 
@@ -28,9 +28,6 @@ const BPI = (props) => (
 			</PricesTable>
 		</div>
 		<style jsx local>{`
-			.bpi {
-				// border:0.25em solid purple;
-			}
 		`}</style>
 	</Layout>
 );

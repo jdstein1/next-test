@@ -125,7 +125,7 @@ class TicTacToe extends React.Component {
 
         return (
             <Layout msgs={this.state.messages} activePageIndex={this.state.currentPageIndex}>
-                <div className="TicTacToe module">
+                <div className="tictactoe module">
                     <div className="table">
                         <ul className="board d-flex flex-row flex-wrap justify-content-center align-items-center">
                             {this.state.currentGame.map((square,i) => <li className={'square d-flex justify-content-center align-items-center '+(square?'occupied':'')} key={i} id={i}>{square}</li>)}
@@ -143,7 +143,7 @@ class TicTacToe extends React.Component {
                     </form>
                 </div>
                 <style jsx>{`
-                    .TicTacToe {
+                    .tictactoe {
                         margin:0 auto;
                         padding:1rem;
                     }

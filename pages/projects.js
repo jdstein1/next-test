@@ -196,9 +196,6 @@ class Projects extends React.Component {
 				</div>
 			</div>
 			<style jsx local>{`
-				.projects {
-					// border:0.25em solid green;
-				}
 			`}</style>
 		</Layout>)
 	}

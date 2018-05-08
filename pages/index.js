@@ -4,28 +4,25 @@ import Layout from '../components/Layout';
 
 const Index = (props) => (
 	<Layout msgs={props.messages} activePageIndex={props.currentPageIndex}>
-		<div className="home module">
-            <div className="jumbotron">
+		<div className='home module'>
+            <div className='jumbotron'>
                 <h1>{props.title}</h1>
                 <p>{props.description}</p>
             </div>
-            <div className="row">
-                <div className="col-4">
+            <div className='row'>
+                <div className='col-4'>
                     <p>{props.description}</p>
                 </div>
-                <div className="col-4">
+                <div className='col-4'>
                     <p>{props.description}</p>
                 </div>
-                <div className="col-4">
+                <div className='col-4'>
                     <p>{props.description}</p>
                 </div>
             </div>
 		</div>
 		<style jsx local>{`
-			.home {
-				// border:0.25em solid orange;
-			}
-	`}</style>
+	    `}</style>
 	</Layout>
 );
 

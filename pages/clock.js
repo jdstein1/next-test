@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import TimerDisplay from '../components/timer/TimerDisplay';
+import ClockDisplay from '../components/timer/ClockDisplay';
 
 /* this is a function component */
 
@@ -10,14 +10,14 @@ import TimerDisplay from '../components/timer/TimerDisplay';
 4. [_] Allow saving countdown clocks.
 */
 
-const Timer = (props) => (
+const Clock = (props) => (
 	<Layout msgs={props.messages} pages={props.pages} activePageIndex={props.currentPageIndex}>
 		<div className='timer module'>
             <div className='jumbotron'>
                 <h1>{props.title}</h1>
                 <p>{props.description}</p>
             </div>
-            <TimerDisplay now={props.now} />
+            <ClockDisplay now={props.now} />
 		</div>
 		<style jsx global>{`
             .timer .card-body {
@@ -62,14 +62,14 @@ const Timer = (props) => (
 	</Layout>
 );
 
-Timer.getInitialProps = async function() {
+Clock.getInitialProps = async function() {
     
 	return {
-        title:'Timer',
-        description:'Counting how much time elapsed since--or left until--a specific date.',
-        currentPageIndex:5,
+        title:'Clock',
+        description:'Tick, tick, tick.',
+        currentPageIndex:4,
         now: new Date()
 	}
 }
 
-export default Timer;
+export default Clock;

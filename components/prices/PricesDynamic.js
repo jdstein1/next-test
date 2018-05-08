@@ -109,8 +109,4 @@ class PricesDynamic extends React.Component {
 	}
 }
 
-PricesDynamic.propTypes = {
-
-}
-
 export default PricesDynamic;

@@ -1,0 +1,32 @@
+.module input, .module button, .module textarea, .module select {
+    border-radius:3px;
+    /* border:0; */
+    /* padding:3px 6px; */
+    /* box-shadow:0 1.5px 1px 0.5px rgba(0,0,0,0.5) inset; */
+}
+.module input[type=button], .module input[type=submit], .module input[type=reset], .module button, .module select {
+    /* box-shadow:0 -1.5px 1px 0.5px rgba(0,0,0,0.5) inset; */
+}
+.module [type=submit], .module .primary {
+    /* background:green; */
+    /* color:white; */
+}
+.module label {
+    width: 100%;
+}
+.module label span {
+    /* display:inline-block; */
+    /* width:30%; */
+    /* text-align:right; */
+}
+.module label input {
+    /* display:inline-block; */
+    /* width:65%; */
+    /* margin-left:5%; */
+}
+.module *[readonly] {
+    /* background:#999; */
+    opacity:0.75;
+    cursor:not-allowed;
+}
+/* .module [type=submit], .module [type=reset] {width:50%;} */
