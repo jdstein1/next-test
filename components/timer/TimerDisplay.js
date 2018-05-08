@@ -93,26 +93,27 @@ class TimerDisplay extends React.Component {
             })
 
 		return (
-            <div className='clock'>
-                {/* <div className="row">
-                    <div className="col-12">
-                        <h3>Timer</h3>
-                    </div>
-                </div> */}
-                <div className='row'>
-                    <div className='col-12'>
-                        <label>
+            <React.Fragment>
+            <div>
+                <div className='row d-flex justify-content-center'>
+                    <div className=''>
+                        <label className='text-center'>
                             Now
-                            <input className='form-control' ref='nowInput' type='datetime-local' defaultValue={this.state.nowISO} readOnly />
+                            <input className='form-control' type='datetime-local' defaultValue={this.state.nowISO} readOnly />
+                        </label>
+                    </div>
+                    <div className=''>
+                        <label className='text-center'>
+                            Then (edit)
+                            <input className='form-control' type='datetime-local' defaultValue={this.state.thenISO} onChange={this.changeThen.bind(this)} />
                         </label>
                     </div>
                 </div>
-                <div className='row'>
-                    <div className='col-12'>
-                        <label>
-                            Then (edit)
-                            <input className='form-control' ref='thenInput' type='datetime-local' defaultValue={this.state.thenISO} onChange={this.changeThen.bind(this)} />
-                        </label>
+            </div>
+            <div className='clock'>
+                <div className="row">
+                    <div className="col-12">
+                    <h4 className='text-center'>time difference</h4>
                     </div>
                 </div>
                 <div className='row'>
@@ -125,6 +126,7 @@ class TimerDisplay extends React.Component {
                 .timer:last-child .card {margin-right:0 !important;}
                 `}</style>
             </div>
+            </React.Fragment>
         );
 	}
 }

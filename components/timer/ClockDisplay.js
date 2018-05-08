@@ -96,6 +96,8 @@ export default class ClockDisplay extends React.Component {
                     </div>
                 </div>
                 <style jsx>{`
+                .timer:first-child .card {margin-left:0 !important;}
+                .timer:last-child .card {margin-right:0 !important;}
                 `}</style>
             </div>
         );

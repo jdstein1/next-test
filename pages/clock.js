@@ -3,13 +3,6 @@ import ClockDisplay from '../components/timer/ClockDisplay';
 
 /* this is a function component */
 
-/* To Do:
-1. [_] Disallow day values that are not possible calendar values (e.g., February 30th, April 31st).
-2. [_] Allow editable "Now".
-3. [_] Enable time difference to countdown.
-4. [_] Allow saving countdown clocks.
-*/
-
 const Clock = (props) => (
 	<Layout msgs={props.messages} pages={props.pages} activePageIndex={props.currentPageIndex}>
 		<div className='timer module'>
@@ -35,7 +28,7 @@ const Clock = (props) => (
             }
             .clock .card {
                 margin:0.25rem;
-                border-color:rgba(0,0,0,0.25);
+                border-color:rgba(152,208,186,1);
                 border-bottom-color:rgba(0,0,0,0.5);
                 box-shadow:0 0.125rem 0 0.025rem rgba(0,0,0,0.125);
             }
@@ -43,10 +36,13 @@ const Clock = (props) => (
                 padding:0;
             }
             .clock .card .card-title {
-                padding:0.75rem 1.5rem 0;
-                margin-bottom: 0.25rem;
+                overflow:hidden;
+                padding:0.5rem 1.5rem;
+                margin-bottom: 0;
+                background: linear-gradient(0deg, rgba(152,208,186,0.5) 0%, rgba(202,255,227,0.5) 100%);
             }
             .clock .card .card-text {
+                overflow:hidden;
                 font-size:2rem;
                 padding:0.5rem 1.5rem;
                 border:0;
