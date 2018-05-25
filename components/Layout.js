@@ -78,7 +78,8 @@ Layout.defaultProps = {
         {id:3,title:'Projects Editor',url:'projects'},
         {id:4,title:'Clock',url:'clock'},
         {id:5,title:'Timer',url:'timer'},
-        {id:6,title:'Test',url:'test'}
+        {id:6,title:'Test',url:'test'},
+        {id:7,title:'CSS Animation',url:'animation'}
     ]
 };
 
