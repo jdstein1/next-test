@@ -21,7 +21,15 @@ class Button extends React.Component {
 
         return (
             <React.Fragment>
-                <button className={`form-control btn btn-${attrs.flavor}`} name={attrs.id} id={attrs.id} defaultValue={attrs.value} onClick={this.clickHandler.bind(this)}>{children}</button>
+                <button 
+                    className={`form-control btn btn-${attrs.flavor}`} 
+                    name={attrs.id} 
+                    id={attrs.id} 
+                    defaultValue={attrs.value} 
+                    onClick={this.clickHandler.bind(this)}
+                >
+                    {children}
+                </button>
                 <style jsx>{`
                 `}</style>
             </React.Fragment>

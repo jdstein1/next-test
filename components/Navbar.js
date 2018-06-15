@@ -8,13 +8,9 @@ class Navbar extends Component {
 		super(props);
 		this.state = {
 		};
-		// console.log('Navbar state: ',this.state);
-		// console.log('Navbar props: ',props);
 	}
 
 	isActiveNav(id,activepage) {
-		// console.log('id: ',id);
-		// console.log('activepage: ',activepage);
 		if (activepage===id) {
 			return true;
 		} else {
@@ -38,7 +34,7 @@ class Navbar extends Component {
 
 		return (
 			<nav className='navbar navbar-expand-md navbar-light bg-light'>
-				<Link href='/'><a className='navbar-brand'>AppName</a></Link>
+				<Link href='/'><a className='navbar-brand'>Next.js Test App</a></Link>
 				<button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='true' aria-label='Toggle navigation'>
 				<span className='navbar-toggler-icon'></span>
 				</button>

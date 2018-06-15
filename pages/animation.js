@@ -1,5 +1,3 @@
-import Fetch from 'isomorphic-unfetch';
-
 import Layout from '../components/Layout';
 import Transitions from '../components/animation/Transitions';
 import Keyframes from '../components/animation/Keyframes';

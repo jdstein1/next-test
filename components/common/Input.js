@@ -5,12 +5,14 @@ import Label from './Label';
 function BinaryInput(props) {
     return (<React.Fragment>
         <legend>{props.children}</legend>
-        { props.attrs.value.map((val, i) => {
-            return <div className='form-check' key={i}>
-                <input className='form-check-input' type={props.type} name={props.attrs.id} id={props.attrs.id+'-'+i} value={val} />
-                <Label className='form-check-label' htmlFor={props.attrs.id+'-'+i} text={val}></Label>
-            </div>
-        }) }
+        <div className='binary-group'>
+            { props.attrs.value.map((val, i) => {
+                return <div className='form-check' key={i}>
+                    <input className='form-check-input' type={props.type} name={props.attrs.id} id={props.attrs.id+'-'+i} value={val} checked={props.attrs.selected===i} />
+                    <Label className='form-check-label' htmlFor={props.attrs.id+'-'+i} text={val}></Label>
+                </div>
+            }) }
+        </div>
     </React.Fragment>)
 }
 
@@ -20,7 +22,7 @@ function ButtonInput(props) {
 }
 
 class Input extends React.Component {
-	
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -41,14 +43,10 @@ class Input extends React.Component {
 
         return (
             <fieldset className='form-group'>
-                { type === 'button' &&
+                <p className='sticker'>{type} input</p>
+                { (type === 'button' || type === 'reset' || type === 'submit') ?
                     <ButtonInput type={type} attrs={attrs}>{children}</ButtonInput>
-                }
-                { type === 'reset' &&
-                    <ButtonInput type={type} attrs={attrs}>{children}</ButtonInput>
-                }
-                { type === 'submit' &&
-                    <ButtonInput type={type} attrs={attrs}>{children}</ButtonInput>
+                    : null
                 }
                 { type === 'textarea' &&
                     <Label text={children}>
@@ -65,11 +63,9 @@ class Input extends React.Component {
                         </select>
                     </Label>
                 }
-                { type === 'radio' &&
+                { (type === 'radio' || type === 'checkbox') ?
                     <BinaryInput type={type} attrs={attrs}>{children}</BinaryInput>
-                }
-                { type === 'checkbox' &&
-                    <BinaryInput type={type} attrs={attrs}>{children}</BinaryInput>
+                    : null
                 }
                 { type !== 'button' &&
                     type !== 'reset' &&
@@ -82,7 +78,28 @@ class Input extends React.Component {
                         <input className='form-control' type={type} defaultValue={attrs.value[0]} onChange={this.changeHandler.bind(this)} />
                     </Label>
                 }
-                <style jsx>{`
+                <style jsx global>{`
+                    .form-group {
+                        position:relative;
+                    }
+                    .sticker {
+                        background: transparent;
+                        color:#099;
+                        font-weight:bold;
+                        font-size: 11px;
+                        font-family: monospace;
+                        padding:0 1em;
+                        text-shadow:1px 1px 0 white, -1px 1px 0 white, 1px -1px 0 white, -1px -1px 0 white;
+                        position:absolute;
+                        top:1.45em;
+                    }
+                    .binary-group {
+                        border: 1px solid #ced4da;
+                        padding: 0.375rem 0.75rem;
+                        border-radius: 0.4rem;
+                        margin-bottom: .5rem;
+                        display: block;
+                    }
                 `}</style>
             </fieldset>
         );

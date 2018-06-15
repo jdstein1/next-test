@@ -86,17 +86,18 @@ class MessageQueue extends React.Component {
             }
             <style jsx>{`
                 .alert-queue {
-                    position:fixed;
-                    top:3.5rem;
+                    position:absolute;
+                    top:0;
                     left:auto;
                     bottom:auto;
                     right:0;
                     width:320px;
                     padding:0.5rem;
+                    margin:3.5rem 0 0 0;
                     z-index:99999;
                 }
                 @media screen and (min-width:769px) {
-                    .alert-queue {top:0;}
+                    .alert-queue {}
                 }
 			`}</style>
         </div>);

@@ -15,7 +15,7 @@ class Label extends React.Component {
         // console.log(value);
 
         return (
-            <label className='form-group' htmlFor={this.props.htmlFor}>
+            <label htmlFor={this.props.htmlFor}>
                 <span>{this.props.text}</span>
                 {this.props.children}
                 <style jsx>{`

@@ -1,16 +1,15 @@
 import Layout from '../components/Layout';
 import ProjectsList from '../components/projects/ProjectsList';
-import ProjectEdit from '../components/projects/ProjectEdit';
+// import ProjectEdit from '../components/projects/ProjectEdit';
 // import { ToastContainer } from "react-toastr";
 // import { ToastMessage } from "react-toastr";
 import Notifications, {notify} from 'react-notify-toast';
-
 
 class Projects extends React.Component {
 
 	constructor(props) {
 		// console.log('props: ', props);
-		
+
 		super(props);
 		this.state = {
 			currentPageIndex:3,
@@ -36,7 +35,8 @@ class Projects extends React.Component {
     componentWillMount() {
         this.setState({
 			filteredProjects: this.state.initialProjects,
-			selectedProject: this.state.initialProjects[2],
+            // selectedProject: this.state.initialProjects[1],
+            selectedProject: this.selectInitialProject(),
 			messages: [
                 {id:1, kind:'warning', text:'Lorem ipsum dolor sic amet...', lede:'Projects Warning'},
                 {id:2, kind:'success', text:'Lorem ipsum dolor sic amet...', lede:'Projects Success'},
@@ -44,11 +44,16 @@ class Projects extends React.Component {
         }, () => {
 			// console.log('this.state: ', this.state);	
 		})
-	}
+    }
+    
+    selectInitialProject() {
+        const rand = Math.floor(Math.random() * Math.floor(this.state.initialProjects.length));
+        return this.state.initialProjects[rand];
+    }
 	
 	removeProject(e) {
 		console.group('START removeProject');
-		
+
 		// notify.show(message, type, timeout, color)
 		notify.show('Removed "'+this.state.initialProjects[this.state.initialProjects.length-1].name+'"','custom',1000,this.state.myNotifyColors);
 
@@ -132,7 +137,8 @@ class Projects extends React.Component {
 
 	render() {
 
-		// let filteredProjects = this.state.initialProjects;
+        // let filteredProjects = this.state.initialProjects;
+        // this.selectInitialProject();
 
 		// console.log(this.state.namesArr);
 		// console.log(this.state.typesArr);

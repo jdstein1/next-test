@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
+import Notifications, {notify} from 'react-notify-toast';
 
 import Navbar from '../components/Navbar';
 import MessageQueue from '../components/messages/MessageQueue';
@@ -34,16 +35,25 @@ class Layout extends Component {
 					{/* <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css'/> */}
 				</Head>
 				<Navbar pages={this.props.pages} activePageIndex={this.props.activePageIndex} />
-				<MessageQueue msgs={this.props.msgs} />
+                <MessageQueue msgs={this.props.msgs} />
 				<div className='container'>
+    				{/* <Notifications /> */}
 					{children}
 					<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 					<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
 					{/* <script src='http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js'></script> */}
 				</div>
                 <style jsx global>{`
-                    * { box-sizing: border-box; margin:0; padding:0; }
-                    .container { margin:1rem; padding:1rem; }
+                    *, *:before, *:after {
+                        box-sizing:border-box;
+                        margin:0;
+                        padding:0;
+                    }
+                    .container {
+                        position:relative;
+                        width:100% !important;
+                        max-width:100% !important;
+                    }
 					nav { position:fixed; }
                     pre { color:#444 !important; }
                     .module {
@@ -73,13 +83,13 @@ Layout.propTypes = {
 Layout.defaultProps = {
     pages: [
         {id:0,title:'Home',url:''},
-        {id:1,title:'Bitcoin Price Index',url:'bpi'},
-        {id:2,title:'TicTacToe Game',url:'tictactoe'},
-        {id:3,title:'Projects Editor',url:'projects'},
+        {id:1,title:'Bitcoin',url:'bpi'},
+        {id:2,title:'TicTacToe',url:'tictactoe'},
+        {id:3,title:'Projects',url:'projects'},
         {id:4,title:'Clock',url:'clock'},
         {id:5,title:'Timer',url:'timer'},
-        {id:6,title:'Test',url:'test'},
-        {id:7,title:'CSS Animation',url:'animation'}
+        {id:6,title:'Forms',url:'forms'},
+        {id:7,title:'Animation',url:'animation'}
     ]
 };
 
