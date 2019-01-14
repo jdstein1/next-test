@@ -1,9 +1,11 @@
-import Layout from '../components/Layout';
-import ProjectsList from '../components/projects/ProjectsList';
-// import ProjectEdit from '../components/projects/ProjectEdit';
+import Notifications, {notify} from 'react-notify-toast';
 // import { ToastContainer } from "react-toastr";
 // import { ToastMessage } from "react-toastr";
-import Notifications, {notify} from 'react-notify-toast';
+
+import Layout from '../components/Layout';
+import Jumbotron from '../components/common/Jumbotron';
+import ProjectsList from '../components/projects/ProjectsList';
+// import ProjectEdit from '../components/projects/ProjectEdit';
 
 class Projects extends React.Component {
 
@@ -151,10 +153,7 @@ class Projects extends React.Component {
 		return (<Layout msgs={this.state.messages} activePageIndex={this.state.currentPageIndex}>
 			<div className="projects module">
 				<Notifications />
-				<div className="jumbotron">
-					<h1>Projects Editor</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum praesentium ipsam id qui dicta doloremque dolor minus laborum assumenda dolorum laboriosam nemo provident, vitae voluptates sint, est neque explicabo porro!</p>
-				</div>
+                <Jumbotron title={this.state.title} />
 				{/* <ToastContainer ref={ref => container = ref} className='toast-top-right' /> */}
 				{/* <button
 					className="primary"

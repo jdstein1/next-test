@@ -1,14 +1,14 @@
 import Layout from '../components/Layout';
+import Jumbotron from '../components/common/Jumbotron';
 
 /* this is a function component */
 
 const Index = (props) => (
 	<Layout msgs={props.messages} activePageIndex={props.currentPageIndex}>
 		<div className='home module'>
-            <div className='jumbotron'>
-                <h1>{props.title}</h1>
+            <Jumbotron title={props.title}>
                 <p>{props.description}</p>
-            </div>
+            </Jumbotron>
             <div className='row'>
                 <div className='col-4'>
                     <p>{props.description}</p>

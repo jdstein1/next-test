@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import Jumbotron from '../components/common/Jumbotron';
 
 class TicTacToe extends React.Component {
 

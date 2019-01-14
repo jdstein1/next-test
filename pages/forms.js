@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import Jumbotron from '../components/common/Jumbotron';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 
@@ -7,10 +8,9 @@ import Button from '../components/common/Button';
 const Forms = (props) => (
 	<Layout msgs={props.messages} pages={props.pages} activePageIndex={props.currentPageIndex}>
 		<div className='test module'>
-            <div className='jumbotron'>
-                <h1>{props.title}</h1>
+            <Jumbotron title={props.title}>
                 <p>{props.description}</p>
-            </div>
+            </Jumbotron>
             <div className='row'>
                 <div className='col-4'>
                     <div className='mx-2 my-4'>

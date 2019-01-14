@@ -1,14 +1,12 @@
 import Layout from '../components/Layout';
 import Transitions from '../components/animation/Transitions';
 import Keyframes from '../components/animation/Keyframes';
+import Jumbotron from '../components/common/Jumbotron';
 
 const BPI = (props) => (
 	<Layout msgs={props.messages} activePageIndex={props.currentPageIndex}>
 		<div className='animation module'>
-			<div className='jumbotron'>
-				<h1>{props.title}</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum praesentium ipsam id qui dicta doloremque dolor minus laborum assumenda dolorum laboriosam nemo provident, vitae voluptates sint, est neque explicabo porro!</p>
-			</div>
+            <Jumbotron title={props.title} />
             <Transitions />
             <Keyframes />
         </div>

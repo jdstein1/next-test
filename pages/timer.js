@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import Jumbotron from '../components/common/Jumbotron';
 import TimerDisplay from '../components/timer/TimerDisplay';
 
 /* this is a function component */
@@ -13,10 +14,9 @@ import TimerDisplay from '../components/timer/TimerDisplay';
 const Timer = (props) => (
 	<Layout msgs={props.messages} pages={props.pages} activePageIndex={props.currentPageIndex}>
 		<div className='timer module'>
-            <div className='jumbotron'>
-                <h1>{props.title}</h1>
+            <Jumbotron title={props.title}>
                 <p>{props.description}</p>
-            </div>
+            </Jumbotron>
             <TimerDisplay now={props.now} />
 		</div>
 		<style jsx global>{`

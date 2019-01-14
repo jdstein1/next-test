@@ -1,6 +1,7 @@
 import Fetch from 'isomorphic-unfetch';
 
 import Layout from '../components/Layout';
+import Jumbotron from '../components/common/Jumbotron';
 import PricesStatic from '../components/prices/PricesStatic';
 import PricesReference from '../components/prices/PricesReference';
 import PricesList from '../components/prices/PricesList';
@@ -10,11 +11,10 @@ import PricesDynamic from '../components/prices/PricesDynamic';
 const BPI = (props) => (
 	<Layout msgs={props.messages} activePageIndex={props.currentPageIndex}>
 		<div className='bpi module'>
-			<div className='jumbotron'>
-				<h1>{props.title}</h1>
+            <Jumbotron title={props.title}>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum praesentium ipsam id qui dicta doloremque dolor minus laborum assumenda dolorum laboriosam nemo provident, vitae voluptates sint, est neque explicabo porro!</p>
 				<p>Powered by <a href='https://www.coindesk.com/price'>CoinDesk</a></p>
-			</div>
+            </Jumbotron>
 			<PricesTable>
 				<PricesReference 
 					bpi={props.bpiusd} />
