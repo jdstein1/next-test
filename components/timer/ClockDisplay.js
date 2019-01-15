@@ -20,7 +20,7 @@ export default class ClockDisplay extends React.Component {
             nowISO: this.state.now.toISOString().slice(0, -1),
         }, () => {
             // console.log('ClockDisplay this.state: ',this.state);
-            console.log('componentWillMount')
+            // console.log('componentWillMount')
             
         })
     }
@@ -30,7 +30,7 @@ export default class ClockDisplay extends React.Component {
         // this.timer = setInterval(this.tick.bind(this), 1000)
         let timer = setInterval(this.tick.bind(this), 1000)
         this.setState({timer}, () => {
-            console.log('componentDidMount')
+            // console.log('componentDidMount')
         })
     }
 
@@ -66,7 +66,7 @@ export default class ClockDisplay extends React.Component {
             }
         }, () => {
             // console.log('this.state.time.years: ',this.state.time.years);
-            console.groupEnd()
+            // console.groupEnd()
         })
     }
 

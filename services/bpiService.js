@@ -18,7 +18,7 @@ module.exports = {
         fetch( args.url ).then( res => {
             return res.json();
         }).then( data => {
-            console.log('data.res: ', data.res);
+            // console.log('data.res: ', data.res);
             
         })
 

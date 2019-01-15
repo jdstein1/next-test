@@ -1,39 +1,40 @@
 import {notify} from 'react-notify-toast';
 
+import Input from '../common/Input';
+// import Button from '../common/Button';
 import ProjectsListItem from './ProjectsListItem';
 
 class ProjectsList extends React.Component {
-	
-	constructor(props) {
-		super(props);
-		this.state = {
-			myNotifyColors: { background: '#0E1717', text: "#eee" }
-		}
-		console.log('ProjectsList props: ',props);
-	}
-	
-	componentWillMount() {
-		this.setState({
-			selectedProject: this.props.selectedProject
-		})
-	}
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+            myNotifyColors: { background: '#0E1717', text: "#eee" }
+        }
+    }
+    
+    componentWillMount() {
+        this.setState({
+            selectedProject: this.props.selectedProject
+        })
+    }
 
-	handleEdit() {
-		console.log('START handleEdit: ', this.state.selectedProject);
-		// open editor form with selected project info		
-	}
+    handleEdit() {
+        // console.log('START handleEdit: ', this.state.selectedProject);
+        // open editor form with selected project info		
+    }
 
-	handleClick(e) {
+    handleClick(e) {
         e.stopPropagation();
         e.preventDefault();
-		// console.log('START handleClick -- target: ', e.target);
-		console.group('START handleClick');
-		// console.dir(e.currentTarget);
-		// change the selected project using click on list item
+        // console.log('START handleClick -- target: ', e.target);
+        // console.group('START handleClick');
+        // console.dir(e.currentTarget);
+        // change the selected project using click on list item
         for (let index = 0; index < this.props.allprojects.length; index++) {
             const el = this.props.allprojects[index];
             if (el.id === e.currentTarget.dataset.id) {
-                console.log(index);
+                // console.log(index);
                 // console.log('el:', el.name);
                 // console.log('el:', el.id);
                 this.setState({
@@ -43,51 +44,52 @@ class ProjectsList extends React.Component {
                 });
             }
         }
-        console.groupEnd();
-	}
+        // console.groupEnd();
+    }
 
-	handleChange(e) {
-		console.group('START handleChange: ', e.target.value);
-		// change the selected project using SELECT/OPTION menu
-		if ( e.target.value!=='') {
-			// console.log('START handleChange: ', this.refs.myProjectSelect.value);
-			// console.info('projects: ', this.props.allprojects);
-			// get the index of the object in the array by looping over a key in each obj
-			// console.log(Object.keys(this.props.allprojects[0]));
-			for (let index = 0; index < this.props.allprojects.length; index++) {
-				const el = this.props.allprojects[index];
-				if (el.id === e.target.value) {
-					// console.log(index);
-					this.setState({
+    handleChange(e) {
+        // console.group('START handleChange: ', e.target.value);
+        // change the selected project using SELECT/OPTION menu
+        if ( e.target.value!=='') {
+            // console.log('START handleChange: ', this.refs.myProjectSelect.value);
+            // console.info('projects: ', this.props.allprojects);
+            // get the index of the object in the array by looping over a key in each obj
+            // console.log(Object.keys(this.props.allprojects[0]));
+            for (let index = 0; index < this.props.allprojects.length; index++) {
+                const el = this.props.allprojects[index];
+                if (el.id === e.target.value) {
+                    // console.log(index);
+                    this.setState({
                         selectedProject: this.props.allprojects[index]
                     }, () => {
                         notify.show('Selecting "'+this.state.selectedProject.name+'"','custom',1000,this.state.myNotifyColors);
-					});
-				}
-			}
+                    });
+                }
+            }
         }
-        console.groupEnd();
-	}
+        // console.groupEnd();
+    }
 
-	changeChosen(e) {
-		console.log('START changeChosen: ', e.target.value);
-		var stateCopy = Object.assign({}, this.state.selectedProject);
-		stateCopy.name = e.target.value
-		this.setState({selectedProject:stateCopy});
-		
-	}
+    changeChosen(e) {
+        // console.log('START changeChosen: ', e.target.value);
+        var stateCopy = Object.assign({}, this.state.selectedProject);
+        stateCopy.name = e.target.value
+        this.setState({selectedProject:stateCopy});
+        
+    }
 
-	render() {
+    render() {
 
-		const projectOptions = this.props.allprojects
-			.map(project => {
-				return <option key={project.id} value={project.id}>{project.name}</option>
-		});
+        const projectOptions = this.props.allprojects
+            .map(project => {
+                return <option key={project.id} value={project.id}>{project.name}</option>
+        });
 
-		return (
+        return (
             <div className="col-md-8">
                     <h3>List of Projects</h3>
                 {this.props.children}
+                {/* <h5>selectedProjectId: {this.state.selectedProject.id}</h5> */}
                 <ul className="projectList table table-hover list-group">
                     {
                         this.props.allprojects
@@ -101,7 +103,16 @@ class ProjectsList extends React.Component {
                         })
                     }
                 </ul>
-                <br/>
+                {/* <br/>
+                <Input type='button-group' 
+                    attrs={{
+                        value:[
+                            'Delete',
+                            'Edit'
+                        ], 
+                        id:'buttons-b',
+                        flavor:['secondary','primary']
+                    }}>Modify Selected</Input> */}
                 <hr/>
                 <div className="form-group">
                     <legend>Choose Project:</legend>
@@ -133,7 +144,7 @@ class ProjectsList extends React.Component {
                 `}</style>
             </div>
         );
-	}
+    }
 }
 
 export default ProjectsList;

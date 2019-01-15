@@ -1,12 +1,14 @@
+import Input from '../common/Input';
+
 class ProjectsListItem extends React.Component {
 	
-	constructor(props) {
-		super(props);
-		console.log('ProjectsListItem props: ',props);
-	}
-	
-	projectIcon(type) {
-		switch (type) {
+	// constructor(props) {
+	// 	super(props);
+	// 	// console.log('ProjectsListItem props: ',props);
+	// }
+
+    projectIcon() {
+		switch (this.props.project.type) {
 			case 'electrical':
 				return 'fas fa-bolt'
 
@@ -26,7 +28,7 @@ class ProjectsListItem extends React.Component {
 			case 'lighting':
 				return 'fas fa-lightbulb'
 
-				default:
+            default:
 				break;
 		}
 	}
@@ -34,20 +36,29 @@ class ProjectsListItem extends React.Component {
 	render() {
 
         const { project, selectedProjectId, handleClick } = this.props;
-		return (
+
+        const { id, type, name } = project;
+
+        return (
             <li 
-                key={project.id} 
-                data-id={project.id}
-                className={`list-group-item flex-column align-items-start ${project.id === selectedProjectId ? 'list-group-item-primary' : ''}`}
+                key={id} 
+                data-id={id}
+                className={`list-group-item d-flex flex-container flex-row justify-content-start align-items-center ${id === selectedProjectId ? 'list-group-item-primary' : ''}`}
                 onClick={handleClick}
             >
-                <div className="project-row">
-                    <span className={'project-icon '+this.projectIcon(project.type)}></span>
-                    <span className={'project-checkbox '+(project.id === selectedProjectId?'fas fa-check-circle':'fas fa-circle')}></span>
-                    <span className={'float-right badge '+project.type+' '+(project.id === selectedProjectId ? 'badge-primary' : 'badge-light')}>{project.type}</span>
-                    <h5 className="mb-0">{project.name}</h5>
+                <div className={'project-checkbox flex-grow-0 '+(id === selectedProjectId ? 'fas fa-check-circle':'fas fa-circle')}></div>
+                <div className="project-info align-self-start flex-grow-1">
+                    <h5 className="mb-0">{name}</h5>
+                    <small className="text-muted">id: {id}</small>
                 </div>
-                <small className="text-muted">id: {project.id}</small>
+                <div className="project-action flex-grow-1 ml-auto">
+                    <Input type="button-group" attrs={{value:['Delete','Edit'],flavor:['secondary','primary']}}>Delete</Input>
+                    {/* <InputGroup type="button" items={[{label:'Delete',flavor:'secondary'},{label:'Edit',flavor:'primary'}]} /> */}
+                </div>
+                <div className="project-badge align-self-end flex-grow-1">
+                    <div className={'badge mt-auto mb-auto '+type+' '+(id === selectedProjectId ? 'badge-primary' : 'badge-light')}>{type}</div>
+                    <div className={'project-icon '+this.projectIcon()}></div>
+                </div>
                 <style jsx>{`
                     .list-group-item {
                         overflow:hidden;
@@ -57,30 +68,41 @@ class ProjectsListItem extends React.Component {
                         opacity:0.75;
                         border:1px solid #ccc;
                     }
-                    .project-row {
-                    }
                     .project-icon,
                     .project-checkbox {
                         padding:0;
                         margin:0;
                         width:2.5rem;
                         height:2.5rem;
-                        text-align:center;
+                        text-align: center;
+                    }
+                    .project-action {
+                        margin: 0 1rem;
+                    }
+                    .project-badge {
+                        position: relative;
+                        width: 5rem;
+                        // background: rgba(255,127,0,0.125);
                     }
                     .project-icon,
                     .project-icon:after,
                     .project-icon:before {
-                        font-size:4rem;
-                        float:right;
-                        margin-left:0;
-                        margin-right:0;
-                        opacity:0.5;
+                        font-size: 6rem;
+                        margin-left: 0;
+                        margin-right: 0;
+                        opacity: 0.5;
+                        position: absolute;
+                        top: -1rem;
+                        right: -1rem;
+                        bottom: 0;
+                        left: auto;
+                    }
+                    .badge {
                     }
                     .project-checkbox,
                     .project-checkbox:after,
                     .project-checkbox:before {
                         font-size:2rem;
-                        float:left;
                         margin:0.25rem 0.5rem 0 0;
                         opacity:0.5;
                     }

@@ -10,7 +10,7 @@ class Transitions extends React.Component {
 
     clickTrigger = (e) => {
         e.preventDefault();
-        console.log(e.target);
+        // console.log(e.target);
         e.target.classList.toggle('clicked')
     }
 

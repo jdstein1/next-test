@@ -1,4 +1,4 @@
-// utils.js
+// utils/index.js
 
 const Utils = {
 
@@ -6,7 +6,10 @@ const Utils = {
         if (typeof window === 'undefined') {
             global.window = {}
         }
-    }
+    },
+    getRandMember(arr) {
+		return arr[Math.floor(Math.random() * arr.length)];
+	}
 
 }
 

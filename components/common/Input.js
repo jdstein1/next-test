@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import Label from './Label';
 import Button from './Button';
 
+// TODO -- optimize BinaryInput
+// * extract into a new component
 class BinaryInput extends React.Component {
     constructor(props) {
         super(props);
-        console.log('BinaryInput props: ',props);
         this.state = {
             // labelBinary:''
             labelBinary: (props.attrs.selected===0||props.attrs.selected!=false) ? 'True' : 'False'
@@ -26,6 +27,12 @@ class BinaryInput extends React.Component {
     
     render() {
         const { type, attrs, children, hint } = this.props;
+        const { 
+            value, 
+            id, 
+            selected,
+            flavor
+         } = attrs;
         // console.log('RENDER attrs: ', attrs);
         return (
             <React.Fragment>
@@ -33,17 +40,17 @@ class BinaryInput extends React.Component {
                 { hint &&
                     <div><small class="form-text text-muted">{hint}</small></div>
                 }
-                <small><code>({attrs.id})</code></small>
+                <small><code>({id})</code></small>
                 <div className='binary-group'>
-                    { attrs.value.map((val, i) => {
+                    { value.map((val, i) => {
                         return <div className='form-check' key={i}>
                             <input className='form-check-input' 
-                                defaultChecked={(attrs.selected===0||attrs.selected!=false) && attrs.selected===i} 
+                                defaultChecked={(selected===0||selected!=false) && selected===i} 
                                 onChange={this.changeBinary.bind(this)} 
                                 type={type} 
-                                name={attrs.id} 
-                                id={attrs.id+'-'+i} />
-                            <Label className='form-check-label' htmlFor={attrs.id+'-'+i} text={val ? val : this.state.labelBinary }></Label>
+                                name={id} 
+                                id={id+'-'+i} />
+                            <Label className='form-check-label' htmlFor={id+'-'+i} text={val ? val : this.state.labelBinary }></Label>
                         </div>
                     }) }
                 </div>
@@ -52,12 +59,19 @@ class BinaryInput extends React.Component {
     }
 }
 
+// TODO -- optimize ButtonInput
+// * extract into a new component
 function ButtonInput(props) {
     // an input element with type 'button', 'submit', or 'reset'
-    return (<input className={`form-control btn btn-${props.attrs.flavor}`} type={props.type} name={props.attrs.id} id={props.attrs.id} defaultValue={props.attrs.value && props.attrs.value} />)
+    return (<input className={`form-control btn btn-${props.attrs.flavor || 'primary'}`} type={props.type} name={props.attrs.id} id={props.attrs.id} defaultValue={props.attrs.value && props.attrs.value} />)
 
 }
 
+// TODO -- optimize ButtonGroup
+// * extract into a new component
+// * change attrs props to accept an array of buttons, NOT just an array of values:
+// ** attrs = { [{ attrs_for_button_1 }, { attrs_for_button_2 }, { attrs_for_button_3 }] 
+// ** attrs_for_button_1 = { value:value-string_or_number, id:id-string, flavor:flavor-string, action:action-function }
 function ButtonGroup(props) {
     // array of button elements created with a single component invocation
     return (
@@ -85,15 +99,14 @@ function ButtonGroup(props) {
 class Input extends React.Component {
 	constructor(props) {
 		super(props);
-        console.log('Input props: ',props);
 		this.state = {
             currentId: ''
 		}
     }
 
     changeHandler(e) {
-        console.log(e.target.value);
-        console.dir(e.target);
+        // console.log(e.target.value);
+        // console.dir(e.target);
         // const target = e.target;
         // const value = target.type === 'checkbox' ? target.checked : target.value;
         // const name = target.name;
@@ -108,6 +121,7 @@ class Input extends React.Component {
         // const { value, name, id } = this.props.attrs;
         // console.log(type+': ',this.props);
 
+        // TODO: Remove logic from render method
         return (
             <React.Fragment>
             {/* <fieldset className='form-group'> */}
@@ -197,10 +211,10 @@ class Input extends React.Component {
 
 Input.propTypes = {
     type: PropTypes.string.isRequired, // required
+    hint: PropTypes.string,
     attrs: PropTypes.shape({
         value: PropTypes.array.isRequired, // required
         id: PropTypes.string.isRequired, // required
-        hint: PropTypes.string,
         selected: PropTypes.number,
         flavor:PropTypes.oneOfType([
             PropTypes.string,

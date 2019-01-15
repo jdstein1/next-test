@@ -14,7 +14,7 @@ class Keyframes extends React.Component {
 
     togglePause = (e) => {
         e.preventDefault();
-        console.dir(e.target);
+        // console.dir(e.target);
         this.setState({
             isPaused: !this.state.isPaused
         })
@@ -22,7 +22,7 @@ class Keyframes extends React.Component {
 
     triggerColor = (e) => {
         e.preventDefault();
-        console.log(e.target.classList);
+        // console.log(e.target.classList);
         this.setState({
             isMarginAnimated: false,
             isScaleAnimated: false,
@@ -32,7 +32,7 @@ class Keyframes extends React.Component {
 
     triggerMargin = (e) => {
         e.preventDefault();
-        console.log(e.target.classList);
+        // console.log(e.target.classList);
         this.setState({
             isColorAnimated: false,
             isScaleAnimated: false,
@@ -42,7 +42,7 @@ class Keyframes extends React.Component {
 
     triggerScale = (e) => {
         e.preventDefault();
-        console.log(e.target.classList);
+        // console.log(e.target.classList);
         this.setState({
             isColorAnimated: false,
             isMarginAnimated: false,

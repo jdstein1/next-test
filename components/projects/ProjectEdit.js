@@ -6,7 +6,7 @@ class ProjectEdit extends React.Component {
 		super(props);
 		// this.state = {
 		// };
-		console.log(props);
+		// console.log(props);
 	}
 
 	handleEdit(e) {

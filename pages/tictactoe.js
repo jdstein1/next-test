@@ -37,7 +37,7 @@ class TicTacToe extends React.Component {
     }
 
     clickSquare(e) {
-        console.log('START clickSquare', e)
+        // console.log('START clickSquare', e)
         const index = parseInt(e.target.id,10)
         if (this.state.currentGame[index] === '') {
             // add symbol
@@ -51,7 +51,7 @@ class TicTacToe extends React.Component {
     }
 
     changePlayer() {
-        console.log('START changePlayer')
+        // console.log('START changePlayer')
         // this.state.currentPlayer = (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1
         this.setState({
             currentPlayer: (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1
@@ -69,7 +69,7 @@ class TicTacToe extends React.Component {
     }
 
     resetBoard() {
-        console.log('START resetBoard')
+        // console.log('START resetBoard')
         this.setState({
             currentPlayer: this.state.player1,
             currentGame: JSON.parse(JSON.stringify(this.state.initialGame))
@@ -81,14 +81,14 @@ class TicTacToe extends React.Component {
     }
 
     checkForWinner() {
-        console.log('START checkForWinner')
+        // console.log('START checkForWinner')
 
         const boardState = this.state.currentGame
-        console.log('boardState: ',boardState)
+        // console.log('boardState: ',boardState)
         let possibleWins = 0;
 
         const winningPlays = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
-        console.log('winningPlays.length: ',winningPlays.length);
+        // console.log('winningPlays.length: ',winningPlays.length);
         
         return winningPlays.find(combo => {
             // take each combination of winning plays and check against the board state
@@ -117,7 +117,7 @@ class TicTacToe extends React.Component {
                     return false
                 }
             } else {
-                console.log('empty square')
+                // console.log('empty square')
             }
         })
     }
