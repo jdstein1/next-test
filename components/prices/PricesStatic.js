@@ -19,7 +19,7 @@ class PricesStatic extends React.Component {
 		return (<tbody className='table-light'>
 			<tr>
 				<td>
-					<small>{this.state.meta.name}</small><br/>
+					{/* <small>{this.state.meta.name}</small><br/> */}
 					{this.props.bpi[this.state.currency].description}
 				</td>
 				<td style={{textAlign:'center'}}>
@@ -39,13 +39,13 @@ class PricesStatic extends React.Component {
                     <strong dangerouslySetInnerHTML={{__html:this.props.bpi[this.state.currency].symbol}}></strong>
 				</td>
 				<td style={{textAlign:'right'}}>
-					<PrettyRate rate={this.props.bpi[this.state.currency].rate} />
-				</td>
-				<td style={{textAlign:'right'}}>
 					<ConversionRate 
 						comp={this.props.bpi[this.state.currency]} 
 						base={this.props.bpi['USD']} 
 					/>
+				</td>
+				<td style={{textAlign:'right'}}>
+					<PrettyRate rate={this.props.bpi[this.state.currency].rate} />
 				</td>
 			</tr>
 			<style jsx>{`

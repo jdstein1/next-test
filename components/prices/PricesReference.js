@@ -18,7 +18,7 @@ class PricesReference extends React.Component {
         return (<tbody className='table-primary'>
 					<tr>
 						<td>
-							<small>{this.state.meta.name}</small><br/>
+							{/* <small>{this.state.meta.name}</small><br/> */}
 							{currency.description}
 						</td>
 						<td style={{textAlign:'center'}}>N/A</td>
@@ -30,13 +30,13 @@ class PricesReference extends React.Component {
 							{/* <strong dangerouslySetInnerHTML={ currency.symbol ? {__html:currency.symbol} : 'N/A' }></strong> */}
                         </td>
 						<td style={{textAlign:'right'}}>
-							<PrettyRate rate={currency.rate} />
-						</td>
-						<td style={{textAlign:'right'}}>
 							<ConversionRate 
 								comp={currency} 
 								base={currency} 
 							/>
+						</td>
+						<td style={{textAlign:'right'}}>
+							<PrettyRate rate={currency.rate} />
 						</td>
 					</tr>
 			<style jsx>{`

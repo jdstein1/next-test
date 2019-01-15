@@ -17,7 +17,7 @@ class PricesList extends React.Component {
             const currency = this.props.bpi[code];
 			return <tr key={i}>
                 <td>
-                    <small>{this.state.meta.name}</small><br/>
+                    {/* <small>{this.state.meta.name}</small><br/> */}
                     {currency.description}
                 </td>
                 <td style={{textAlign:'center'}}>N/A</td>
@@ -29,13 +29,13 @@ class PricesList extends React.Component {
                     <strong dangerouslySetInnerHTML={ currency.symbol ? {__html:currency.symbol} : 'N/A' }></strong>
                 </td>
                 <td style={{textAlign:'right'}}>
-                    <PrettyRate rate={currency.rate} />
-                </td>
-                <td style={{textAlign:'right'}}>
                     <ConversionRate 
                         comp={currency} 
                         base={this.props.bpi['USD']} 
                     />
+                </td>
+                <td style={{textAlign:'right'}}>
+                    <PrettyRate rate={currency.rate} />
                 </td>
             </tr>
 		});

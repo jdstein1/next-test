@@ -69,12 +69,12 @@ class PricesTable extends React.Component {
                     <table className='table table-bordered table-striped'>
                         <thead className='thead-light'>
                             <tr>
-                                <th style={{textAlign:'left'}} className='' scope='col'>Currency</th>
-                                <th className='' scope='col'>Picker</th>
-                                <th className='' scope='col'>Code</th>
-                                <th className='' scope='col'>Symbol</th>
-                                <th className='' scope='col'>Rate</th>
-                                <th className='' scope='col'>Conversion</th>
+                                <th className='left' scope='col'>Currency</th>
+                                <th className='center' scope='col'>Picker</th>
+                                <th className='center' scope='col'>Code</th>
+                                <th className='center' scope='col'>Symbol</th>
+                                <th className='right' scope='col'>per 1 USD</th>
+                                <th className='right' scope='col'>per 1 BTC</th>
                             </tr>
                         </thead>
                         {bpiTableReference}
@@ -83,6 +83,9 @@ class PricesTable extends React.Component {
                     </table>
                 </div>
                 <style jsx>{`
+                    .left { text-align: left; }
+                    .center { text-align: center; }
+                    .right { text-align: right; }
                 `}</style>
             </div>
         )

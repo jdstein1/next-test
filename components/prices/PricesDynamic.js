@@ -66,7 +66,7 @@ class PricesDynamic extends React.Component {
         return (<tbody className='table-secondary'>
             <tr>
                 <td>
-                    <small>{this.state.meta.name}</small><br/>
+                    {/* <small>{this.state.meta.name}</small><br/> */}
                     {this.props.currencies[this.state.chosenIndex].country}
                 </td>
                 <td style={{textAlign:'center'}}>
@@ -93,14 +93,14 @@ class PricesDynamic extends React.Component {
                     {/* <strong dangerouslySetInnerHTML={ this.state.bpi[this.state.TLC].symbol ? {__html:this.state.bpi[this.state.TLC].symbol} : 'N/A' }></strong> */}
                 </td>
                 <td style={{textAlign:'right'}}>
-                    {/* <PrettyRate rate={'34,567.8912'} /> */}
-                    <PrettyRate rate={myComp[keysComp[1]].rate} />
-                </td>
-                <td style={{textAlign:'right'}}>
                     <ConversionRate 
                         comp={myComp[keysComp[1]]} 
                         base={myComp[keysComp[0]]} 
                     />
+                </td>
+                <td style={{textAlign:'right'}}>
+                    {/* <PrettyRate rate={'34,567.8912'} /> */}
+                    <PrettyRate rate={myComp[keysComp[1]].rate} />
                 </td>
             </tr>
 			<style jsx>{`

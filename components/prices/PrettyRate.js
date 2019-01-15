@@ -25,9 +25,9 @@ class PrettyRate extends React.Component {
                 <strong>{this.props.rate.slice(0,this.props.rate.length-4)}</strong>
                 <span >{this.props.rate.slice(this.props.rate.length-4,this.props.rate.length-2)}</span>
                 <span className='thousandths'>{this.props.rate.slice(this.props.rate.length-2,this.props.rate.length)}</span>
-                <br/>
+                {/* <br/> */}
             </pre>
-            {<small>per 1 BTC</small>}
+            {/* {<small>per 1 BTC</small>} */}
             <style jsx>{`
 			`}</style>
         </span>);
