@@ -10,10 +10,6 @@ class Label extends React.Component {
     }
 
 	render() {
-
-        // const { value, name, id } = this.props.attrs;
-        // console.log(value);
-
         return (
             <label htmlFor={this.props.htmlFor}>
                 <span>{this.props.text}</span>

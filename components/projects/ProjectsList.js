@@ -105,7 +105,7 @@ class ProjectsList extends React.Component {
                 </ul>
                 {/* <br/>
                 <Input type='button-group' 
-                    attrs={{
+                    items={{
                         value:[
                             'Delete',
                             'Edit'

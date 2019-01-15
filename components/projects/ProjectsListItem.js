@@ -52,7 +52,7 @@ class ProjectsListItem extends React.Component {
                     <small className="text-muted">id: {id}</small>
                 </div>
                 <div className="project-action flex-grow-1 ml-auto">
-                    <Input type="button-group" attrs={{value:['Delete','Edit'],flavor:['secondary','primary']}}>Delete</Input>
+                    {/* <Input type="button-group" items={{value:['Delete','Edit'],flavor:['secondary','primary']}}>Delete</Input> */}
                     {/* <InputGroup type="button" items={[{label:'Delete',flavor:'secondary'},{label:'Edit',flavor:'primary'}]} /> */}
                 </div>
                 <div className="project-badge align-self-end flex-grow-1">

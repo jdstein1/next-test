@@ -188,7 +188,7 @@ class Projects extends React.Component {
                         {/* <Input 
                             type='button-group' 
                             items={{}}
-                            attrs={{
+                            items={{
                                 id:'actions',value:['Remove','Add'],flavor:'info'
                             }}
                             classes={['btn-outline-info','btn-sm']}
@@ -201,7 +201,7 @@ class Projects extends React.Component {
                             {/* TODO: refactor Input component so this works */}
                             {/* <Input 
                                 type="select" 
-                                attrs={{
+                                items={{
                                     id:'select-filter2',value:filterOptions,flavor:'primary'
                                 }}
                                 classes={['custom-select','custom-select-sm']}

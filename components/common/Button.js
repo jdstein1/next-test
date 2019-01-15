@@ -6,17 +6,18 @@ class Button extends React.Component {
 		super(props);
 		this.state = {
 		}
-		// console.log('Button props: ',props);
     }
-
+    
     clickHandler(e) {
-        // console.log(e.target.value);
-        
+        console.log(e.target.value);
     }
-	render() {
+    
+    render() {
+        
+        console.log('Button -- this.props: ',this.props);
 
-        const { type, attrs, children } = this.props;
-        // const { value, name, id } = this.props.attrs;
+        const { type, item, label } = this.props;
+        // const { value, name, id } = item;
         // console.log(type+': ',this.props);
         // console.log('Button -- this.props: ',this.props);
 
@@ -25,13 +26,14 @@ class Button extends React.Component {
         return (
             <React.Fragment>
                 <button 
-                    className={`form-control btn btn-${attrs.flavor || 'primary'}`} 
-                    name={attrs.id} 
-                    id={attrs.id} 
-                    defaultValue={attrs.value} 
+                    type={type}
+                    className={`form-control btn btn-${item.flavor || 'primary'}`} 
+                    name={item.id} 
+                    id={item.id} 
+                    defaultValue={item.value} 
                     onClick={this.clickHandler.bind(this)}
                 >
-                    {children}
+                    {label}
                 </button>
                 <style jsx>{`
                 `}</style>
@@ -42,12 +44,14 @@ class Button extends React.Component {
 
 Button.propTypes = {
     type: PropTypes.string,
-    attrs: PropTypes.shape({
-        value: PropTypes.array.isRequired,
-        id: PropTypes.string.isRequired,
-        selected: PropTypes.number
-    }),
-
+    item: PropTypes.object
+    // item: PropTypes.shape({
+    //     flavor: PropTypes.string,
+    //     label: PropTypes.string,
+    //     value: PropTypes.string,
+    //     id: PropTypes.string,
+    //     selected: PropTypes.number
+    // })
 };
 
 export default Button;
