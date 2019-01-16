@@ -3,6 +3,7 @@ import Jumbotron from '../components/common/Jumbotron';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import ButtonGroup from '../components/common/ButtonGroup';
+import Fieldset from '../components/common/Fieldset';
 
 /* this is a function component */
 
@@ -16,49 +17,39 @@ const Forms = (props) => (
                 <div className='col-4'>
                     <h3>Form Inputs</h3>
                     <div className='mx-2 my-4'>
-                        <legend>Inputs</legend>
-                        <Input type='' 
+                        <Input
+                            type='' 
                             label=''
-                            hint='This field has no type'
-                            items={[
-                                {id:'input1'}
-                            ]} />
-                        <Input type='text' 
+                            hint=''
+                            items={{ value:'', id:'input1' }} />
+                        <Input
+                            type='text' 
                             label='Text'
                             hint='This field is a text input'
-                            items={[
-                                { value:'', id:'text1'}
-                            ]} />
-                        <Input type='password' 
+                            items={{ value:'', id:'text1'}} />
+                        <Input
+                            type='password' 
                             label='Password'
                             hint='Passwords must have 64 characters: 16 of [A-Za-z], 14 of [0-9], and 34 of [~!@#$%^*()_]'
-                            items={[
-                                { value:'bdfhvjguiteu', id:'password1'}
-                            ]} />
-                        <Input type='color' 
+                            items={{ value:'bdfhvjguiteu', id:'password1'}} />
+                        <Input
+                            type='color' 
                             label='Color'
-                            items={[
-                                { value:'#66dd99', id:'color1'}
-                            ]} />
-                        <Input type='email' 
+                            items={{ value:'#66dd99', id:'color1'}} />
+                        <Input
+                            type='email' 
                             label='Email'
-                            items={[
-                                { value:'jdfghg@kdjhfkgfhj.com', id:'email1'}
-                            ]} />
-                        <Input type='datetime-local' 
+                            items={{ value:'jdfghg@kdjhfkgfhj.com', id:'email1'}} />
+                        <Input
+                            type='datetime-local' 
                             label='Date Time Local'
-                            items={[
-                                { value:'2017-06-01T08:30', id:'datetime1'}
-                            ]} />
-                        <Input type='number' 
+                            items={{ value:'2017-06-01T08:30', id:'datetime1'}} />
+                        <Input
+                            type='number' 
                             label='Number'
-                            items={[
-                                {value:84576, id:'number1'}
-                            ]} />
-                    </div>
-                    <div className='mx-2 my-4'>
-                        <legend>Select/Option</legend>
-                        <Input type='select' 
+                            items={{ value:84576, id:'number1' }} />
+                        <Input
+                            type='select' 
                             label='Select/Option'
                             items={[
                                 { value:'Select/Option 1'},
@@ -67,35 +58,34 @@ const Forms = (props) => (
                                 { value:'Select/Option 4'}
                             ]}
                             id='select1' />
-                    </div>
-                    <div className='mx-2 my-4'>
-                        <legend>Textarea</legend>
-                        <Input type='textarea' 
+                        <Input
+                            type='textarea' 
                             label='Textarea'
-                            items={[
-                                { value:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque similique eaque aspernatur asperiores accusantium? Maxime quo at aliquid voluptas placeat ipsam libero a quam? Maiores excepturi maxime fugit explicabo perferendis?'}
-                            ]}
+                            items={{ value:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque similique eaque aspernatur asperiores accusantium? Maxime quo at aliquid voluptas placeat ipsam libero a quam? Maiores excepturi maxime fugit explicabo perferendis?'}}
                             id='textarea1' />
                     </div>
                 </div>
                 <div className='col-4'>
                     <h3>Binary Inputs</h3>
                     <div className='mx-2 my-4'>
-                        <Input type='radio' 
+                        <Input
+                            type='radio' 
                             label='Radio (true/false)'
                             items={[
                                 { value:'True'},
                                 { value:'False', selected:true}
                             ]}
                             id='radios1'/>
-                        <Input type='checkbox' 
+                        <Input
+                            type='checkbox' 
                             label='Checkbox (true/false)'
                             items={[
                                 { value:''}
                             ]}
                             id='checkboxes1'
                             hint='Toggle' />
-                        <Input type='radio' 
+                        <Input
+                            type='radio' 
                             label='Radio (multi)'
                             items={[
                                 { value:'Radio 1'},
@@ -105,7 +95,8 @@ const Forms = (props) => (
                             ]}
                             id='radios2'
                             hint='Pick one' />
-                        <Input type='checkbox' 
+                        <Input
+                            type='checkbox' 
                             label='Checkbox (multi)'
                             items={[
                                 { value:'Checkbox 1', selected:true},
@@ -120,77 +111,83 @@ const Forms = (props) => (
                 <div className='col-4'>
                     <h3>Buttons</h3>
                     <div className='mx-2 my-4'>
-                        <fieldset className='form-group'>
-                            <legend>Input Buttons</legend>
-                            <Input type='submit' 
-                                label='Submit'
+                        <Fieldset legend='Input Buttons'>
+                            <Input
+                                type='submit' 
                                 items={[
-                                    { value:'Submit', id:'button1', flavor:'dark' }
+                                    { label:'Submit', value:'hjfduig', id:'button1', flavor:'primary' }
                                 ]} />
-                            <Input type='reset' 
-                                label='Reset'
+                            <Input
+                                type='reset' 
                                 items={[
-                                    { value:'Reset', id:'button2', flavor:'primary' }
+                                    { label:'Reset', value:'vnbjdr7e', id:'button2', flavor:'secondary' }
                                 ]} />
-                            <Input type='button' 
-                                label='Button'
+                            <Input
+                                type='button' 
                                 items={[
-                                    { value:'Button', id:'button3', flavor:'secondary' }
+                                    { label:'Button', value:'87dbjvc', id:'button3', flavor:'dark' }
                                 ]} />
-                        </fieldset>
-                    </div>
-                    <div className='mx-2 my-4'>
-                        <fieldset className='form-group'>
-                            <legend>Buttons</legend>
-                            <Button type='button' 
-                                label='Button 1a'
-                                item={{ value:'Button 1a', id:'button1a', flavor:'dark' }} />
-                            <Button type='button' 
-                                label='Button 2a'
-                                item={{ value:'Button 2a', id:'button2a', flavor:'primary' }} />
-                            <Button type='button' 
-                                label='Button 3a'
-                                item={{ value:'Button 3a', id:'button3a', flavor:'secondary' }} />
-                        </fieldset>
-                    </div>
-                    <div className='mx-2 my-4'>
-                        <fieldset className='form-group'>
-                            <ButtonGroup 
-                                legend='Button Group'
-                                items={[
-                                    { value:'Button 1b', id:'button1b', flavor:'secondary'},
-                                    { value:'Button 2b', id:'button2b', flavor:'primary'},
-                                    { value:'Button 3b', id:'button3b', flavor:'dark'}
-                                ]} 
-                                id='buttons-b'
-                            />
-                        </fieldset>
-                    </div>
-                    <div className='mx-2 my-4'>
-                        <fieldset className='form-group'>
-                            <legend>Buttons (group)</legend>
+                        </Fieldset>
+                        <Fieldset legend='Buttons'>
+                            <Button
+                                type='button' 
+                                item={{ label:'Button 1a', value:'jg875yh', id:'button1a', flavor:'dark' }} />
+                            <Button
+                                type='button' 
+                                item={{ label:'Button 2a', value:'hcwy634', id:'button2a', flavor:'primary' }} />
+                            <Button
+                                type='button' 
+                                item={{ label:'Button 3a', value:'jegrfw8', id:'button3a', flavor:'secondary' }} />
+                        </Fieldset>
+                        <Input
+                            type='button-group'
+                            label='ButtonGroup (empty)'
+                            items={[]}
+                        />
+                        <Input
+                            type='button-group'
+                            label='ButtonGroup (1)'
+                            items={[
+                                { value:'Button 2e', id:'button2e'}
+                            ]}
+                        />
+                        <Button
+                            label='ButtonGroup (2)'
+                            item={[
+                                { value:'Button 1d', id:'button1d', flavor:'secondary'},
+                                { value:'Button 2d', id:'button2d'}
+                            ]}
+                        />
+                        <Input
+                            type='button-group'
+                            label='ButtonGroup (3)'
+                            items={[
+                                { value:'Button 1b', id:'button1b', flavor:'secondary'},
+                                { value:'Button 2b', id:'button2b', flavor:'primary'},
+                                { value:'Button 3b', id:'button3b', flavor:'dark'}
+                            ]}
+                        />
+                        <Fieldset legend='Buttons (group)'>
                             <div className='input-group'>
-                                <Button type='button' 
+                                <Button
+                                    type='button' 
                                     label='Button 1c'
                                     item={{ value:'Button 1c', id:'button1c', flavor:'dark' }} />
-                                <Button type='button' 
+                                <Button
+                                    type='button' 
                                     label='Button 2c'
                                     item={{ value:'Button 2c', id:'button2c', flavor:'primary' }} />
-                                <Button type='button' 
+                                <Button
+                                    type='button' 
                                     label='Button 3c'
                                     item={{ value:'Button 3c', id:'button3c', flavor:'secondary' }} />
                             </div>
-                        </fieldset>
+                        </Fieldset>
                     </div>
                 </div>
             </div>
 		</div>
         <style jsx global>{`
-            .form-group {
-                border-bottom:1px solid #eee;
-                padding: 0 0 0.5rem;
-                margin: 0 0 1rem;
-            }
         `}</style>
 	</Layout>
 );

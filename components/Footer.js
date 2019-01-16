@@ -1,8 +1,9 @@
+
 import React, { Component } from 'react';
 import Link from 'next/link';
 // import Router from 'next/router';
 
-class Navbar extends Component {
+class Footer extends Component {
 
 	// constructor (props) {
 	// 	super(props);
@@ -10,25 +11,17 @@ class Navbar extends Component {
 	// 	};
 	// }
 
-	isActiveNav(id,activepage) {
-		if (activepage===id) {
-			return true;
-		} else {
-			return false;
-		}
-	};
-
 	render () {
 
-        const navLinks = this.props.links
-        // .filter(link => {
+        const footerLinks = this.props.links
+        // .filter((link) => {
 		// 	return link.url !== ''
         // })
         .map((link, i) => {
             if (link.url === '') {
                 return (
                     <li key={i} role='presentation'>
-                        <div className='nav-item nav-link'>{link.title}</div>
+                        <a className='nav-item nav-link'>{link.title}</a>
                     </li>
                 )    
             } else {
@@ -42,24 +35,20 @@ class Navbar extends Component {
             }
 		});
 
-		return (
-			<nav className='navbar navbar-expand-md navbar-light bg-light'>
-				<Link href='/'><a className='navbar-brand'>Next.js Test App</a></Link>
-				<button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='true' aria-label='Toggle navigation'>
-				<span className='navbar-toggler-icon'></span>
-				</button>
+        return (
+			<footer className='navbar navbar-expand-md navbar-light bg-light'>
 				<div className='navbar-collapse collapse' id='navbarResponsive'>
 					<ul className='navbar-nav' role='group'>
-						{navLinks}
+                        {footerLinks}
 					</ul>
 				</div>
 				<style jsx>{`
 				`}</style>
-			</nav>
+			</footer>
 		);
 
 	}
 
 }
 
-export default Navbar;
+export default Footer;

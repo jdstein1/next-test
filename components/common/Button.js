@@ -13,13 +13,9 @@ class Button extends React.Component {
     }
     
     render() {
-        
-        console.log('Button -- this.props: ',this.props);
 
-        const { type, item, label } = this.props;
-        // const { value, name, id } = item;
-        // console.log(type+': ',this.props);
-        // console.log('Button -- this.props: ',this.props);
+        const { type, item } = this.props;
+        const { value, id, label, flavor } = item;
 
         // TODO: add better default for flavor
 
@@ -27,10 +23,10 @@ class Button extends React.Component {
             <React.Fragment>
                 <button 
                     type={type}
-                    className={`form-control btn btn-${item.flavor || 'primary'}`} 
-                    name={item.id} 
-                    id={item.id} 
-                    defaultValue={item.value} 
+                    className={`form-control btn btn-${flavor || 'primary'}`} 
+                    name={id} 
+                    id={id} 
+                    defaultValue={value} 
                     onClick={this.clickHandler.bind(this)}
                 >
                     {label}

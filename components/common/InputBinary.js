@@ -58,6 +58,7 @@ class InputBinary extends React.Component {
         // console.log('this.props: ', this.props);
 
         return (
+            <React.Fragment>
             <fieldset className='form-group'>
                 { label &&
                     <legend>{label}</legend>
@@ -81,7 +82,7 @@ class InputBinary extends React.Component {
                     }
                 </div>
                 { id &&
-                    <small style={{float:'right', textAlign:'right'}}>
+                    <small className='meta'>
                         <code>group_id: {id}</code><br />
                         <code>selected_id: {binaryId}</code>
                     </small>
@@ -90,26 +91,22 @@ class InputBinary extends React.Component {
                     legend {
                         width: auto;
                         border: none;
-                        // border-top: 2px solid #ced4da;
-                        // background-color: #f8f8f8;
-                        // padding: 0.375rem 0.75rem;
-                        // margin-left: -0.5rem;
-                        // border-radius: 0.25rem;
                     }
                     .binary-group {
                         border: none;
-                        // border-bottom: 1px solid #ced4da;
-                        // background-color: #fff;
-                        // padding: 0.375rem 0.75rem;
-                        // border-radius: 0.25rem;
                         margin: 0;
-                        // display: block;
                     }
                     .form-check {}
                     .form-check-input {}
                     .form-check-label {}
+                    .meta {
+                        line-height: 1;
+                        float: right;
+                        text-align: right;
+                    }
                 `}</style>
             </fieldset>
+            </React.Fragment>
         )
     }
 }
@@ -122,10 +119,7 @@ InputBinary.propTypes = {
     //     value: PropTypes.array,
     //     id: PropTypes.string,
     //     selected: PropTypes.number,
-    //     flavor:PropTypes.oneOfType([
-    //         PropTypes.string,
-    //         PropTypes.array
-    //     ])
+    //     flavor: PropTypes.string
     // })
 };
 

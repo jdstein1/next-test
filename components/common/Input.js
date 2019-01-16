@@ -1,19 +1,11 @@
 import PropTypes from 'prop-types';
 
 import Label from './Label';
+import Button from './Button';
 import InputBinary from './InputBinary';
-// import Button from './Button';
+import InputButton from './InputButton';
 import ButtonGroup from './ButtonGroup';
 
-
-// TODO -- optimize ButtonInput
-// * extract into a new component
-function ButtonInput(props) {
-    const { type='button', item } = props;
-    const { flavor='primary', id, value='' } = item;
-    // an input element with type 'button', 'submit', or 'reset'
-    return (<input className={`form-control btn btn-${ flavor || 'primary' }`} type={type} name={id} id={id} defaultValue={value} />)
-}
 
 class Input extends React.Component {
 	constructor(props) {
@@ -34,56 +26,71 @@ class Input extends React.Component {
         // });
     }
 
+    renderSwitch( thing ) {
+        if ( Array.isArray( thing ) ) {
+            console.log('it is an array');
+        } else {
+            console.log('it is NOT array')
+            if ( Object.prototype.toString.call( thing ) === '[object Object]' ) {
+                console.log('it is an object')
+            }
+        }
+    }
+
 	render() {
 
         const { type, items, label, hint, id } = this.props;
 
-        let item = {};
+        console.group('items: ', items.length);
+        console.log(items);
+        this.renderSwitch(items)
+        console.groupEnd();
 
-        if (items.length === 1) {
-            item = items[0];
+        let item = [];
+
+        if ( items < 1 ) {
+            return null;
+        } else {
+            if ( items.length === 1 ) {
+                item = items[0];
+            } else if ( items.length > 1 ) {
+                item = items;
+            }
         }
-        // const { value, id, flavor } = items[0];
-        // console.log(type+': ',this.props);
 
-        // TODO: Remove logic from render method
+        // TODO: Remove conditional rendering logic from render method
+        // TODO: Use ButtonGroup component when "items" is an array of more than 1
         return (
             <React.Fragment>
-            {/* <fieldset className='form-group'> */}
-                { (type === 'button' || type === 'reset' || type === 'submit') ?
-                    <ButtonInput type={type} item={item}>{label}</ButtonInput>
-                    : null
+                { (type === 'button' || type === 'reset' || type === 'submit') &&
+                    <InputButton type={type} item={item}>{label}</InputButton>
                 }
                 { type === 'button-group' &&
-                    <ButtonGroup type={type} items={items}></ButtonGroup>
+                    <ButtonGroup type={type} label={label} items={items}></ButtonGroup>
                 }
                 { type === 'textarea' &&
-                    <fieldset className='form-group'>
-                        <Label text={label}>
-                            <textarea className='form-control' name={id} id={id} cols='30' rows='10' defaultValue={item.value} onChange={this.changeHandler.bind(this)}></textarea>
-                            { hint &&
-                                <div><small className="form-text text-muted">{hint}</small></div>
-                            }
-                        </Label>
-                    </fieldset>
+                    <Label text={label}>
+                        <textarea className='form-control' name={id} id={id} cols='30' rows='10' defaultValue={item.value} onChange={this.changeHandler.bind(this)}></textarea>
+                        { hint &&
+                            <div><small className="form-text text-muted">{hint}</small></div>
+                        }
+                    </Label>
                 }
                 { type === 'select' &&
-                    <fieldset className='form-group'>
-                        <Label text={label}>
-                            <select className='form-control' name={id} id={id} onChange={this.changeHandler.bind(this)}>
-                                <option>choose...</option>
-                                { items.map((item, i) => {
-                                    return <option key={item.id+'-'+i} value={item.value}>{item.value}</option>
-                                }) }
-                            </select>
-                            { hint &&
-                                <div><small className="form-text text-muted">{hint}</small></div>
-                            }
-                        </Label>
-                    </fieldset>
+                    <Label text={label}>
+                        <select className='form-control' name={id} id={id} onChange={this.changeHandler.bind(this)}>
+                            <option>choose...</option>
+                            { items.map((item, i) => {
+                                return <option key={item.id+'-'+i} value={item.value}>{item.value}</option>
+                            }) }
+                        </select>
+                        { hint &&
+                            <div><small className="form-text text-muted">{hint}</small></div>
+                        }
+                    </Label>
                 }
-                { (type === 'radio' || type === 'checkbox') ?
-                    <InputBinary type={type} id={id} label={label} changeHandler={this.changeHandler.bind(this)} items={items} hint={hint}>{label}</InputBinary> : null
+                { (type === 'radio' || type === 'checkbox') &&
+                    <InputBinary type={type} id={id} label={label} changeHandler={this.changeHandler.bind(this)} items={items} hint={hint}>{label}</InputBinary>
                 }
                 { type !== 'button' &&
                     type !== 'button-group' &&
@@ -93,14 +100,12 @@ class Input extends React.Component {
                     type !== 'radio' &&
                     type !== 'textarea' &&
                     type !== 'select' &&
-                    <fieldset className='form-group'>
                         <Label text={label}>
                             <input className='form-control' type={type} defaultValue={item.value} onChange={this.changeHandler.bind(this)} placeholder={`${type?type:'undefined'} input`} />
                             { hint &&
                                 <div><small className="form-text text-muted">{hint}</small></div>
                             }
                         </Label>
-                    </fieldset>
                 }
                 <style jsx>{`
                     .sticker {
@@ -122,7 +127,6 @@ class Input extends React.Component {
                         height:2rem;
                     }
                 `}</style>
-            {/* </fieldset> */}
             </React.Fragment>
         );
 	}
@@ -130,13 +134,17 @@ class Input extends React.Component {
 
 Input.propTypes = {
     type: PropTypes.string, // one of: ['text','number','email','password','select','button','submit','reset','search','textarea','radio','checkbox']
+    label: PropTypes.string,
     hint: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.object)
+    items: PropTypes.oneOfType(
+        PropTypes.array,
+        PropTypes.object
+        ).isRequired
     // items: PropTypes.shape([{
     //     value: PropTypes.array,
     //     id: PropTypes.string,
     //     selected: PropTypes.number,
-    //     flavor:PropTypes.oneOfType([
+    //     flavor: PropTypes.oneOfType([
     //         PropTypes.string,
     //         PropTypes.array
     //     ])

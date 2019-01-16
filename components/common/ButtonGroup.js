@@ -17,7 +17,7 @@ class ButtonGroup extends React.Component {
 
     render() {
 
-        const { items, legend } = this.props;
+        const { items, label } = this.props;
         // const { value, name, id } = this.props.items;
         // console.log(type+': ',this.props);
         // console.log('ButtonGroup -- this.props: ',this.props);
@@ -26,23 +26,21 @@ class ButtonGroup extends React.Component {
 
         return (
             <React.Fragment>
-                <legend>{legend}</legend>
+            <fieldset className='form-group'>
+                <legend>{label}</legend>
                 <div className='input-group'>
-                        { items.map((item, i) => {
-                            return (
-                                <Button 
-                                    key={ i } 
-                                    type='button-group'
-                                    label={item.value}
-                                    item={{
-                                        flavor: item.flavor || 'primary',
-                                        value: item.value,
-                                        id: item.id
-                                    }}
-                                />
-                            )
-                        }) }
+                    { items.map((item, i) => {
+                        return (
+                            <Button 
+                                key={ i } 
+                                type='button-group'
+                                label={item.value}
+                                item={item}
+                            />
+                        )
+                    }) }
                 </div>
+            </fieldset>
             </React.Fragment>
         );
 	}
