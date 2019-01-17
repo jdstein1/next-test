@@ -8,43 +8,66 @@ class InputBinary extends React.Component {
         super(props);
         this.state = {
             binaryLabel: 'False',
-            binaryId: []
+            binarySelected: []
         }
     }
 
     componentDidMount() {
+        const selectedArr = this.state.binarySelected;
+
         for (let index = 0; index < this.props.items.length; index++) {
             const element = this.props.items[index];
             // console.log(element.selected);
             if (element.selected) {
                 const newItemId = this.props.id +'-'+ (index+1);
                 this.setState({
-                    binaryId: this.state.binaryId.push( newItemId )
+                    binarySelected: selectedArr.concat(newItemId)
                 // }, () => {
-                //     console.log(this.state);
+                //     console.log('this.state.binarySelected: ',this.state.binarySelected);
                 })
             }
         }
     }
 
-    changeBinary(e) {
+    changeBinary = (e) => {
 
-        console.log('START changeBinary: ', e.target.id);
-        // console.dir(e.target);
+        // console.group('START changeBinary: ', e.target.id);
+        // console.log(e.target.checked);
+        // console.log(this.props.type);
+        // console.dir(e.target.parentNode.parentNode);
 
         // for input groups of one element, change the label based on checked state
-        if (this.props.items.length === 1) {
-            this.setState({
-                binaryLabel: e.target.checked ? 'True' : 'False'
-            // }, () => {
-            //     console.log(this.state);
-            })
+        const binaryLabel = this.props.items.length === 1 ? (e.target.checked ? 'True' : 'False') : '';
+
+        // TODO:
+        // [X] add slected item to array
+        // [X] remove un-selected item from array
+        // [X] remove previously-selected item from array (for radios)
+        const selectedArr = this.state.binarySelected;
+        // console.log('selectedArr before: ',selectedArr);
+        
+        const index = selectedArr.indexOf(e.target.id);
+        // console.log('index: ',index);
+
+        if (this.props.type === 'radio') {
+            selectedArr.splice(0, selectedArr.length)
         }
 
+        if ( index < 0 && e.target.checked ) {
+            // if not already in array, push to array
+            selectedArr.push(e.target.id);
+        } else {
+            // if already in array, pop from array
+            selectedArr.splice(index, 1);
+        }
+
+        // console.groupEnd();
+
         this.setState({
-            binaryId: e.target.checked ? this.state.binaryId.push(e.target.id) : null
+            binaryLabel,
+            binarySelected: selectedArr
         // }, () => {
-        //     console.log('this.state: ',this.state);
+        //     console.log('this.state.binarySelected: ',this.state.binarySelected);
         })
 
     }
@@ -52,7 +75,7 @@ class InputBinary extends React.Component {
     render() {
 
         const { id, type, items, label, hint } = this.props;
-        const { binaryId } = this.state;
+        const { binarySelected } = this.state;
         // console.log('this.props: ', this.props);
 
         return (
@@ -69,7 +92,7 @@ class InputBinary extends React.Component {
                             return <div className='form-check' key={i}>
                                 <input className='form-check-input' 
                                     defaultChecked={ item.selected } 
-                                    onChange={ this.changeBinary.bind(this) } 
+                                    onChange={ this.changeBinary } 
                                     type={type} 
                                     name={id} 
                                     id={id+'-'+(i+1)} />
@@ -81,7 +104,7 @@ class InputBinary extends React.Component {
                 { id &&
                     <small className='meta'>
                         <code>group_id: {id}</code><br />
-                        <code>selected_id: {JSON.stringify(binaryId)}</code>
+                        <code>selected_id: {JSON.stringify(binarySelected)}</code>
                     </small>
                 }
                 <style jsx>{`

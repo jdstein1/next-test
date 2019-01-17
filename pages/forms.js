@@ -18,7 +18,7 @@ const Forms = (props) => (
                     <div className='mx-2 my-4'>
                         <h3>Form Inputs</h3>
                         <Input
-                            type='' 
+                            type='text' 
                             label=''
                             hint=''
                             items={[
@@ -78,6 +78,18 @@ const Forms = (props) => (
                             label='Select/Option'
                             hint=''
                             id='select1'
+                            items={[
+                                { label:'Select/Option 1', value:'g8743tweiu'},
+                                { label:'Select/Option 2', value:'djvhfgiuer', selected:true},
+                                { label:'Select/Option 3', value:'vbknjds7is'},
+                                { label:'Select/Option 4', value:'fgrkeo8iei'}
+                            ]} />
+                        <Input
+                            type='select' 
+                            label='Select/Option'
+                            hint=''
+                            id='select1'
+                            settings={{multiple:true}}
                             items={[
                                 { label:'Select/Option 1', value:'g8743tweiu'},
                                 { label:'Select/Option 2', value:'djvhfgiuer', selected:true},

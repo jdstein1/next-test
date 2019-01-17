@@ -16,10 +16,15 @@ import ButtonGroup from './ButtonGroup';
 // ** API success messaging
 
 const inputMessaging = {
-    text:{hint:'dfkgh'},
-    number:{hint:'dfkgh'},
-    email:{hint:'dfkgh'},
-    password:{hint:'Passwords must have 64 characters: 16 of [A-Za-z], 14 of [0-9], and 34 of [~!@#$%^*()_]'}
+    text: {hint:'Enter text'},
+    number: {hint:'Enter number'},
+    search: {hint:'Enter search term(s)'},
+    email: {hint:'Enter email address'},
+    password: {hint:'Passwords must have 64 characters: 16 of [A-Za-z], 14 of [0-9], and 34 of [~!@#$%^*()_]'},
+    radio: {hint:'Select one'},
+    checkbox: {hint:'Select one or more'},
+    select: {hint:'Select one'},
+    selectmulti: {hint:'Select one or more (press \'Command\' key)'},
 }
 
 const Hint = (hintType) => {
@@ -49,9 +54,11 @@ class Input extends React.Component {
     }
 
     renderSelectOption (params) {
+        const { settings={} } = params;
+        const {multiple=false} = settings;
         return (<fieldset className='form-group'>
             <Label text={params.label}>
-                <select className='form-control' name={params.id} id={params.id} onChange={this.changeHandler.bind(this)}>
+                <select className='form-control' name={params.id} id={params.id} onChange={this.changeHandler.bind(this)} multiple={multiple}>
                     <option>choose...</option>
                     { params.items.map((option, i) => {
                         return <option key={option.id+'-'+i} value={option.value}>{option.value}</option>
@@ -83,7 +90,7 @@ class Input extends React.Component {
     }
 
     switchOnInputType ( thing ) {
-        const {type, items, label, id} = thing;
+        const {type, items, label, id, settings} = thing;
         if (!items) {
             return null;
         }
@@ -98,17 +105,17 @@ class Input extends React.Component {
                 return (<ButtonGroup type={type} label={label} items={items} />);
 
             case 'textarea':
-                return this.renderTextArea({type, items, label, id});
+                return this.renderTextArea({type, items, label, id, settings});
 
             case 'select':
-                return this.renderSelectOption({type, items, label, id});
+                return this.renderSelectOption({type, items, label, id, settings});
 
             case 'radio':
             case 'checkbox':
                 return (<InputBinary type={type} id={id} label={label} changeHandler={this.changeHandler.bind(this)} items={items} hintType={type}>{label}</InputBinary>);
 
             default:
-                return this.renderBasicInput({type, items, label, id});
+                return this.renderBasicInput({type, items, label, id, settings});
         }
     }    
 
@@ -130,19 +137,19 @@ class Input extends React.Component {
 
 	render() {
 
-        const { type, items, label, id } = this.props;
+        const { type, items, label, id, settings } = this.props;
 
         if ( !items ) {
             return null;
         } else {
-            this.checkPrimitiveType(items);
+            // this.checkPrimitiveType(items);
         }
 
         // TODO: Remove conditional rendering logic from render method
         // TODO: Use ButtonGroup component when "items" is an array of more than 1
         return (
             <React.Fragment>
-                {this.switchOnInputType({type, items, label, id})}
+                {this.switchOnInputType({type, items, label, id, settings})}
                 {/* { (type === 'button' || type === 'reset' || type === 'submit') &&
                     // <InputButton type={type} items={items}>{label}</InputButton>
                     <Button type={type} items={items} />

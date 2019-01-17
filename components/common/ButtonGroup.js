@@ -20,7 +20,7 @@ class ButtonGroup extends React.Component {
         const { type, items, label } = this.props;
         // const { value, name, id } = this.props.items;
         // console.log(type+': ',this.props);
-        console.log('ButtonGroup -- this.props: ',this.props);
+        // console.log('ButtonGroup -- this.props: ',this.props);
 
         // TODO: check if items is an array or an object
 

@@ -18,7 +18,7 @@ class Button extends React.Component {
         if (!items) return null;
         // const { value='', id='', label='', flavor='primary' } = items;
 
-        console.log('Button -- items: ',items);
+        // console.log('Button -- items: ',items);
         
 
         // TODO: add better default for flavor
@@ -28,6 +28,7 @@ class Button extends React.Component {
                 { items && items.map( (item, i) => {
                     return (
                         <button 
+                            key={i}
                             type={type}
                             className={`form-control btn btn-${item.flavor || 'primary'}`} 
                             name={item.id} 
