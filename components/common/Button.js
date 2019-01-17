@@ -16,12 +16,6 @@ class Button extends React.Component {
 
         const { type, label, items } = this.props;
         if (!items) return null;
-        // const { value='', id='', label='', flavor='primary' } = items;
-
-        // console.log('Button -- items: ',items);
-        
-
-        // TODO: add better default for flavor
 
         return (
             <React.Fragment>

@@ -2,13 +2,6 @@ import PropTypes from 'prop-types';
 
 class Fieldset extends React.Component {
 
-    // constructor(props) {
-	// 	super(props);
-	// 	this.state = {
-	// 	}
-	// 	// console.log('Fieldset props: ',props);
-    // }
-
 	render() {
         const { legend, children } = this.props;
         return (

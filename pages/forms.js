@@ -2,7 +2,6 @@ import Layout from '../components/Layout';
 import Jumbotron from '../components/common/Jumbotron';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
-import ButtonGroup from '../components/common/ButtonGroup';
 import Fieldset from '../components/common/Fieldset';
 
 /* this is a function component */
@@ -19,90 +18,90 @@ const Forms = (props) => (
                         <h3>Form Inputs</h3>
                         <Input
                             type='text' 
-                            label=''
-                            hint=''
+                            legend=''
+                            id='text1'
                             items={[
-                                { id:'input1' }
+                                { label:'Text' }
                             ]} />
                         <Input
                             type='text' 
-                            label='Text (item object)'
+                            legend='Text (2)'
                             hint='This field is a text input'
+                            id='text2'
                             items={[
-                                { id:'text1'}
-                            ]} />
-                        <Input
-                            type='text' 
-                            label='Text (items array)'
-                            hint='This field is a text input'
-                            items={[
-                                { label:'Text 1b', id:'text1b'},
-                                { id:'text2b'}
+                                { label:'Text 1b' },
+                                { label:'Text 2b' }
                             ]} />
                         <Input
                             type='password' 
-                            label='Password'
+                            legend='Password'
+                            id='poassword1'
                             items={[
-                                { value:'bdfhvjguiteu', id:'password1'}
+                                { label:'Password', value:'bdfhvjguiteu' }
                             ]} />
                         <Input
                             type='color' 
-                            label='Color'
-                            hint=''
+                            legend='Color'
+                            id='color1'
                             items={[
-                                { value:'#66dd99', id:'color1'}
+                                { label:'Color', value:'#66dd99' }
                             ]} />
                         <Input
                             type='email' 
-                            label='Email'
-                            hint=''
+                            legend='Email'
+                            id='email1'
                             items={[
-                                { value:'jdfghg@kdjhfkgfhj.com', id:'email1'}
+                                { label:'Email', value:'jdfghg@kdjhfkgfhj.com' }
                             ]} />
                         <Input
                             type='datetime-local' 
-                            label='Date Time Local'
-                            hint=''
+                            legend='Date Time Local'
+                            id='date1'
                             items={[
-                                { value:'2017-06-01T08:30', id:'datetime1'}
+                                { label:'Date Time Local', value:'2017-06-01T08:30' }
                             ]} />
                         <Input
                             type='number' 
-                            label='Number'
-                            hint=''
+                            legend='Number'
+                            id='number1'
                             items={[
-                                { value:84576, id:'number1' }
+                                { label:'Number', value:84576 }
                             ]} />
                         <Input
                             type='select' 
-                            label='Select/Option'
-                            hint=''
+                            legend='Select/Option'
                             id='select1'
                             items={[
-                                { label:'Select/Option 1', value:'g8743tweiu'},
-                                { label:'Select/Option 2', value:'djvhfgiuer', selected:true},
-                                { label:'Select/Option 3', value:'vbknjds7is'},
-                                { label:'Select/Option 4', value:'fgrkeo8iei'}
+                                { label:'Select/Option 1a', value:'g8743tweiu' },
+                                { label:'Select/Option 1b', value:'djvhfgiuer', selected:true},
+                                { label:'Select/Option 1c', value:'vbknjds7is' },
+                                { label:'Select/Option 1d', value:'fgrkeo8iei' }
                             ]} />
                         <Input
                             type='select' 
-                            label='Select/Option'
-                            hint=''
-                            id='select1'
+                            legend='Select/Option'
+                            id='select2'
                             settings={{multiple:true}}
                             items={[
-                                { label:'Select/Option 1', value:'g8743tweiu'},
-                                { label:'Select/Option 2', value:'djvhfgiuer', selected:true},
-                                { label:'Select/Option 3', value:'vbknjds7is'},
-                                { label:'Select/Option 4', value:'fgrkeo8iei'}
+                                { label:'Select/Option 2a', value:'g8743tweiu' },
+                                { label:'Select/Option 2b', value:'djvhfgiuer', selected:true},
+                                { label:'Select/Option 2c', value:'vbknjds7is' },
+                                { label:'Select/Option 2d', value:'fgrkeo8iei' }
                             ]} />
                         <Input
                             type='textarea' 
-                            label='Textarea'
-                            hint=''
+                            legend='Textarea'
                             id='textarea1'
                             items={[
-                                { value:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque similique eaque aspernatur asperiores accusantium? Maxime quo at aliquid voluptas placeat ipsam libero a quam? Maiores excepturi maxime fugit explicabo perferendis?'}
+                                { label:'Textarea 1', value:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque similique eaque aspernatur asperiores accusantium? Maxime quo at aliquid voluptas placeat ipsam libero a quam? Maiores excepturi maxime fugit explicabo perferendis?' }
+                            ]} />
+                        <Input
+                            type='textarea' 
+                            legend='Textarea'
+                            id='textarea2'
+                            items={[
+                                { label:'Textarea 2a', value:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque similique eaque aspernatur asperiores accusantium? Maxime quo at aliquid voluptas placeat ipsam libero a quam? Maiores excepturi maxime fugit explicabo perferendis?' },
+                                { label:'Textarea 2b', value:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque similique eaque aspernatur asperiores accusantium? Maxime quo at aliquid voluptas placeat ipsam libero a quam? Maiores excepturi maxime fugit explicabo perferendis?' }
                             ]} />
                     </div>
                 </div>
@@ -111,39 +110,39 @@ const Forms = (props) => (
                         <h3>Binary Inputs</h3>
                         <Input
                             type='radio' 
-                            label='Radio (true/false)'
+                            legend='Radio (true/false)'
                             items={[
-                                { value:'True'},
+                                { value:'True' },
                                 { value:'False', selected:true}
                             ]}
                             id='radios1'/>
                         <Input
                             type='checkbox' 
-                            label='Checkbox (true/false)'
+                            legend='Checkbox (true/false)'
                             items={[
-                                { value:''}
+                                { value:'' }
                             ]}
                             id='checkboxes1'
                             hint='Toggle' />
                         <Input
                             type='radio' 
-                            label='Radio (multi)'
+                            legend='Radio (multi)'
                             items={[
-                                { value:'Radio 1'},
-                                { value:'Radio 2'},
+                                { value:'Radio 1' },
+                                { value:'Radio 2' },
                                 { value:'Radio 3', selected:true},
-                                { value:'Radio 4'}
+                                { value:'Radio 4' }
                             ]}
                             id='radios2'
                             hint='Pick one' />
                         <Input
                             type='checkbox' 
-                            label='Checkbox (multi)'
+                            legend='Checkbox (multi)'
                             items={[
                                 { value:'Checkbox 1', selected:true},
-                                { value:'Checkbox 2'},
-                                { value:'Checkbox 3'},
-                                { value:'Checkbox 4'}
+                                { value:'Checkbox 2' },
+                                { value:'Checkbox 3' },
+                                { value:'Checkbox 4' }
                             ]}
                             id='checkboxes2'
                             hint='Pick many' />
@@ -152,80 +151,92 @@ const Forms = (props) => (
                 <div className='col-4'>
                     <div className='mx-2 my-4'>
                         <h3>Buttons</h3>
-                        <Fieldset legend='Input Buttons'>
+                        <Fieldset legend='Input'>
                             <Input
                                 type='submit' 
+                                id='submit1' 
                                 items={[
-                                    { label:'Submit Me', value:'hjfduig', id:'button1', flavor:'primary' }
+                                    { label:'Submit Me', value:'hjfduig', flavor:'primary' }
                                 ]} />
                             <Input
                                 type='reset' 
+                                id='reset1' 
                                 items={[
-                                    { label:'Reset Me', value:'vnbjdr7e', id:'button2', flavor:'secondary' }
+                                    { label:'Reset Me', value:'vnbjdr7e', flavor:'secondary' }
                                 ]} />
                             <Input
                                 type='button' 
+                                id='button1' 
                                 items={[
-                                    { label:'Button', value:'87dbjvc', id:'button3', flavor:'dark' }
+                                    { label:'Button', value:'87dbjvc', flavor:'dark' }
                                 ]} />
                         </Fieldset>
                         <Fieldset legend='Buttons'>
                             <Button
                                 type='button' 
+                                id='button2a' 
                                 items={[
-                                    { label:'Button 1a', value:'jg875yh', id:'button1a', flavor:'dark' }
+                                    { label:'Button', value:'jg875yh', flavor:'dark' }
                                 ]} />
                             <Button
                                 type='button' 
+                                id='button2b' 
                                 items={[
-                                    { label:'Button 2a', value:'hcwy634', id:'button2a', flavor:'primary' }
+                                    { label:'Button', value:'hcwy634', flavor:'primary' }
                                 ]} />
                             <Button
                                 type='button' 
+                                id='button2c' 
                                 items={[
-                                    { label:'Button 3a', value:'jegrfw8', id:'button3a', flavor:'secondary' }
+                                    { label:'Button', value:'jegrfw8', flavor:'secondary' }
                                 ]} />
                         </Fieldset>
                         <Input
                             type='button-group'
-                            label='ButtonGroup (1)'
+                            legend='ButtonGroup (1)'
+                            id='button3'
                             items={[
-                                { label:'Button 2e', value:'ivgdr587y', id:'button2e'}
+                                { label:'Button', value:'ivgdr587y' }
                             ]}
                         />
                         <Input
                             type='button-group'
-                            label='ButtonGroup (2)'
+                            legend='ButtonGroup (2)'
+                            id='button4'
                             items={[
-                                { label:'Button 1d', value:'vehjswiru', id:'button1d', flavor:'secondary'},
-                                { label:'Button 2d', value:'87f3t45gi', id:'button2d'}
+                                { label:'Button', value:'vehjswiru', flavor:'secondary' },
+                                { label:'Button', value:'87f3t45gi' }
                             ]}
                         />
                         <Input
                             type='button-group'
-                            label='ButtonGroup (3)'
+                            legend='ButtonGroup (3)'
+                            id='button5'
                             items={[
-                                { label:'Button 1b', value:'vfytewu4w', id:'button1b', flavor:'secondary'},
-                                { label:'Button 2b', value:'d7634etyr', id:'button2b', flavor:'primary'},
-                                { label:'Button 3b', value:'jbdv76w43', id:'button3b', flavor:'dark'}
+                                { label:'Button', value:'vfytewu4w', flavor:'secondary' },
+                                { label:'Button', value:'d7634etyr', flavor:'primary' },
+                                { label:'Button', value:'jbdv76w43', flavor:'dark' }
                             ]}
                         />
-                        <Fieldset legend='Buttons (group)'>
+                        <Fieldset legend='Buttons'>
                             <div className='input-group'>
                                 <Button
-                                    type='button'
+                                    type='button' 
+                                    id='button6a' 
                                     items={[
-                                        { label:'Button 1c', value:'Button 1c', id:'button1c', flavor:'dark' }
+                                        { label:'Button', value:'jhg-dfuge985', flavor:'dark' }
                                     ]} />
                                 <Button
-                                    type='button'
+                                    type='button' 
+                                    id='button6b' 
                                     items={[
-                                        { label:'Button 2c', value:'Button 2c', id:'button2c', flavor:'primary' }
+                                        { label:'Button', value:'jhg-ndhfg784', flavor:'primary' }
                                     ]} />
                                 <Button
-                                    type='button'
+                                    type='button' 
+                                    id='button6c' 
                                     items={[
-                                        { label:'Button 3c', value:'Button 3c', id:'button3c', flavor:'secondary' }
+                                        { label:'Button', value:'jhg-23687ryu', flavor:'secondary' }
                                     ]} />
                             </div>
                         </Fieldset>
