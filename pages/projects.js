@@ -178,7 +178,7 @@ class Projects extends React.Component {
 								<span className="float-right badge badge-pill badge-primary">{this.state.filteredProjects.length}</span>
 							</div>
 							<div className="card-body">
-								<small><pre><code style={{background:'rgba(255,255,255,0.75)',color:'navy',padding:'0.325rem'}}>{JSON.stringify(this.state.filteredProjects,null,"  ")}</code></pre></small>
+								<small><pre><code className='json'>{JSON.stringify(this.state.filteredProjects,null,"  ")}</code></pre></small>
 							</div>
 						</div>
 					</div>
@@ -221,7 +221,12 @@ class Projects extends React.Component {
 					{/* <ProjectEdit /> */}
 				</div>
 			</div>
-			<style jsx local>{`
+            <style jsx local>{`
+            .json {
+                background: rgba(255,255,204,1);
+                color: blue;
+                padding: 0.325rem;
+            }
 			`}</style>
 		</Layout>)
 	}

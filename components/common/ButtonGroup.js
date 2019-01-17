@@ -12,43 +12,43 @@ import Button from './Button';
 class ButtonGroup extends React.Component {
 
     clickHandler(e) {
-        // console.log(e.target.value);
+        console.log(e.target.value);
     }
 
     render() {
 
-        const { items, label } = this.props;
+        const { type, items, label } = this.props;
         // const { value, name, id } = this.props.items;
         // console.log(type+': ',this.props);
-        // console.log('ButtonGroup -- this.props: ',this.props);
+        console.log('ButtonGroup -- this.props: ',this.props);
 
-        // TODO: add better default for flavor
+        // TODO: check if items is an array or an object
 
         return (
-            <React.Fragment>
             <fieldset className='form-group'>
                 <legend>{label}</legend>
                 <div className='input-group'>
                     { items.map((item, i) => {
                         return (
                             <Button 
-                                key={ i } 
-                                type='button-group'
-                                label={item.value}
+                                key={ i }
+                                type={type}
                                 item={item}
                             />
                         )
                     }) }
                 </div>
             </fieldset>
-            </React.Fragment>
         );
 	}
 }
 
 ButtonGroup.propTypes = {
     type: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.object)
+    items: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object
+    ]).isRequired
     // items: PropTypes.shape({
     //     value: PropTypes.array,
     //     id: PropTypes.string,

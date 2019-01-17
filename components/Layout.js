@@ -54,7 +54,7 @@ class Layout extends Component {
 					nav { position:fixed; }
                     pre { color:#444 !important; }
                     h3 {
-                        border-bottom: 1px solid #eee;
+                        margin-bottom: 1rem !important;
                     }
                     .container {
                         position:relative;
@@ -78,9 +78,9 @@ class Layout extends Component {
 						line-height:1.4;
                     }
                     .form-group {
-                        border-bottom:1px solid #eee;
-                        padding: 0 0 0.5rem;
-                        margin: 0 0 1rem;
+                        padding-bottom: 0.5rem;
+                        // border-bottom:1px solid #eee;
+                        margin-bottom: 0.5rem;
                     }
                         `}</style>
 			</div>

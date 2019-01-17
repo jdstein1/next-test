@@ -7,19 +7,19 @@ class InputBinary extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            binaryLabel: 'False'
+            binaryLabel: 'False',
+            binaryId: []
         }
     }
 
     componentDidMount() {
-        let binaryId;
         for (let index = 0; index < this.props.items.length; index++) {
-            // binaryId
             const element = this.props.items[index];
-            console.log(element.selected);
+            // console.log(element.selected);
             if (element.selected) {
+                const newItemId = this.props.id +'-'+ (index+1);
                 this.setState({
-                    binaryId: this.props.id +'-'+ (index+1)
+                    binaryId: this.state.binaryId.push( newItemId )
                 // }, () => {
                 //     console.log(this.state);
                 })
@@ -29,22 +29,21 @@ class InputBinary extends React.Component {
 
     changeBinary(e) {
 
-        // console.log('START changeBinary: ', e.target.id +' / '+ e.target.checked);
+        console.log('START changeBinary: ', e.target.id);
         // console.dir(e.target);
-        console.dir(e.target.id);
+        // console.dir(e.target);
 
+        // for input groups of one element, change the label based on checked state
         if (this.props.items.length === 1) {
             this.setState({
                 binaryLabel: e.target.checked ? 'True' : 'False'
             // }, () => {
             //     console.log(this.state);
             })
-        } else {
-
         }
 
         this.setState({
-            binaryId: e.target.checked ? e.target.id : null
+            binaryId: e.target.checked ? this.state.binaryId.push(e.target.id) : null
         // }, () => {
         //     console.log('this.state: ',this.state);
         })
@@ -58,7 +57,6 @@ class InputBinary extends React.Component {
         // console.log('this.props: ', this.props);
 
         return (
-            <React.Fragment>
             <fieldset className='form-group'>
                 { label &&
                     <legend>{label}</legend>
@@ -84,7 +82,7 @@ class InputBinary extends React.Component {
                 { id &&
                     <small className='meta'>
                         <code>group_id: {id}</code><br />
-                        <code>selected_id: {binaryId}</code>
+                        <code>selected_id: {JSON.stringify(binaryId)}</code>
                     </small>
                 }
                 <style jsx>{`
@@ -106,7 +104,6 @@ class InputBinary extends React.Component {
                     }
                 `}</style>
             </fieldset>
-            </React.Fragment>
         )
     }
 }
@@ -114,13 +111,11 @@ class InputBinary extends React.Component {
 InputBinary.propTypes = {
     type: PropTypes.string,
     hint: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.object)
-    // items: PropTypes.shape({
-    //     value: PropTypes.array,
-    //     id: PropTypes.string,
-    //     selected: PropTypes.number,
-    //     flavor: PropTypes.string
-    // })
+    items: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object
+    ]).isRequired,
+    changeHandler: PropTypes.func
 };
 
 export default InputBinary;
