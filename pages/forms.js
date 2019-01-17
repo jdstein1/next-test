@@ -21,53 +21,77 @@ const Forms = (props) => (
                             type='' 
                             label=''
                             hint=''
-                            item={{ label:'', value:'', id:'input1' }} />
+                            items={[
+                                { id:'input1' }
+                            ]} />
                         <Input
                             type='text' 
                             label='Text (item object)'
                             hint='This field is a text input'
-                            item={{ label:'', value:'', id:'text1'}} />
+                            items={[
+                                { id:'text1'}
+                            ]} />
                         <Input
                             type='text' 
                             label='Text (items array)'
                             hint='This field is a text input'
-                            items={[{ label:'', value:'', id:'text1'}]} />
+                            items={[
+                                { label:'Text 1b', id:'text1b'},
+                                { id:'text2b'}
+                            ]} />
                         <Input
                             type='password' 
                             label='Password'
-                            hint='Passwords must have 64 characters: 16 of [A-Za-z], 14 of [0-9], and 34 of [~!@#$%^*()_]'
-                            item={{ label:'', value:'bdfhvjguiteu', id:'password1'}} />
+                            items={[
+                                { value:'bdfhvjguiteu', id:'password1'}
+                            ]} />
                         <Input
                             type='color' 
                             label='Color'
-                            item={{ label:'', value:'#66dd99', id:'color1'}} />
+                            hint=''
+                            items={[
+                                { value:'#66dd99', id:'color1'}
+                            ]} />
                         <Input
                             type='email' 
                             label='Email'
-                            item={{ label:'', value:'jdfghg@kdjhfkgfhj.com', id:'email1'}} />
+                            hint=''
+                            items={[
+                                { value:'jdfghg@kdjhfkgfhj.com', id:'email1'}
+                            ]} />
                         <Input
                             type='datetime-local' 
                             label='Date Time Local'
-                            item={{ label:'', value:'2017-06-01T08:30', id:'datetime1'}} />
+                            hint=''
+                            items={[
+                                { value:'2017-06-01T08:30', id:'datetime1'}
+                            ]} />
                         <Input
                             type='number' 
                             label='Number'
-                            item={{ value:84576, id:'number1' }} />
+                            hint=''
+                            items={[
+                                { value:84576, id:'number1' }
+                            ]} />
                         <Input
                             type='select' 
                             label='Select/Option'
+                            hint=''
+                            id='select1'
                             items={[
-                                { value:'Select/Option 1'},
-                                { value:'Select/Option 2', selected:true},
-                                { value:'Select/Option 3'},
-                                { value:'Select/Option 4'}
-                            ]}
-                            id='select1' />
+                                { label:'Select/Option 1', value:'g8743tweiu'},
+                                { label:'Select/Option 2', value:'djvhfgiuer', selected:true},
+                                { label:'Select/Option 3', value:'vbknjds7is'},
+                                { label:'Select/Option 4', value:'fgrkeo8iei'}
+                            ]} />
                         <Input
                             type='textarea' 
                             label='Textarea'
-                            value='Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque similique eaque aspernatur asperiores accusantium? Maxime quo at aliquid voluptas placeat ipsam libero a quam? Maiores excepturi maxime fugit explicabo perferendis?'
-                            id='textarea1' />
+                            hint=''
+                            id='textarea1'
+                            items={[
+                                { value:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque similique eaque aspernatur asperiores accusantium? Maxime quo at aliquid voluptas placeat ipsam libero a quam? Maiores excepturi maxime fugit explicabo perferendis?'}
+                            ]} />
                     </div>
                 </div>
                 <div className='col-4'>
@@ -119,24 +143,36 @@ const Forms = (props) => (
                         <Fieldset legend='Input Buttons'>
                             <Input
                                 type='submit' 
-                                item={{ label:'Submit Me', value:'hjfduig', id:'button1', flavor:'primary' }} />
+                                items={[
+                                    { label:'Submit Me', value:'hjfduig', id:'button1', flavor:'primary' }
+                                ]} />
                             <Input
                                 type='reset' 
-                                item={{ label:'Reset Me', value:'vnbjdr7e', id:'button2', flavor:'secondary' }} />
+                                items={[
+                                    { label:'Reset Me', value:'vnbjdr7e', id:'button2', flavor:'secondary' }
+                                ]} />
                             <Input
                                 type='button' 
-                                item={{ label:'Button', value:'87dbjvc', id:'button3', flavor:'dark' }} />
+                                items={[
+                                    { label:'Button', value:'87dbjvc', id:'button3', flavor:'dark' }
+                                ]} />
                         </Fieldset>
                         <Fieldset legend='Buttons'>
                             <Button
                                 type='button' 
-                                item={{ label:'Button 1a', value:'jg875yh', id:'button1a', flavor:'dark' }} />
+                                items={[
+                                    { label:'Button 1a', value:'jg875yh', id:'button1a', flavor:'dark' }
+                                ]} />
                             <Button
                                 type='button' 
-                                item={{ label:'Button 2a', value:'hcwy634', id:'button2a', flavor:'primary' }} />
+                                items={[
+                                    { label:'Button 2a', value:'hcwy634', id:'button2a', flavor:'primary' }
+                                ]} />
                             <Button
                                 type='button' 
-                                item={{ label:'Button 3a', value:'jegrfw8', id:'button3a', flavor:'secondary' }} />
+                                items={[
+                                    { label:'Button 3a', value:'jegrfw8', id:'button3a', flavor:'secondary' }
+                                ]} />
                         </Fieldset>
                         <Input
                             type='button-group'
@@ -166,13 +202,19 @@ const Forms = (props) => (
                             <div className='input-group'>
                                 <Button
                                     type='button'
-                                    item={{ label:'Button 1c', value:'Button 1c', id:'button1c', flavor:'dark' }} />
+                                    items={[
+                                        { label:'Button 1c', value:'Button 1c', id:'button1c', flavor:'dark' }
+                                    ]} />
                                 <Button
                                     type='button'
-                                    item={{ label:'Button 2c', value:'Button 2c', id:'button2c', flavor:'primary' }} />
+                                    items={[
+                                        { label:'Button 2c', value:'Button 2c', id:'button2c', flavor:'primary' }
+                                    ]} />
                                 <Button
                                     type='button'
-                                    item={{ label:'Button 3c', value:'Button 3c', id:'button3c', flavor:'secondary' }} />
+                                    items={[
+                                        { label:'Button 3c', value:'Button 3c', id:'button3c', flavor:'secondary' }
+                                    ]} />
                             </div>
                         </Fieldset>
                     </div>

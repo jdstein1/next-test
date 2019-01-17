@@ -22,6 +22,8 @@ class Fieldset extends React.Component {
 	}
 }
 
-Fieldset.propTypes = {};
+Fieldset.propTypes = {
+    legend: PropTypes.string
+};
 
 export default Fieldset;

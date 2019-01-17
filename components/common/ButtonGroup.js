@@ -28,15 +28,10 @@ class ButtonGroup extends React.Component {
             <fieldset className='form-group'>
                 <legend>{label}</legend>
                 <div className='input-group'>
-                    { items.map((item, i) => {
-                        return (
-                            <Button 
-                                key={ i }
-                                type={type}
-                                item={item}
-                            />
-                        )
-                    }) }
+                    <Button 
+                        type={type}
+                        items={items}
+                    />
                 </div>
             </fieldset>
         );
@@ -45,15 +40,7 @@ class ButtonGroup extends React.Component {
 
 ButtonGroup.propTypes = {
     type: PropTypes.string,
-    items: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.object
-    ]).isRequired
-    // items: PropTypes.shape({
-    //     value: PropTypes.array,
-    //     id: PropTypes.string,
-    //     selected: PropTypes.number
-    // })
+    items: PropTypes.array
 };
 
 export default ButtonGroup;

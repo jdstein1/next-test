@@ -14,23 +14,31 @@ class Button extends React.Component {
     
     render() {
 
-        const { type, item } = this.props;
-        const { value='', id='', label='', flavor='primary' } = item;
+        const { type, label, items } = this.props;
+        if (!items) return null;
+        // const { value='', id='', label='', flavor='primary' } = items;
+
+        console.log('Button -- items: ',items);
+        
 
         // TODO: add better default for flavor
 
         return (
             <React.Fragment>
-                <button 
-                    type={type}
-                    className={`form-control btn btn-${flavor}`} 
-                    name={id} 
-                    id={id} 
-                    defaultValue={value} 
-                    onClick={this.clickHandler.bind(this)}
-                >
-                    {label}
-                </button>
+                { items && items.map( (item, i) => {
+                    return (
+                        <button 
+                            type={type}
+                            className={`form-control btn btn-${item.flavor || 'primary'}`} 
+                            name={item.id} 
+                            id={item.id} 
+                            defaultValue={item.value} 
+                            onClick={this.clickHandler.bind(this)}
+                        >
+                            {item.label}
+                        </button>
+                    )
+                })}
                 <style jsx>{`
                 `}</style>
             </React.Fragment>
@@ -40,14 +48,7 @@ class Button extends React.Component {
 
 Button.propTypes = {
     type: PropTypes.string,
-    item: PropTypes.object,
-    // item: PropTypes.shape({
-    //     flavor: PropTypes.string,
-    //     label: PropTypes.string,
-    //     value: PropTypes.string,
-    //     id: PropTypes.string,
-    //     selected: PropTypes.number
-    // })
+    items: PropTypes.array
 };
 
 export default Button;

@@ -31,7 +31,6 @@ class InputBinary extends React.Component {
 
         console.log('START changeBinary: ', e.target.id);
         // console.dir(e.target);
-        // console.dir(e.target);
 
         // for input groups of one element, change the label based on checked state
         if (this.props.items.length === 1) {
@@ -74,7 +73,7 @@ class InputBinary extends React.Component {
                                     type={type} 
                                     name={id} 
                                     id={id+'-'+(i+1)} />
-                                <Label className='form-check-label' htmlFor={id+'-'+(i+1)} text={item.value ? item.value : this.state.binaryLabel }></Label>
+                                <Label className='form-check-label' htmlFor={id+'-'+(i+1)} text={item.value ? item.value : (item.label ? item.label : this.state.binaryLabel) }></Label>
                             </div>
                         })
                     }
@@ -111,10 +110,7 @@ class InputBinary extends React.Component {
 InputBinary.propTypes = {
     type: PropTypes.string,
     hint: PropTypes.string,
-    items: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.object
-    ]).isRequired,
+    items: PropTypes.array,
     changeHandler: PropTypes.func
 };
 

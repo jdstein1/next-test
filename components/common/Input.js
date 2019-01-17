@@ -15,6 +15,20 @@ import ButtonGroup from './ButtonGroup';
 // ** API error messaging
 // ** API success messaging
 
+const inputMessaging = {
+    text:{hint:'dfkgh'},
+    number:{hint:'dfkgh'},
+    email:{hint:'dfkgh'},
+    password:{hint:'Passwords must have 64 characters: 16 of [A-Za-z], 14 of [0-9], and 34 of [~!@#$%^*()_]'}
+}
+
+const Hint = (hintType) => {
+    if (!hintType) return null;
+    const hint = inputMessaging[hintType] && inputMessaging[hintType].hint || '';
+    return (<div><small className="form-text text-muted">{hint}</small></div>);
+}
+
+
 class Input extends React.Component {
 	constructor(props) {
 		super(props);
@@ -24,7 +38,7 @@ class Input extends React.Component {
     }
 
     changeHandler(e) {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         // console.dir(e.target);
         // const target = e.target;
         // const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -34,53 +48,67 @@ class Input extends React.Component {
         // });
     }
 
-    renderTextArea (params) {
+    renderSelectOption (params) {
         return (<fieldset className='form-group'>
             <Label text={params.label}>
-                <textarea className='form-control' name={params.id} id={params.id} cols='30' rows='10' defaultValue={params.value} onChange={this.changeHandler.bind(this)}></textarea>
-                { params.hint &&
-                    <div><small className="form-text text-muted">{params.hint}</small></div>
-                }
+                <select className='form-control' name={params.id} id={params.id} onChange={this.changeHandler.bind(this)}>
+                    <option>choose...</option>
+                    { params.items.map((option, i) => {
+                        return <option key={option.id+'-'+i} value={option.value}>{option.value}</option>
+                    }) }
+                </select>
+                <Hint hintType={params.type} />
+            </Label>
+        </fieldset>)
+    }
+
+    renderTextArea (params) {
+        const value = params.items && params.items.value || ''
+        return (<fieldset className='form-group'>
+            <Label text={params.label}>
+                <textarea className='form-control' name={params.id} id={params.id} cols='30' rows='10' defaultValue={ value } onChange={this.changeHandler.bind(this)}></textarea>
+                <Hint hintType={params.type} />
+            </Label>
+        </fieldset>)
+    }
+
+    renderBasicInput (params) {
+        const value = params.items && params.items.value || ''
+        return (<fieldset className='form-group'>
+            <Label text={params.label}>
+                <input className='form-control' type={params.type} defaultValue={ value } onChange={this.changeHandler.bind(this)} placeholder={`${params.type?params.type:'undefined'} input`} />
+                <Hint hintType={params.type} />
             </Label>
         </fieldset>)
     }
 
     switchOnInputType ( thing ) {
-        const {type, item, label, legend} = thing;
-        const {} = item;
+        const {type, items, label, id} = thing;
+        if (!items) {
+            return null;
+        }
+        // const {} = items;
         switch (thing.type) {
             case 'submit':
             case 'reset':
             case 'button':
-                return (<InputButton type={type} item={item}>{label}</InputButton>);
+                return (<InputButton type={type} items={items}>{label}</InputButton>);
+
+            case 'button-group':
+                return (<ButtonGroup type={type} label={label} items={items} />);
 
             case 'textarea':
-                return this.renderTextArea();
+                return this.renderTextArea({type, items, label, id});
 
             case 'select':
-                return (<fieldset className='form-group'>
-                    <Label text={label}>
-                        <select className='form-control' name={id} id={id} onChange={this.changeHandler.bind(this)}>
-                            <option>choose...</option>
-                            { items.map((item, i) => {
-                                return <option key={item.id+'-'+i} value={item.value}>{item.value}</option>
-                            }) }
-                        </select>
-                        { hint &&
-                            <div><small className="form-text text-muted">{hint}</small></div>
-                        }
-                    </Label>
-                </fieldset>);
+                return this.renderSelectOption({type, items, label, id});
+
+            case 'radio':
+            case 'checkbox':
+                return (<InputBinary type={type} id={id} label={label} changeHandler={this.changeHandler.bind(this)} items={items} hintType={type}>{label}</InputBinary>);
 
             default:
-                return (<fieldset className='form-group'>
-                    <Label text={label}>
-                        <input className='form-control' type={type} defaultValue={item.value} onChange={this.changeHandler.bind(this)} placeholder={`${type?type:'undefined'} input`} />
-                        { hint &&
-                            <div><small className="form-text text-muted">{hint}</small></div>
-                        }
-                    </Label>
-                </fieldset>);
+                return this.renderBasicInput({type, items, label, id});
         }
     }    
 
@@ -102,71 +130,31 @@ class Input extends React.Component {
 
 	render() {
 
-        const { type, item = {}, items = [], value, label, hint, id } = this.props;
-        
-        if ( !items && !item ) {
-            // nothing
+        const { type, items, label, id } = this.props;
+
+        if ( !items ) {
             return null;
-        } else if (items && !item) {
-            // items array
-            this.checkPrimitiveType(items);
-            // return null;
-        } else if (!items && item) {
-            // item object
-            this.checkPrimitiveType(item);
-            // return null;
         } else {
-            // both
-            // return null;
+            this.checkPrimitiveType(items);
         }
-
-        // let item = [];
-
-        // if ( items.length ) {
-        //     console.group('items array: ', items.length);
-        //     // console.log(items);
-        //     // this.renderSwitch(items)
-        //     console.groupEnd();
-        //     if ( items.length === 1 ) {
-        //         item = items[0];
-        //     } else if ( items.length > 1 ) {
-        //         item = items;
-        //     }
-        // } else {
-        //     console.group('items keys: ', Object.keys(items).length);
-        //     // console.log(items);
-        //     // this.renderSwitch(items)
-        //     console.groupEnd();
-        // }
 
         // TODO: Remove conditional rendering logic from render method
         // TODO: Use ButtonGroup component when "items" is an array of more than 1
         return (
             <React.Fragment>
-                { (type === 'button' || type === 'reset' || type === 'submit') &&
-                    // <InputButton type={type} item={item}>{label}</InputButton>
-                    <Button type={type} item={item} />
+                {this.switchOnInputType({type, items, label, id})}
+                {/* { (type === 'button' || type === 'reset' || type === 'submit') &&
+                    // <InputButton type={type} items={items}>{label}</InputButton>
+                    <Button type={type} items={items} />
                 }
                 { type === 'button-group' &&
                     <ButtonGroup type={type} label={label} items={items} />
                 }
                 { type === 'textarea' &&
-                    this.renderTextArea({item, label, id, value})
+                    this.renderTextArea({type, items, label, id})
                 }
                 { type === 'select' &&
-                    <fieldset className='form-group'>
-                        <Label text={label}>
-                            <select className='form-control' name={id} id={id} onChange={this.changeHandler.bind(this)}>
-                                <option>choose...</option>
-                                { items.map((item, i) => {
-                                    return <option key={item.id+'-'+i} value={item.value}>{item.value}</option>
-                                }) }
-                            </select>
-                            { hint &&
-                                <div><small className="form-text text-muted">{hint}</small></div>
-                            }
-                        </Label>
-                    </fieldset>
+                    this.renderSelectOption({type, items, label, id})
                 }
                 { (type === 'radio' || type === 'checkbox') &&
                     <InputBinary type={type} id={id} label={label} changeHandler={this.changeHandler.bind(this)} items={items} hint={hint}>{label}</InputBinary>
@@ -179,15 +167,8 @@ class Input extends React.Component {
                 type !== 'radio' &&
                 type !== 'textarea' &&
                 type !== 'select' &&
-                        <fieldset className='form-group'>
-                            <Label text={label}>
-                                <input className='form-control' type={type} defaultValue={item.value} onChange={this.changeHandler.bind(this)} placeholder={`${type?type:'undefined'} input`} />
-                                { hint &&
-                                    <div><small className="form-text text-muted">{hint}</small></div>
-                                }
-                            </Label>
-                        </fieldset>
-                }
+                    this.renderBasicInput({type, items, label, id})
+                } */}
                 <style jsx>{`
                     .sticker {
                         background: transparent;
@@ -214,21 +195,10 @@ class Input extends React.Component {
 }
 
 Input.propTypes = {
-    type: PropTypes.string, // one of: ['text','number','email','password','select','button','submit','reset','search','textarea','radio','checkbox']
-    value: PropTypes.string,
+    type: PropTypes.oneOf(['text','number','email','password','color','datetime-local','select','button','button-group','submit','reset','search','textarea','radio','checkbox']),
     label: PropTypes.string,
-    hint: PropTypes.string,
-    items: PropTypes.array,
-    item: PropTypes.object,
-    // items: PropTypes.shape([{
-    //     value: PropTypes.array,
-    //     id: PropTypes.string,
-    //     selected: PropTypes.number,
-    //     flavor: PropTypes.oneOfType([
-    //         PropTypes.string,
-    //         PropTypes.array
-    //     ])
-    // }])
+    id: PropTypes.string,
+    items: PropTypes.array
 };
 
 export default Input;
