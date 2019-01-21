@@ -17,12 +17,13 @@ export default () => {
         }
         .clock .card {
             margin:0.25rem;
+            overflow: hidden;
             border:0;
             border-radius:0;
-            // border-radius:0.5rem;
+            border-radius:0.25rem;
             border-color:rgba(152,208,186,0.75);
             border-bottom-color:rgba(52,108,86,0.75);
-            box-shadow:0 0.125rem 0.125rem 0.025rem rgba(0,0,0,0.25);
+            box-shadow:0 0.125rem 0.25rem 0.025rem rgba(0,0,0,0.75) inset;
         }
         .clock .card .card-body {
             padding:0;
@@ -42,7 +43,7 @@ export default () => {
         }
         .clock .card .card-text {
             overflow:hidden;
-            font-size:2rem;
+            font-size:4rem;
             padding:0.5rem 1.5rem;
             border:0;
             border-radius:0;
