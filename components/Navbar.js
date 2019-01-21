@@ -4,14 +4,9 @@ import Link from 'next/link';
 
 class Navbar extends Component {
 
-	// constructor (props) {
-	// 	super(props);
-	// 	this.state = {
-	// 	};
-	// }
-
-	isActiveNav(id,activepage) {
-		if (activepage===id) {
+	isActiveNav(id) {
+        const { activePageIndex } = this.props;
+		if (activePageIndex===id) {
 			return true;
 		} else {
 			return false;
@@ -25,15 +20,15 @@ class Navbar extends Component {
 		// 	return link.url !== ''
         // })
         .map((link, i) => {
-            if (link.url === '') {
+            if (link.url === null) {
                 return (
-                    <li key={i} role='presentation'>
+                    <li key={i} role='presentation' className={this.isActiveNav(link.id) ? 'active' : ''}>
                         <div className='nav-item nav-link'>{link.title}</div>
                     </li>
                 )    
             } else {
                 return (
-                    <li key={i} role='presentation'>
+                    <li key={i} role='presentation' className={this.isActiveNav(link.id) ? 'active' : ''}>
                         <Link prefetch href={'/'+link.url}>
                             <a className='nav-item nav-link'>{link.title}</a>
                         </Link>
@@ -53,7 +48,7 @@ class Navbar extends Component {
 						{navLinks}
 					</ul>
 				</div>
-				<style jsx>{`
+                <style jsx>{`
 				`}</style>
 			</nav>
 		);

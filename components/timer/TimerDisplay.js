@@ -1,4 +1,4 @@
-import TimerInput from './TimerInput';
+import TimeCard from './TimeCard';
 
 class TimerDisplay extends React.Component {
 
@@ -42,7 +42,7 @@ class TimerDisplay extends React.Component {
                 thenISO: this.state.then.toISOString().slice(0, -1)
             }, () => {
                 // console.log('this.state.thenISO: ',this.state.thenISO);
-                console.groupEnd()
+                // console.groupEnd()
                 this.updateElapsed()
             })
             
@@ -75,11 +75,19 @@ class TimerDisplay extends React.Component {
             }
         }, () => {
             // console.log('this.state.time.years: ',this.state.time.years);
-            console.groupEnd()
+            // console.groupEnd()
         })
     }
 
 	render() {
+
+        const { thenISO, nowISO, now, then } = this.state;
+
+        console.log('thenISO: ', thenISO);
+        console.log('nowISO: ', nowISO);
+        const timeDiff = then - now;
+        
+        
 
         const timeFields = Object.keys(this.state.time)
             .reverse()
@@ -89,43 +97,46 @@ class TimerDisplay extends React.Component {
             } )
             .map( (key,i) => {
                 // console.log('time['+key+']: ', this.state.time[key]);
-                return <TimerInput key={i} units={key} time={this.state.time[key]} />
+                return <TimeCard key={i} units={key} time={this.state.time[key]} />
             })
 
 		return (
             <React.Fragment>
-            <div>
-                <div className='row d-flex justify-content-center'>
-                    <div className=''>
-                        <label className='text-center'>
-                            Now
-                            <input className='form-control' type='datetime-local' defaultValue={this.state.nowISO} readOnly />
-                        </label>
-                    </div>
-                    <div className=''>
-                        <label className='text-center'>
-                            Then (edit)
-                            <input className='form-control' type='datetime-local' defaultValue={this.state.thenISO} onChange={this.changeThen.bind(this)} />
-                        </label>
+                <div className='row'>
+                    <div className='col-12'>
+                        <fieldset className='my-3 form-group'>
+                            {/* <label className='text-center'>Then: */}
+                                <input className='text-center form-control' type='datetime-local' defaultValue={thenISO} onChange={this.changeThen.bind(this)} />
+                            {/* </label> */}
+                        </fieldset>
                     </div>
                 </div>
-            </div>
-            <div className='clock'>
-                <div className="row">
-                    <div className="col-12">
-                    <h4 className='text-center'>time difference</h4>
+                <div className='row mb-3'>
+                    <div className='col-12'>
+                        <h4 className='text-center'>{timeDiff < 0 ? 'was' : 'is'}</h4>
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col-12 d-flex flex-row flex-wrap justify-content-center align-content-center align-items-center'>
-                        {timeFields}
+                    <div className='col-12 clock'>
+                        <div className='d-flex flex-row flex-wrap justify-content-center align-content-center align-items-center'>
+                            {timeFields}
+                        </div>
                     </div>
                 </div>
-                <style jsx global>{`
-                .timer:first-child .card {margin-left:0 !important;}
-                .timer:last-child .card {margin-right:0 !important;}
-                `}</style>
-            </div>
+                <div className='row mt-3'>
+                    <div className='col-12'>
+                        <h4 className='text-center'>{timeDiff < 0 ? 'ago' : 'from now'}</h4>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col-12'>
+                        <fieldset className='my-3 form-group'>
+                            {/* <label className='text-center'>Now: */}
+                                <input className='text-center form-control' type='datetime-local' defaultValue={nowISO} readOnly />
+                            {/* </label> */}
+                        </fieldset>
+                    </div>
+                </div>
             </React.Fragment>
         );
 	}

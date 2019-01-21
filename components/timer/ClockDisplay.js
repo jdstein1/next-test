@@ -1,4 +1,4 @@
-import ClockInput from './ClockInput';
+import TimeCard from './TimeCard';
 
 export default class ClockDisplay extends React.Component {
 
@@ -41,7 +41,6 @@ export default class ClockDisplay extends React.Component {
 
     tick() {
         // console.log('START tick')
-        
         this.setState({
             now: new Date()
         }, () => {
@@ -62,7 +61,6 @@ export default class ClockDisplay extends React.Component {
                 minute: now.getMinutes(),
                 seconds: now.getSeconds(),
                 ms: now.getMilliseconds(),
-
             }
         }, () => {
             // console.log('this.state.time.years: ',this.state.time.years);
@@ -80,24 +78,24 @@ export default class ClockDisplay extends React.Component {
             .map( (key,i) => {
                 // console.log('time['+key+']: ', this.state.time[key]);
                 // console.log(this.state.time[key].toString().length);
-                return <ClockInput key={ i } units={ key } time={ this.state.time[key] } />
+                return <TimeCard key={ i } units={ key } time={ this.state.time[key] } />
             })
 
         return (
             <div className='clock'>
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-12">
                         <h4 className='text-center'>the time is now</h4>
                     </div>
-                </div>
+                </div> */}
                 <div className='row'>
                     <div className='col-12 d-flex flex-row flex-wrap justify-content-center align-content-center align-items-center'>
                         {timeFields}
                     </div>
                 </div>
                 <style jsx>{`
-                .timer:first-child .card {margin-left:0 !important;}
-                .timer:last-child .card {margin-right:0 !important;}
+                    // .timer:first-child .card {margin-left:0 !important;}
+                    // .timer:last-child .card {margin-right:0 !important;}
                 `}</style>
             </div>
         );
