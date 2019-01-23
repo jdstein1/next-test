@@ -9,15 +9,21 @@ class ButtonGroup extends React.Component {
 
     render() {
 
-        const { type, items, label } = this.props;
+        const { type, items, label, size, settings={} } = this.props;
+
+        let groupStyle = '';
+        if (settings) {
+            groupStyle = settings.inline ? 'btn-group' : 'input-group';
+        }
 
         return (
             <fieldset className='form-group'>
                 <legend>{label}</legend>
-                <div className='input-group'>
+                <div className={ groupStyle }>
                     <Button 
                         type={type}
                         items={items}
+                        size={size}
                     />
                 </div>
             </fieldset>

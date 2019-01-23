@@ -14,23 +14,24 @@ class Button extends React.Component {
     
     render() {
 
-        const { type, label, items } = this.props;
+        const { type, items } = this.props;
         if (!items) return null;
 
         return (
             <React.Fragment>
                 { items && items.map( (item, i) => {
+                    const { flavor, id, value, label } = item;
                     return (
                         <button 
                             key={i}
                             type={type}
-                            className={`form-control btn btn-${item.flavor || 'primary'}`} 
-                            name={item.id} 
-                            id={item.id} 
-                            defaultValue={item.value} 
+                            className={`form-control btn btn-${flavor || 'primary'}`} 
+                            name={id} 
+                            id={id} 
+                            defaultValue={value} 
                             onClick={this.clickHandler.bind(this)}
                         >
-                            {item.label}
+                            {label}
                         </button>
                     )
                 })}

@@ -12,7 +12,8 @@ class Input extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-            currentId: ''
+            currentId: '',
+            showPlaceholder: false
 		}
     }
 
@@ -23,23 +24,23 @@ class Input extends React.Component {
     // TODO: reuse this shell structure for other input render funcs...
     renderInputShell (params) {
         const { legend, type, id, items, settings={} } = params;
-        const {multiple=false} = settings;
-        return (<Fieldset legend={legend}>
+        // const { multiple = false } = settings;
+        return (<Fieldset legend={ legend }>
+            <Hint hintType={type} />
                 {
                     /* stuff that is unique to the input */
                 }
-            <Hint hintType={type} />
         </Fieldset>)
     }
 
     renderSelectOption (params) {
         const { legend, type, id, items, settings={} } = params;
-        const {multiple=false} = settings;
-        return (<Fieldset legend={legend}>
+        const { multiple = false } = settings;
+        return (<Fieldset legend={ legend }>
             <select className='form-control' name={id} id={id} size={ ( multiple ? items.length + 1 : '' ) } onChange={this.changeHandler} multiple={multiple}>
                 <option>choose...</option>
                 { items.map((option, i) => {
-                    return <option key={option.id+'-'+i} value={option.value}>{option.value}</option>
+                    return <option key={i} value={option.value}>{option.value}</option>
                 }) }
             </select>
             <Hint hintType={ multiple ? (type+'multiple') : type } />
@@ -48,33 +49,38 @@ class Input extends React.Component {
 
     renderTextArea (params) {
         const { legend, type, id, items, settings={} } = params;
-        return (<Fieldset legend={legend}>
+        return (<Fieldset legend={ legend }>
             { items.map( (area, i) => {
+                // console.log((i+1)+' === '+items.length);
                 return (
-                <Label text={area.label}>
-                    <textarea className='form-control' name={id} id={id+'-'+i} cols='30' rows='10' defaultValue={ area.value } onChange={this.changeHandler}></textarea>
-                </Label>
+                    <Label text={area.label} key={i}>
+                        <textarea className='form-control' name={id} id={id+'-'+i} cols='30' rows='10' defaultValue={ area.value } onChange={this.changeHandler}></textarea>
+                        { (i+1) === items.length && <Hint hintType={type} />}
+                    </Label>
                 );
             } ) }
-            <Hint hintType={type} />
         </Fieldset>)
     }
 
     renderBasicInput (params) {
         const { legend, type, id, items, settings={} } = params;
         // const value = items && items.value || ''
-        return (<Fieldset legend={legend}>
+        return (<Fieldset legend={ legend }>
             { items.map( (input, i) => {
-                return (<Label text={input.label}>
-                    <input className='form-control' type={type} name={id} id={id+'-'+i} defaultValue={ input.value } onChange={this.changeHandler} placeholder={`${type?type:'undefined'} input`} />
-                </Label>);
+                console.log(settings);
+                
+                return (
+                    <Label text={input.label} key={i}>
+                        <input className='form-control' type={type} name={id} id={id+'-'+i} defaultValue={ input.value } onChange={this.changeHandler} placeholder={ this.state.showPlaceholder ? `${type?type:'undefined'} input` : null } />
+                        { (i+1) === items.length && <Hint hintType={type} /> }
+                    </Label>
+                );
             } ) }
-            <Hint hintType={type} />
         </Fieldset>)
     }
 
     switchOnInputType ( thing ) {
-        const {type, items, legend, id, settings} = thing;
+        const { type, items, legend, id, settings={} } = thing;
         if (!items) {
             return null;
         }
@@ -83,10 +89,10 @@ class Input extends React.Component {
             case 'submit':
             case 'reset':
             case 'button':
-                return (<InputButton type={type} label={legend} items={items} />);
+                return (<InputButton type={type} label={ legend } items={items} />);
 
             case 'button-group':
-                return (<ButtonGroup type={type} label={legend} items={items} />);
+                return (<ButtonGroup type={type} label={ legend } items={items} settings={settings} />);
 
             case 'textarea':
                 return this.renderTextArea({type, items, legend, id, settings});
@@ -97,7 +103,7 @@ class Input extends React.Component {
 
             case 'radio':
             case 'checkbox':
-                return (<InputBinary type={type} id={id} label={legend} changeHandler={this.changeHandler} items={items}>
+                return (<InputBinary type={type} id={id} label={ legend } changeHandler={this.changeHandler} items={items}>
                     <Hint hintType={type} />
                 </InputBinary>);
 
@@ -154,14 +160,17 @@ class Input extends React.Component {
                         width:10rem;
                         height:2rem;
                     }
-                `}</style>
+                    :placeholder {
+                        color: rgba(0,127,255,0.5);
+                    }
+                    `}</style>
             </React.Fragment>
         );
 	}
 }
 
 Input.propTypes = {
-    type: PropTypes.oneOf(['text','number','email','password','color','datetime-local','select','button','button-group','submit','reset','search','textarea','radio','checkbox']),
+    type: PropTypes.oneOf(['','text','number','email','password','color','datetime-local','select','button','button-group','submit','reset','search','textarea','radio','checkbox']),
     legend: PropTypes.string,
     id: PropTypes.string,
     items: PropTypes.array

@@ -21,6 +21,12 @@ const inputMessaging = {
         invalid:'Not a valid text',
         valid:'',
     },
+    textarea: {
+        hint:'Enter text',
+        pattern:'([a-zA-Z])+',
+        invalid:'Not a valid text',
+        valid:'',
+    },
     number: {
         hint:'Enter number',
         pattern:'([0-9])+([.,][0-9]*)*',
@@ -70,7 +76,7 @@ const inputMessaging = {
         pattern:'[a-zA-Z]',
         invalid:'Not a valid selectmultiple',
         valid:'',
-    },
+    }
 }
 
 const Hint = ( props ) => {

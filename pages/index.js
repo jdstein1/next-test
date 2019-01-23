@@ -10,13 +10,7 @@ const Index = (props) => (
                 <p>{props.description}</p>
             </Jumbotron>
             <div className='row'>
-                <div className='col-4'>
-                    <p>{props.description}</p>
-                </div>
-                <div className='col-4'>
-                    <p>{props.description}</p>
-                </div>
-                <div className='col-4'>
+                <div className='col-12'>
                     <p>{props.description}</p>
                 </div>
             </div>

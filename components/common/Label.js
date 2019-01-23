@@ -4,14 +4,17 @@ const Label = (props) => {
     const { htmlFor, text, children } = props;
     return (
         <label htmlFor={htmlFor}>
-            <span>{text}</span>
-            {children}
+            { text && <span>{text}</span> }
+            { children }
             <style jsx>{`
             `}</style>
         </label>
     );
 }
 
-Label.propTypes = {};
+Label.propTypes = {
+    htmlFor: PropTypes.string, 
+    text: PropTypes.string
+};
 
 export default Label;

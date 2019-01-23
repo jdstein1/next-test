@@ -1,18 +1,15 @@
 import PropTypes from 'prop-types';
 
-class Fieldset extends React.Component {
-
-	render() {
-        const { legend, children } = this.props;
-        return (
-            <fieldset className='form-group'>
-                <legend>{ legend }</legend>
-                { children }
-                <style jsx>{`
-                `}</style>
-            </fieldset>
-        );
-	}
+const Fieldset = (props) => {
+    const { legend, children } = props;
+    return (
+        <fieldset className='form-group'>
+            { legend && <legend>{ legend }</legend>}
+            { children && children }
+            <style jsx>{`
+            `}</style>
+        </fieldset>
+    );
 }
 
 Fieldset.propTypes = {

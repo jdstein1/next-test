@@ -68,6 +68,7 @@ class InputBinary extends React.Component {
                     <legend>{label}</legend>
                 }
                 <div className='binary-group'>
+                    { children }
                     { items &&
                         items.map((item, i) => {
                             return <div className='form-check' key={i}>
@@ -81,7 +82,6 @@ class InputBinary extends React.Component {
                             </div>
                         })
                     }
-                    { children }
                 </div>
                 { id &&
                     <small className='meta'>
