@@ -7,7 +7,7 @@ const InputButton = (props) => {
 
     const { type='button', items } = props;
 
-    if (!items) {
+    if ( !items || items.length < 1 ) {
         return null;
     }
     

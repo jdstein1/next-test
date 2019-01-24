@@ -1,0 +1,11 @@
+{
+    "flavors": [
+        "primary",
+        "secondary",
+        "success",
+        "danger",
+        "warning",
+        "info",
+        "dark"
+    ]
+}
