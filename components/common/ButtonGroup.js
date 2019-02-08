@@ -1,30 +1,23 @@
 import PropTypes from 'prop-types';
-import Button from './Button';
+// import Button from './Button';
 
-class ButtonGroup extends React.Component {
-
-    clickHandler(e) {
-        console.log(e.target.value);
-    }
+class ButtonGroup extends React.PureComponent {
 
     render() {
 
-        const { type, items, label, size, settings={} } = this.props;
+        const { children, legend, settings={} } = this.props;
 
-        let groupStyle = '';
+        let classButtonGroup = '';
+
         if (settings) {
-            groupStyle = settings.inline ? 'btn-group' : 'input-group';
+            classButtonGroup = settings.inline ? 'btn-group' : 'input-group';
         }
 
         return (
             <fieldset className='form-group'>
-                <legend>{label}</legend>
-                <div className={ groupStyle }>
-                    <Button 
-                        type={type}
-                        items={items}
-                        size={size}
-                    />
+                {legend && <legend>{legend}</legend>}
+                <div className={ classButtonGroup }>
+                    {children}
                 </div>
             </fieldset>
         );

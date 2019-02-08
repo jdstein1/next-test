@@ -8,36 +8,23 @@ class Button extends React.Component {
 		}
     }
     
-    clickHandler(e) {
-        console.log(e.target.value);
-    }
-    
     render() {
 
-        const { type, items } = this.props;
-        if (!items) return null;
+        const { type='button', label='Button', flavor='primary', onClick, id='0', value='0' } = this.props;
 
         return (
-            <React.Fragment>
-                { items && items.map( (item, i) => {
-                    const { flavor, id, value, label } = item;
-                    return (
-                        <button 
-                            key={i}
-                            type={type}
-                            className={`form-control btn btn-${flavor || 'primary'}`} 
-                            name={id} 
-                            id={id} 
-                            defaultValue={value} 
-                            onClick={this.clickHandler.bind(this)}
-                        >
-                            {label}
-                        </button>
-                    )
-                })}
+            <button 
+                type={type}
+                className={`form-control btn btn-${flavor || 'primary'}`} 
+                name={id} 
+                id={id} 
+                defaultValue={value} 
+                onClick={onClick}
+            >
+                {label}
                 <style jsx>{`
                 `}</style>
-            </React.Fragment>
+            </button>
         );
 	}
 }

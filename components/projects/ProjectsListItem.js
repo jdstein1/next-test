@@ -1,4 +1,6 @@
-import Input from '../common/Input';
+
+import Button from '../common/Button';
+import ButtonGroup from '../common/ButtonGroup';
 
 class ProjectsListItem extends React.Component {
 	
@@ -7,31 +9,49 @@ class ProjectsListItem extends React.Component {
 	// 	// console.log('ProjectsListItem props: ',props);
 	// }
 
-    projectIcon() {
-		switch (this.props.project.type) {
-			case 'electrical':
-				return 'fas fa-bolt'
+    classesListItem(id, selectedProjectId) {
+        return `list-group-item d-flex flex-container flex-row justify-content-start align-items-center ${id === selectedProjectId ? 'list-group-item-primary' : ''}`;
+    }
+    classesCheckbox(id, selectedProjectId) {
+        return `project-checkbox flex-grow-0 ${id === selectedProjectId ? 'fas fa-check-circle':'fas fa-circle'}`;
+    }
 
-			case 'plumbing':
-				return 'fas fa-bath'
+    classesIcon() {
+        const prefix = 'project-icon fas fa-';
+        switch (this.props.project.type) {
+            case 'electrical':
+                return prefix + 'bolt';
 
-			case 'cabinetry':
-				return 'fas fa-cubes'
+            case 'plumbing':
+                return prefix + 'bath';
 
-			case 'masonry':
-				return 'fas fa-graduation-cap'
+            case 'cabinetry':
+                return prefix + 'cubes';
 
-			case 'furniture':
-			case 'carpentry':
-				return 'fas fa-tree'
+            case 'masonry':
+                return prefix + 'graduation-cap';
 
-			case 'lighting':
-				return 'fas fa-lightbulb'
+            case 'furniture':
+                return prefix + 'tree';
+    
+            case 'carpentry':
+                return prefix + 'tree';
+
+            case 'lighting':
+                return prefix + 'lightbulb';
 
             default:
-				break;
-		}
-	}
+                break;
+        }
+    }
+
+    editItem = (e) => {
+        console.log('START editItem: ', e.target);
+    }
+
+    deleteItem = (e) => {
+        console.log('START deleteItem: ', e.target);
+    }
 
 	render() {
 
@@ -43,21 +63,25 @@ class ProjectsListItem extends React.Component {
             <li 
                 key={id} 
                 data-id={id}
-                className={`list-group-item d-flex flex-container flex-row justify-content-start align-items-center ${id === selectedProjectId ? 'list-group-item-primary' : ''}`}
+                className={this.classesListItem(id, selectedProjectId)}
                 onClick={handleClick}
             >
-                <div className={'project-checkbox flex-grow-0 '+(id === selectedProjectId ? 'fas fa-check-circle':'fas fa-circle')}></div>
+                <div className={this.classesCheckbox(id, selectedProjectId)}></div>
                 <div className="project-info align-self-start flex-grow-1">
-                    <h5 className="mb-0">{name}</h5>
-                    <small className="text-muted">id: {id}</small>
+                    <h3 className="mb-0">{name}</h3>
+                    <h5>{type}</h5>
+                    <code className="text-muted">id: {id}</code>
+                </div>
+                <div className="project-badge flex-grow-1">
+                    <div className={this.classesIcon()}></div>
                 </div>
                 <div className="project-action flex-grow-1 ml-auto">
-                    {/* <Input type="button-group" items={{value:['Delete','Edit'],flavor:['secondary','primary']}}>Delete</Input> */}
-                    {/* <InputGroup type="button" items={[{label:'Delete',flavor:'secondary'},{label:'Edit',flavor:'primary'}]} /> */}
-                </div>
-                <div className="project-badge align-self-end flex-grow-1">
-                    <div className={'badge mt-auto mb-auto '+type+' '+(id === selectedProjectId ? 'badge-primary' : 'badge-light')}>{type}</div>
-                    <div className={'project-icon '+this.projectIcon()}></div>
+                    <ButtonGroup
+                        settings={{inline:true}}
+                    >
+                        <Button label='Delete' flavor='secondary' type='button' onClick={this.deleteItem} />
+                        {/* <Button label='Edit' flavor='primary' type='submit' onClick={this.editItem} /> */}
+                    </ButtonGroup>
                 </div>
                 <style jsx>{`
                     .list-group-item {
@@ -96,8 +120,6 @@ class ProjectsListItem extends React.Component {
                         right: -1rem;
                         bottom: 0;
                         left: auto;
-                    }
-                    .badge {
                     }
                     .project-checkbox,
                     .project-checkbox:after,
