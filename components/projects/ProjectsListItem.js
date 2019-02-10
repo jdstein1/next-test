@@ -80,7 +80,7 @@ class ProjectsListItem extends React.Component {
                         settings={{inline:true}}
                     >
                         <Button label='Delete' flavor='secondary' type='button' onClick={this.deleteItem} />
-                        {/* <Button label='Edit' flavor='primary' type='submit' onClick={this.editItem} /> */}
+                        <Button label='Edit' flavor='primary' type='submit' onClick={this.editItem} />
                     </ButtonGroup>
                 </div>
                 <style jsx>{`

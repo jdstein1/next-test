@@ -6,7 +6,12 @@ class ButtonGroup extends React.PureComponent {
     render() {
 
         const { children, legend, settings={} } = this.props;
-
+        console.log('children: ', children);
+        
+        const childrenWithProps = React.Children.map(children, child =>
+            React.cloneElement(child, { spacing:false })
+          );
+      
         let classButtonGroup = '';
 
         if (settings) {
@@ -17,7 +22,7 @@ class ButtonGroup extends React.PureComponent {
             <fieldset className='form-group'>
                 {legend && <legend>{legend}</legend>}
                 <div className={ classButtonGroup }>
-                    {children}
+                    {childrenWithProps}
                 </div>
             </fieldset>
         );

@@ -174,7 +174,7 @@ class Projects extends React.Component {
 				>
 				Hello
 				</button> */}
-				{/* <button onClick={notify.show('Toasty!')}>Toast</button> */}
+                {/* <button onClick={notify.show('Toasty!')}>Toast</button> */}
 				<div className="row">
                     <div className="col-md-8">
 					    <ProjectsList selectedProject={this.state.selectedProject} allprojects={this.state.filteredProjects}>

@@ -6,6 +6,8 @@ by Jeff Stein
 
 Testing out Next.js features and capabilities.
 
+* [GitHub](https://github.com/jstein-ftdi/next-test)
+
 ### Sections:
 
 * Bitcoin
@@ -24,8 +26,10 @@ These are tools I used to make this project:
 
 * React.js
     * [reactjs.org](https://reactjs.org/)
+    * [GitHub](https://github.com/facebook/react/)
 * Next.js
     * [nextjs.org](https://nextjs.org/)
+    * [GitHub](https://github.com/zeit/next.js)
 
 ### Data & Content
 

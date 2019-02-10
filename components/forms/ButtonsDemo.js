@@ -2,6 +2,7 @@
 
 import Input from '../common/Input';
 import Button from '../common/Button';
+import ButtonGroup from '../common/ButtonGroup';
 import Fieldset from '../common/Fieldset';
 
 import { flavors } from '../../data/flavors';
@@ -16,15 +17,15 @@ const ButtonsDemo = (props) => {
         <React.Fragment>
             <h3>{title}</h3>
             <Fieldset legend='Bootstrap Buttons'>
-                <button type='button' className='btn btn-primary'>Primary</button>
-                <input type='button' className='btn btn-secondary' value='Secondary' />
-                <button type='reset' className='btn btn-success'>Success</button>
-                <button type='submit' className='btn btn-danger'>Danger</button>
-                <button type='button' className='btn btn-warning'>Warning</button>
-                <button type='button' className='btn btn-info'>Info</button>
-                <button type='button' className='btn btn-light'>Light</button>
-                <button type='button' className='btn btn-dark'>Dark</button>
-                <button type='button' className='btn btn-link'>Link</button>
+                <button type='button' className='btn btn-primary mb-2 mr-2'>Primary</button>
+                <input type='button' className='btn btn-secondary mb-2 mr-2' value='Secondary' />
+                <button type='reset' className='btn btn-success mb-2 mr-2'>Success</button>
+                <button type='submit' className='btn btn-danger mb-2 mr-2'>Danger</button>
+                <button type='button' className='btn btn-warning mb-2 mr-2'>Warning</button>
+                <button type='button' className='btn btn-info mb-2 mr-2'>Info</button>
+                <button type='button' className='btn btn-light mb-2 mr-2'>Light</button>
+                <button type='button' className='btn btn-dark mb-2 mr-2'>Dark</button>
+                <button type='button' className='btn btn-link mb-2 mr-2'>Link</button>
             </Fieldset>
             <Fieldset legend='Buttons 1'>
                 <Input
@@ -86,17 +87,11 @@ const ButtonsDemo = (props) => {
                         { id:'input', label:'Button 4', value:'87f3t45gi', flavor: Utils.getRandMember(flavors) }
                     ]}
                 />
-                <Input
-                    type='button-group'
-                    legend='ButtonGroup (3)'
-                    id='button5'
-                    settings={{inline:false}}
-                    items={[
-                        { id:'input', label:'Button 5', value:'vfytewu4w', flavor: Utils.getRandMember(flavors) },
-                        { id:'input', label:'Button 5', value:'d7634etyr', flavor: Utils.getRandMember(flavors) },
-                        { id:'input', label:'Button 5', value:'jbdv76w43', flavor: Utils.getRandMember(flavors) }
-                    ]}
-                />
+                <ButtonGroup settings={{inline:false}} legend='ButtonGroup (3)'>
+                    <Button type='button' id='input' label='Button 5' value='vfytewu4w' flavor={Utils.getRandMember(flavors) } />
+                    <Button type='button' id='input' label='Button 5' value='d7634etyr' flavor={Utils.getRandMember(flavors) } />
+                    <Button type='button' id='input' label='Button 5' value='jbdv76w43' flavor={Utils.getRandMember(flavors) } />
+                </ButtonGroup>
             </Fieldset>
         </React.Fragment>
     );
