@@ -8,8 +8,12 @@ import Fieldset from '../common/Fieldset';
 import { flavors } from '../../data/flavors';
 import Utils from '../../utils/';
 
-console.log('flavors: ', flavors);
+// console.log('flavors: ', flavors);
 console.log('Utils.getRandMember: ', Utils.getRandMember);
+
+const getRandomFlavor = () => {
+    return Utils.getRandMember(flavors);
+}
 
 const ButtonsDemo = (props) => {
     const { title } = props;
@@ -27,72 +31,67 @@ const ButtonsDemo = (props) => {
                 <button type='button' className='btn btn-dark mb-2 mr-2'>Dark</button>
                 <button type='button' className='btn btn-link mb-2 mr-2'>Link</button>
             </Fieldset>
-            <Fieldset legend='Buttons 1'>
-                <Input
+            <Fieldset legend='Buttons (block)'>
+                <Button
                     type='submit' 
                     id='submit1' 
-                    items={[
-                        { id:'input', label:'Submit 1', value:'hjfduig', flavor: Utils.getRandMember(flavors) }
-                    ]} />
-                <Input
+                    label='Submit 1'
+                    value='hjfduig' 
+                    flavor={ getRandomFlavor() }
+                />
+                <Button
                     type='reset' 
                     id='reset1' 
-                    items={[
-                        { id:'input', label:'Reset 1', value:'vnbjdr7e', flavor: Utils.getRandMember(flavors) }
-                    ]} />
-                <Input
+                    label='Reset 1'
+                    value='vnbjdr7e' 
+                    flavor={ getRandomFlavor() }
+                />
+                <Button
                     type='button' 
                     id='button1' 
-                    items={[
-                        { id:'input', label:'Button 1', value:'87dbjvc', flavor: Utils.getRandMember(flavors) }
-                    ]} />
-            </Fieldset>
-            <Fieldset legend='Buttons 2'>
-                <Button
-                    type='button' 
-                    id='button2a' 
-                    items={[
-                        { id:'input', label:'Button 2a', value:'jg875yh', flavor: Utils.getRandMember(flavors) }
-                    ]} />
-                <Button
-                    type='button' 
-                    id='button2b' 
-                    items={[
-                        { id:'input', label:'Button 2b', value:'hcwy634', flavor: Utils.getRandMember(flavors) }
-                    ]} />
-                <Button
-                    type='button' 
-                    id='button2c' 
-                    items={[
-                        { id:'input', label:'Button 2c', value:'jegrfw8', flavor: Utils.getRandMember(flavors) }
-                    ]} />
-            </Fieldset>
-            <Fieldset legend='Button Groups'>
-                <Input
-                    type='button-group'
-                    legend='ButtonGroup (1)'
-                    id='button3'
-                    settings={{inline:false}}
-                    items={[
-                        { id:'input', label:'Button 3', value:'ivgdr587y', flavor: Utils.getRandMember(flavors) }
-                    ]}
+                    label='Button 1'
+                    value='87dbjvc' 
+                    flavor={ getRandomFlavor() }
                 />
-                <Input
-                    type='button-group'
-                    legend='Inline ButtonGroup (2)'
-                    id='button4'
-                    settings={{inline:true}}
-                    items={[
-                        { id:'input', label:'Button 4', value:'vehjswiru', flavor: Utils.getRandMember(flavors) },
-                        { id:'input', label:'Button 4', value:'87f3t45gi', flavor: Utils.getRandMember(flavors) }
-                    ]}
-                />
-                <ButtonGroup settings={{inline:false}} legend='ButtonGroup (3)'>
-                    <Button type='button' id='input' label='Button 5' value='vfytewu4w' flavor={Utils.getRandMember(flavors) } />
-                    <Button type='button' id='input' label='Button 5' value='d7634etyr' flavor={Utils.getRandMember(flavors) } />
-                    <Button type='button' id='input' label='Button 5' value='jbdv76w43' flavor={Utils.getRandMember(flavors) } />
-                </ButtonGroup>
             </Fieldset>
+            <Fieldset legend='Buttons (inline)'>
+                <Button
+                    type='submit' 
+                    id='submit1' 
+                    label='Submit 1'
+                    value='hjfduig' 
+                    block={false}
+                    flavor={ getRandomFlavor() }
+                />
+                <Button
+                    type='reset' 
+                    id='reset1' 
+                    label='Reset 1'
+                    value='vnbjdr7e' 
+                    block={false}
+                    flavor={ getRandomFlavor() }
+                />
+                <Button
+                    type='button' 
+                    id='button1' 
+                    label='Button 1'
+                    value='87dbjvc' 
+                    block={false}
+                    flavor={ getRandomFlavor() }
+                />
+            </Fieldset>
+            <Fieldset legend='Buttons Groups Outer'>
+                    <Button id='input1a' label='Button 3' value='ivgdr587y' flavor={ getRandomFlavor() } />
+            </Fieldset>
+            <ButtonGroup legend='Button Groups Inner'>
+                <Button id='input2a' label='Button 4' value='vehjswiru' flavor={ getRandomFlavor() } />
+                <Button id='input2b' label='Button 4' value='87f3t45gi' flavor={ getRandomFlavor() } />
+            </ButtonGroup>
+            <ButtonGroup settings={{inline:false}} legend='ButtonGroup (3)'>
+                <Button id='input3a' label='Button 5' value='vfytewu4w' flavor={ getRandomFlavor() } />
+                <Button id='input3b' label='Button 5' value='d7634etyr' flavor={ getRandomFlavor() } />
+                <Button id='input3c' label='Button 5' value='jbdv76w43' flavor={ getRandomFlavor() } />
+            </ButtonGroup>
         </React.Fragment>
     );
 }
