@@ -4,6 +4,7 @@ import Fieldset from './Fieldset';
 import Label from './Label';
 import Hint from './Hint';
 import InputBinary from './InputBinary';
+import Button from './Button';
 import InputButton from './InputButton';
 import ButtonGroup from './ButtonGroup';
 
@@ -67,8 +68,7 @@ class Input extends React.Component {
         // const value = items && items.value || ''
         return (<Fieldset legend={ legend }>
             { items.map( (input, i) => {
-                console.log(settings);
-                
+                // console.log(settings);
                 return (
                     <Label text={input.label} key={i}>
                         <input className='form-control' type={type} name={id} id={id+'-'+i} defaultValue={ input.value } onChange={this.changeHandler} placeholder={ this.state.showPlaceholder ? `${type?type:'undefined'} input` : null } />
@@ -89,7 +89,7 @@ class Input extends React.Component {
             case 'submit':
             case 'reset':
             case 'button':
-                return (<InputButton type={type} label={ legend } items={items} />);
+                return (<Button type={type} label={ legend } items={items} />);
 
             case 'button-group':
                 return (<ButtonGroup type={type} label={ legend } items={items} settings={settings} />);
