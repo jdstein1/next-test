@@ -89,7 +89,7 @@ class Input extends React.Component {
             case 'submit':
             case 'reset':
             case 'button':
-                return (<Button type={type} label={ legend } items={items} />);
+                return (<Button type={type} label={ legend } />);
 
             case 'button-group':
                 return (<ButtonGroup type={type} label={ legend } items={items} settings={settings} />);
@@ -157,7 +157,8 @@ class Input extends React.Component {
                     :global(input[type=color]) {
                         -webkit-appearance: none;
                         padding:0.125rem;
-                        width:10rem;
+                        // width:10rem;
+                        width:100%;
                         height:2rem;
                     }
                     :placeholder {

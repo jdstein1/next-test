@@ -9,7 +9,7 @@ class ButtonGroup extends React.PureComponent {
         // console.log('children: ', children);
         
         const childrenWithProps = React.Children.map(children, child =>
-            React.cloneElement(child, { spacing:false })
+            React.cloneElement(child, { block:true })
           );
       
         let classButtonGroup = '';

@@ -28,19 +28,19 @@ const inputMessaging = {
         valid:'',
     },
     number: {
-        hint:'Enter number',
+        hint:'Numbers only',
         pattern:'([0-9])+([.,][0-9]*)*',
         invalid:'Not a valid number',
         valid:'',
     },
     search: {
-        hint:'Enter search term(s)',
+        hint:'',
         pattern:'([a-zA-Z])+',
         invalid:'Not a valid search',
         valid:'',
     },
     email: {
-        hint:'Enter email address',
+        hint:'',
         pattern:'[a-zA-Z0-9]+@([a-zA-Z0-9].[a-zA-Z])+',
         extra:'[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?',
         invalid:'Not a valid email',
@@ -72,7 +72,7 @@ const inputMessaging = {
         valid:'',
     },
     selectmultiple: {
-        hint:'Select one or more (press \'Command\' key)',
+        hint:'To select more than one, press \'Command\' or \'Ctrl\' key',
         pattern:'[a-zA-Z]',
         invalid:'Not a valid selectmultiple',
         valid:'',

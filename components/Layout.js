@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import Notifications, {notify} from 'react-notify-toast';
+// import Notifications, {notify} from 'react-notify-toast';
 
 import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
+import Header from '../components/Header';
 import MessageQueue from '../components/messages/MessageQueue';
 
 class Layout extends Component {
@@ -35,7 +35,7 @@ class Layout extends Component {
 					<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.9/css/fontawesome.css' integrity='sha384-Lyz+8VfV0lv38W729WFAmn77iH5OSroyONnUva4+gYaQTic3iI2fnUKtDSpbVf0J' crossorigin='anonymous'/>
 					{/* <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css'/> */}
 				</Head>
-				<Navbar links={this.props.pages} activePageIndex={this.props.activePageIndex} />
+				<Header links={this.props.pages} activePageIndex={this.props.activePageIndex} />
                 <MessageQueue msgs={this.props.msgs} />
 				<div className='container'>
     				{/* <Notifications /> */}
@@ -102,9 +102,9 @@ Layout.defaultProps = {
         {id:7,title:'Animation',url:'animation'}
     ],
     footer: [
-        {id:0,title:'Help',url:''},
-        {id:1,title:'About',url:''},
-        {id:2,title:'Contact',url:''}
+        {id:9,title:'Help',url:'help'},
+        {id:10,title:'About',url:'about'},
+        {id:11,title:'Contact',url:'contact'}
     ]
 };
 

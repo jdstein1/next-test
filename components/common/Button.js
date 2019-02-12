@@ -10,12 +10,12 @@ class Button extends React.Component {
     
     render() {
 
-        const { type='button', label='Button', flavor='primary', onClick, id='0', value='0', spacing=true, block=true } = this.props;
+        const { type='button', label='Button', flavor='primary', onClick, id='0', value='0', block=false } = this.props;
 
         return (
             <button 
                 type={type}
-                className={`btn btn-${flavor || 'primary'}${block?' btn-block':''}${spacing?' mb-2 mr-2':''}`} 
+                className={`btn btn-${flavor || 'primary'}${block?' btn-block mb-2':' mb-2 mr-2'}`} 
                 name={id} 
                 id={id} 
                 defaultValue={value} 
@@ -31,7 +31,7 @@ class Button extends React.Component {
 
 Button.propTypes = {
     type: PropTypes.string,
-    items: PropTypes.array
+    block: PropTypes.bool
 };
 
 export default Button;

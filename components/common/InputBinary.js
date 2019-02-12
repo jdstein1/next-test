@@ -17,11 +17,12 @@ class InputBinary extends React.Component {
 
         for (let index = 0; index < this.props.items.length; index++) {
             const element = this.props.items[index];
-            // console.log(element.selected);
+            console.log(element);
             if (element.selected) {
                 const newItemId = this.props.id +'-'+ (index+1);
+                const newItemVal = element.value;
                 this.setState({
-                    binarySelected: binarySelected.concat(newItemId)
+                    binarySelected: binarySelected.concat(newItemVal)
                 // }, () => {
                 //     console.log('this.state.binarySelected: ',this.state.binarySelected);
                 })
@@ -36,6 +37,9 @@ class InputBinary extends React.Component {
         const binarySelected = this.state.binarySelected;
         const index = binarySelected.indexOf(e.target.id);
 
+        console.dir(e.target);
+        
+
         // clear array if type===radio
         if (this.props.type === 'radio') {
             binarySelected.splice(0, binarySelected.length)
@@ -43,7 +47,7 @@ class InputBinary extends React.Component {
 
         if ( index < 0 && e.target.checked ) {
             // if not already in array, push to array
-            binarySelected.push(e.target.id);
+            binarySelected.push(e.target.value);
         } else {
             // if already in array, pop from array
             binarySelected.splice(index, 1);
@@ -76,6 +80,7 @@ class InputBinary extends React.Component {
                                     defaultChecked={ item.selected } 
                                     onChange={ this.changeBinary } 
                                     type={type} 
+                                    value={item.value}
                                     name={id} 
                                     id={id+'-'+(i+1)} />
                                 <Label className='form-check-label' htmlFor={id+'-'+(i+1)} text={item.value ? item.value : (item.label ? item.label : this.state.binaryLabel) } />
@@ -85,8 +90,8 @@ class InputBinary extends React.Component {
                 </div>
                 { id &&
                     <small className='meta'>
-                        <code>group_id: {id}</code><br />
-                        <code>selected_id(s): {JSON.stringify(binarySelected)}</code>
+                        {/* <code>group_id: {id}</code><br /> */}
+                        <code>{JSON.stringify(binarySelected)}</code>
                     </small>
                 }
                 <style jsx>{`

@@ -9,7 +9,7 @@ import { flavors } from '../../data/flavors';
 import Utils from '../../utils/';
 
 // console.log('flavors: ', flavors);
-console.log('Utils.getRandMember: ', Utils.getRandMember);
+// console.log('Utils.getRandMember: ', Utils.getRandMember);
 
 const getRandomFlavor = () => {
     return Utils.getRandMember(flavors);
@@ -37,6 +37,7 @@ const ButtonsDemo = (props) => {
                     id='submit1' 
                     label='Submit 1'
                     value='hjfduig' 
+                    block={true}
                     flavor={ getRandomFlavor() }
                 />
                 <Button
@@ -44,13 +45,14 @@ const ButtonsDemo = (props) => {
                     id='reset1' 
                     label='Reset 1'
                     value='vnbjdr7e' 
+                    block={true}
                     flavor={ getRandomFlavor() }
                 />
                 <Button
-                    type='button' 
                     id='button1' 
                     label='Button 1'
                     value='87dbjvc' 
+                    block={true}
                     flavor={ getRandomFlavor() }
                 />
             </Fieldset>
@@ -72,7 +74,6 @@ const ButtonsDemo = (props) => {
                     flavor={ getRandomFlavor() }
                 />
                 <Button
-                    type='button' 
                     id='button1' 
                     label='Button 1'
                     value='87dbjvc' 
@@ -81,7 +82,7 @@ const ButtonsDemo = (props) => {
                 />
             </Fieldset>
             <Fieldset legend='Buttons Groups Outer'>
-                    <Button id='input1a' label='Button 3' value='ivgdr587y' flavor={ getRandomFlavor() } />
+                <Button id='input1a' block={true} label='Button 3' value='ivgdr587y' flavor={ getRandomFlavor() } />
             </Fieldset>
             <ButtonGroup legend='Button Groups Inner'>
                 <Button id='input2a' label='Button 4' value='vehjswiru' flavor={ getRandomFlavor() } />

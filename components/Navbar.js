@@ -14,8 +14,10 @@ class Navbar extends Component {
 	};
 
 	render () {
-
-        const navLinks = this.props.links
+        const {links} = this.props;
+        // console.log('links: ', links);
+        
+        const navLinks = links
         // .filter(link => {
 		// 	return link.url !== ''
         // })
@@ -39,10 +41,6 @@ class Navbar extends Component {
 
 		return (
 			<nav className='navbar navbar-expand-md navbar-light bg-light'>
-				<Link href='/'><a className='navbar-brand'>Next.js Test App</a></Link>
-				<button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='true' aria-label='Toggle navigation'>
-				<span className='navbar-toggler-icon'></span>
-				</button>
 				<div className='navbar-collapse collapse' id='navbarResponsive'>
 					<ul className='navbar-nav' role='group'>
 						{navLinks}
